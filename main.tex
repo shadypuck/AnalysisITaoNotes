@@ -1,0 +1,40 @@
+\documentclass{report}
+
+\input{preamble.tex}
+
+\title{Analysis I (Tao) Notes}
+\author{Steven Labalme}
+
+\begin{document}
+
+
+
+
+
+\maketitle
+
+
+
+\pagenumbering{roman}
+\tableofcontents
+\thispagestyle{plain}
+\newpage
+
+
+
+
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{\markright{Chapter \thechapter: #1}}
+\lhead{\rightmark}
+\rhead{Summer Prep}
+\rfoot{Labalme \thepage}
+
+\subfile{Chapter01/chapter01}
+
+
+
+
+
+\end{document}
