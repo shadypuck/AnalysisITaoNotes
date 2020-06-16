@@ -25,13 +25,15 @@
 
 \pagenumbering{arabic}
 \pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{Chapter \thechapter: #1}{}}
 \fancyhf{}
-\renewcommand{\chaptermark}[1]{\markright{Chapter \thechapter: #1}}
-\lhead{\rightmark}
+\lhead{\leftmark}
 \rhead{Summer Prep}
 \rfoot{Labalme \thepage}
 
 \subfile{Chapter01/chapter01}
+
+\subfile{Chapter02/chapter02}
 
 
 

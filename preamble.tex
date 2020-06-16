@@ -1,5 +1,7 @@
 \usepackage[margin=1in]{geometry}
 \usepackage{fancyhdr}
+\usepackage{csquotes}
+\usepackage{scrextend}
 \usepackage{marginnote}
 \usepackage{tikz}
 \usepackage{amsmath,amssymb,amsthm}
@@ -20,8 +22,29 @@
 }
 \makeatother
 
+\MakeOuterQuote{"}
+
+\deffootnotemark{\textsuperscript{[\thefootnotemark]}}
+\deffootnote[1.8em]{0em}{0em}{\textsuperscript{\thefootnotemark}}
+
 \reversemarginpar
 
+\newtheorem{axm}{Axiom}[chapter]
+\newtheorem{prop}{Proposition}[chapter]
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[chapter]
+
+\renewcommand{\labelitemiii}{\scriptsize$\blacksquare$}
+
 \newcommand{\dq}[2]{``#1" (#2).}
+
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+\newcommand{\pplus}{\hspace{-0.7mm}+\hspace{-1.5mm}+}
 
 \usepackage{subfiles}

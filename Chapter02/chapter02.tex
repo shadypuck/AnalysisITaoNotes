@@ -1,0 +1,82 @@
+\documentclass[../main.tex]{subfiles}
+
+\begin{document}
+
+
+
+
+\chapter{Starting at the Beginning: The Natural Numbers}
+\begin{itemize}
+    \item \marginnote{6/15:}This text will begin by reviewing high school level material, but as rigorously as possible.
+    \begin{itemize}
+        \item It will teach the skill of proving complicated properties from simpler ones, allowing you to understand why an "obvious" statement really is obvious.
+        \item One particularly important skill is the use of \textbf{mathematical induction}.
+        \item We will strive to eliminate \textbf{circularity}.
+    \end{itemize}
+    \textbf{Circularity}: \dq{Using an advanced fact to prove a more elementary fact, and then later using the elementary fact to prove the advanced fact}{14}
+    \item The number systems used in real analysis, listed in order of increasing sophistication, are the \textbf{naturals} $\N$\footnote{Note that in this text, the natural numbers will include 0. The natural numbers without 0 will be called the \textbf{positive integers} $\Z^+$.}, the \textbf{integers} $\Z$, the \textbf{rationals} $\Q$, and the \textbf{reals} $\R$.
+    \begin{itemize}
+        \item \textbf{Complex numbers} $\C$ will only be used much later.
+    \end{itemize}
+    \item This chapter will answer the question, "How does one actually \emph{define} the natural numbers?"
+\end{itemize}
+
+
+
+\section{The Peano Axioms}
+\begin{itemize}
+    \item \textbf{Peano Axioms}: First laid out by Guiseppe Peano, these are a standard way to define the natural numbers.
+    \item How do you define operations on the naturals?
+    \begin{itemize}
+        \item Complicated operations are defined in terms of simpler ones: Exponentiation is repeated multiplication, multiplication is repeated addition, and addition is repeated \textbf{incrementing}.
+    \end{itemize}
+    \item \textbf{Incrementing}: The most fundamental operation --- best thought of as counting forward by one number.
+    \begin{itemize}
+        \item Incrementing is one of the fundamental concepts that allows us to define the natural numbers.
+        \item Let\footnote{This notation is pulled from some computer languages such as $C$.} $n\pplus$ denote the increment, or \textbf{successor}, of $n$.
+        \begin{itemize}
+            \item For example, $3\pplus=4$ and $(3\pplus)\pplus=5$.
+        \end{itemize}
+    \end{itemize}
+    \item Let $x:=y$ denote the statement, "$x$ is defined to equal $y$."
+    \item At this point, we can begin defining the natural numbers.
+    \begin{axm}\label{axm:0inN}
+        0 is a natural number.
+    \end{axm}
+    \begin{axm}\label{axm:npplus}
+        If $n$ is a natural number, then $n\pplus$ is also a natural number.
+    \end{axm}
+    \item To avoid having to use incrementation notation for every number, we adopt a convention.
+    \begin{defn}
+        We define 1 to be the number $0\pplus$, 2 to be the number $(0\pplus)\pplus$, 3 to be the number $((0\pplus)\pplus)\pplus$, etc.
+    \end{defn}
+    \item From these axioms, we can already prove things.
+    \begin{prop}
+        3 is a natural number.
+        \begin{proof}
+            By Axiom \ref{axm:0inN}, 0 is a natural number. By Axiom \ref{axm:npplus}, $0\pplus=1$ is a natural number. By Axiom \ref{axm:npplus} again, $1\pplus=2$ is a natural number. By Axiom \ref{axm:npplus} again, $2\pplus=3$ is a natural number.
+        \end{proof}
+    \end{prop}
+    \item It seems like Axioms \ref{axm:0inN} and \ref{axm:npplus} have us pretty well covered. However, what if the number system wraps around (e.g., if $3\pplus=0$)? We can fix this with the following.
+    \begin{axm}
+        0 is not the successor of any natural number; i.e., we have $n\pplus\neq 0$ for every natural number $n$.
+    \end{axm}
+    \item We can now prove that $4\neq 0$ (because $4=3\pplus$, $3\in\N$, and $n\pplus\neq 0$).
+    \item However, there are still issues --- what if the number system hits a ceiling at 4, e.g., $4\pplus=4$?
+    \item A good way to prevent this kind of behavior is via the following.
+    \begin{axm}\label{axm:successorDistinctness}
+        Different natural numbers must have different successors, i.e., if $n,m\in\N$ and $n\neq m$, then $n\pplus\neq m\pplus$. Equivalently\footnote{This is an example of reformulating an implication using its \textbf{contrapositive}. In the converse direction, it is the \textbf{axiom of substitution}.}, if $n\pplus=m\pplus$, then $n=m$.
+    \end{axm}
+    \item We can now prove propositions like the following, extending our anti-wrap around proving ability.
+    \begin{prop}
+        6 is not equal to 2.
+        \begin{proof}
+            Suppose $6=2$. Then $5\pplus=1\pplus$, so by Axiom \ref{axm:successorDistinctness}, $5=1$. Then $4\pplus=0\pplus$, so by Axiom \ref{axm:successorDistinctness}, $4=0$, which contradicts our proof that $4\neq 0$.
+        \end{proof}
+    \end{prop}
+\end{itemize}
+
+
+
+
+\end{document}
