@@ -25,7 +25,10 @@
 
 \section{The Peano Axioms}
 \begin{itemize}
-    \item \textbf{Peano Axioms}: First laid out by Guiseppe Peano, these are a standard way to define the natural numbers.
+    \item \textbf{Peano Axioms}: First laid out by Guiseppe Peano, these are a standard way to define the natural numbers. They consist of Axioms 2.1-2.5, which follow.
+    \begin{itemize}
+        \item From these five axioms and some from set theory, we can build all other number systems, create functions, and do algebra and calculus.
+    \end{itemize}
     \item How do you define operations on the naturals?
     \begin{itemize}
         \item Complicated operations are defined in terms of simpler ones: Exponentiation is repeated multiplication, multiplication is repeated addition, and addition is repeated \textbf{incrementing}.
@@ -58,7 +61,7 @@
         \end{proof}
     \end{prop}
     \item It seems like Axioms \ref{axm:0inN} and \ref{axm:npplus} have us pretty well covered. However, what if the number system wraps around (e.g., if $3\pplus=0$)? We can fix this with the following.
-    \begin{axm}
+    \begin{axm}\label{axm:0NotSuccessor}
         0 is not the successor of any natural number; i.e., we have $n\pplus\neq 0$ for every natural number $n$.
     \end{axm}
     \item We can now prove that $4\neq 0$ (because $4=3\pplus$, $3\in\N$, and $n\pplus\neq 0$).
@@ -74,7 +77,212 @@
             Suppose $6=2$. Then $5\pplus=1\pplus$, so by Axiom \ref{axm:successorDistinctness}, $5=1$. Then $4\pplus=0\pplus$, so by Axiom \ref{axm:successorDistinctness}, $4=0$, which contradicts our proof that $4\neq 0$.
         \end{proof}
     \end{prop}
+    \item \marginnote{6/16:}Before going any further, we're going to need an \textbf{axiom schema}.
+    \item \textbf{Axiom schema}: An axiom that functions as \dq{a template for producing an (infinite) number of axioms, rather than a single axiom in its own right}{20}
+    \begin{axm}[Principle of mathematical induction]\label{axm:induction}
+        Let $P(n)$ be any property pertaining to a natural number $n$. Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true, $P(n\pplus)$ is also true. Then $P(n)$ is true for every natural number $n$.
+    \end{axm}
+    \item Axiom \ref{axm:induction} allows us to exclude numbers such as 0.5, 1.5, 2.5, \dots from our number system because $P(n)$ is only true for $n\in 0,1,2\dots$
+    \item Proposition 2.1.11 in the book is an excellent template for an induction proof.
+    \item Note that there is only one natural number system --- we could call $\{0,1,2,\dots\}$ and $\{O,I,II,III,\dots\}$ different number systems, but they are \textbf{isomorphic}, since a one-to-one correspondence exists between their elements and they obey the same rules.
+    \item An interesting property of the naturals is that while every element is finite (0 is finite; if $n$ is finite, then $n\pplus$ is finite), the set is infinite.
+    \item In math, we define the natural numbers \textbf{axiomatically} as opposed to \textbf{constructively} --- \dq{we have not told you what the natural numbers are\dots we have only listed some things you can do with them\dots and some of the properties that they have}{22}
+    \begin{itemize}
+        \item This is the essence of treating objects \textbf{abstractly}, caring only about the properties of objects, not what they are or what they mean.
+        \item \dq{The great discovery of the late nineteenth century was that numbers can be understood abstractly via axioms, without necessarily needing a concrete model; of course a mathematician can use any of these models [e.g., counting beads] when it is convenient, to aid his or her intuition and understanding, but they can also be just as easily discarded when they begin to get in the way [of understanding $-3$, $1/3$, $\sqrt{2}$, $3+4i$, \dots]}{23}
+    \end{itemize}
+    \item With the axioms (and the concept of a function, which does not rely on said axioms), we can introduce recursive definitions, which will be useful in defining addition and multiplication.
+    \begin{prop}[Recursive definitions]
+        Suppose for each natural number $n$, we have some function $f_n:\N\to\N$ from the natural numbers to the natural numbers. Let $c$ be a natural number. Then we can assign a unique natural number $a_n$ to each natural number $n$, such that $a_0=c$ and $a_{n\pplus}=f_n(a_n)$ for each natural number $n$.
+        \begin{proof}
+            (Informal) We use induction. First, a single value $c$ is given to $a_0$ (no other value $a_{n\pplus}:=f_n(a_n)$ will be assigned to 0 by Axiom \ref{axm:0NotSuccessor}). Given that $a_n$ has a unique value, $a_{n\pplus}$ will have a unique value $f_n(a_n)$, distinct from any other $a_{m\pplus}$ by Axiom \ref{axm:successorDistinctness}.
+        \end{proof}
+    \end{prop}
 \end{itemize}
+
+
+
+\section{Addition}
+\begin{itemize}
+    \item We can define addition recursively.
+    \begin{defn}[Addition of natural numbers]\label{dfn:addition}
+        Let $m$ be a natural number. To add zero to $m$, we define $0+m:=m$. Now suppose inductively that we have defined how to add $n$ to $m$. Then we can add $n\pplus$ to $m$ by defining $(n\pplus)+m:=(n+m)\pplus$.
+    \end{defn}
+    \begin{itemize}
+        \item If we want to find $2+5$, we can find $0+5=5$, $1+5=(0\pplus)+5=(0+5)\pplus=5\pplus=6$, $2+5=(1\pplus)+5=(1+5)\pplus=6\pplus=7$.
+    \end{itemize}
+    \item Let's now prove commutativity.
+    \begin{lem}\label{lem:nplus0}
+        For any natural number $n$, $n+0=n$.
+        \begin{proof}
+            Use induction. Since $0+m=m$ for all $m\in\N$ and $0\in\N$, $0+0=0$, proving the base case. If $n+0=n$, then $(n\pplus)+0=(n+0)\pplus=n\pplus$. This closes the induction.
+        \end{proof}
+    \end{lem}
+    \begin{lem}\label{lem:nplusmpplus}
+        For any $n,m\in\N$, $n+(m\pplus)=(n+m)\pplus$.
+        \begin{proof}
+            We keep $m$ fixed and induct on $n$. Base case: if $n=0$, then $0+(m\pplus)=(m)\pplus=(0+m)\pplus$. Induction step: if $n+(m\pplus)=(n+m)\pplus$, then
+            \begin{align*}
+                (n\pplus)+(m\pplus) &= (n+(m\pplus))\pplus\\
+                &= ((n+m)\pplus)\pplus\\
+                &= ((n\pplus)+m)\pplus
+            \end{align*}
+            This closes the induction.
+        \end{proof}
+    \end{lem}
+    \begin{prop}[Addition is commutative]\label{prp:commutativity}
+        For any natural numbers $n$ and $m$, $n+m=m+n$.
+        \begin{proof}
+            For all $m\in\N$, Definition \ref{dfn:addition} gives us $0+m=m$ and Lemma \ref{lem:nplus0} gives us $m+0=m$. Since both of the previous statements equal $m$, $0+m=m+0$. Suppose inductively that $n\in\N$ and $n+m=m+n$. If this is true, then
+            \begin{align*}
+                (n\pplus)+m &= (n+m)\pplus\tag*{Definition \ref{dfn:addition}}\\
+                &= (m+n)\pplus\tag*{Inductive hypothesis}\\
+                &= m+(n\pplus)\tag*{Lemma \ref{lem:nplusmpplus}}
+            \end{align*}
+            This closes the induction.
+        \end{proof}
+    \end{prop}
+    \item And associativity (see Exercise \ref{exr:2.2.1}).
+    \item The next proposition deals with cancelling. Although we cannot use subtraction or negative numbers to prove it, it will be instrumental in allowing us to define subtraction and integers later.
+    \begin{prop}[Cancellation law]\label{prp:cancellation}
+        Let $a,b,c$ be natural numbers such that $a+b=a+c$. Then we have $b=c$.
+        \begin{proof}
+            We induct on $a$ (keeping $b,c$ fixed). Consider the base case $a=0$. If $0+b=0+c$ by assumption and $0+b=b$ and $0+c=c$ by Definition \ref{dfn:addition}, then $b=c$. Suppose inductively that $a+b=a+c$ implies that $b=c$. We must prove that $(a\pplus)+b=(a\pplus)+c$ implies $b=c$. This may be done as follows.
+            \begin{align*}
+                (a\pplus)+b &= (a\pplus)+c\tag*{Given}\\
+                (a+b)\pplus &= (a+c)\pplus\tag*{Definition \ref{dfn:addition}}\\
+                a+b &= a+c\tag*{Axiom \ref{axm:successorDistinctness}}\\
+                b &= c\tag*{Inductive hypothesis}
+            \end{align*}
+        \end{proof}
+    \end{prop}
+    \item \textbf{Positive natural numbers}: A natural number $n\neq 0$.
+    \begin{prop}\label{prp:AplusBpositive}
+        If $a$ is positive and $b$ is a natural number, then $a+b$ is positive (and hence $b+a$ is also by Proposition \ref{prp:commutativity}).
+        \begin{proof}
+            We induct on $b$ (keeping $a$ fixed). In the base case, if $b=0$, then $a+0=a$ (a positive number) by Lemma \ref{lem:nplus0}. Suppose inductively that $a+b$ is positive. Then $a+(b\pplus)=(a+b)\pplus$ by Lemma \ref{lem:nplusmpplus}, and $(a+b)\pplus$ is positive by Axiom \ref{axm:0NotSuccessor} --- $a+(b\pplus)$ is equal to the successor of a natural number, and the successor of a natural number is never 0, thus always positive. This closes the induction.
+        \end{proof}
+    \end{prop}
+    \begin{cly}\label{cly:AplusBequals0}
+        If $a,b\in\N$ and $a+b=0$, then $a=0$ and $b=0$.
+        \begin{proof}
+            Suppose for the sake of contradiction that $a\neq 0$ or $b\neq 0$. If $a\neq 0$, then $a$ is positive, and hence $a+b=0$ is positive by the previous statement, a contradiction. Similarly, if $b\neq 0$, then $b$ is positive, and hence $a+b=0$ is positive by Proposition \ref{prp:AplusBpositive}, a contradiction. Thus, $a$ and $b$ must both be zero.
+        \end{proof}
+    \end{cly}
+    \item See Exercise \ref{exr:2.2.2} for another property of positive natural numbers.
+    \item With addition, we can begin to order the natural numbers.
+    \begin{defn}[Ordering of the natural numbers]\label{dfn:ordering}
+        Let $n,m\in\N$. We say that $n$ is \textbf{greater than or equal to} $m$ and write $n\geq m$ or $m\leq n$ iff we have $n=m+a$ for some $a\in\N$. We say that $n$ is \textbf{strictly greater than} $m$ and write $n>m$ or $m<n$ iff $n\geq m$ and $n\neq m$.
+    \end{defn}
+    \item See Exercise \ref{exr:2.2.3} for more on ordering.
+    \item We can now prove the trichotomy.
+    \begin{prop}[Trichotomy of order for natural numbers]\label{prp:trichotomy}
+        Let $a$ and $b$ be natural numbers. Then exactly one of the following statements is true: $a<b$, $a=b$, or $a>b$.
+        \begin{proof}
+            See Exercise \ref{exr:2.2.4} to fill in the gaps.\par
+            First, show that no two (or three) of the statements can hold simultaneously. If $a<b$ or $a>b$, then $a\neq b$ by definition. Also, if $a>b$ and $a<b$, then $a=b$, a contradiction.\par
+            Second, show that at least one of the statements is always true. We induct on $a$ (keeping $b$ fixed). When $a=0$, we have $0\leq b$ for all $b$ (see Exercise \ref{exr:2.2.4a}), so we either have $0=b$ or $0<b$, which proves the base case. Now suppose inductively that we have proven the proposition for $a$. From the trichotomy of $a$, there are three cases: $a<b$, $a=b$, and $a>b$. If $a>b$, then $a\pplus>b$ (see Exercise \ref{exr:2.2.4b}). If $a=b$, then $a\pplus>b$ (see Exercise \ref{exr:2.2.4c}). If $a<b$, then $a\pplus\leq b$ by Proposition \ref{prp:ordering}. Thus, either $a\pplus=b$ or $a\pplus<b$. This closes the induction.
+        \end{proof}
+    \end{prop}
+\end{itemize}
+
+
+\subsection{Exercises}
+\begin{enumerate}[ref={\thesection.\arabic*}]
+    \item \label{exr:2.2.1}Prove the following proposition. Hint: fix two of the variables and induct on the third.
+    \begin{prop}[Addition is associative]\label{prp:associativity}
+        For any natural numbers $a,b,c$, we have $(a+b)+c=a+(b+c)$.
+        \begin{proof}
+            We first need a lemma.
+            \begin{lem}\label{lem:sumNaturalsIsNatural}
+                The sum of two natural numbers $n+m$ is a natural number.
+                \begin{proof}
+                    We induct on $n$ (keeping $m$ fixed). By Axiom \ref{axm:0inN}, $0\in\N$. Since $m\in\N$, by Definition \ref{dfn:addition}, $0+m$ (the sum of two natural numbers) equals $m$ (a natural number). Thus, the base case holds. Suppose inductively that $n+m$ is a natural number. Then $(n\pplus)+m=(n+m)\pplus$ by Definition \ref{dfn:addition}, $n+m$ is a natural number by the inductive hypothesis, and $(n+m)\pplus$ is a natural number by Axiom \ref{axm:npplus}. This closes the induction.
+                \end{proof}
+            \end{lem}
+            Now we induct on $a$ (keeping $b,c$ fixed). By the lemma, $b+c$ is a natural number and can be treated as such. Consider the base case $a=0$. In this case, $0+(b+c)=b+c$ and $0+b=b$ by Definition \ref{dfn:addition}, so $0+(b+c)=b+c=(0+b)+c$. Now suppose inductively that $a+(b+c)=(a+b)+c$. Then
+            \begin{align*}
+                (a\pplus)+(b+c) &= (a+(b+c))\pplus\tag*{Definition \ref{dfn:addition}}\\
+                &= ((a+b)+c)\pplus\tag*{Inductive hypothesis}\\
+                &= ((a+b)\pplus)+c\tag*{Definition \ref{dfn:addition}}\\
+                &= ((a\pplus)+b)+c\tag*{Definition \ref{dfn:addition}}
+            \end{align*}
+            This closes the induction.
+        \end{proof}
+    \end{prop}
+    \item \label{exr:2.2.2}Prove the following lemma. Hint: use induction.
+    \begin{lem}
+        Let $a$ be a positive number. Then there exists exactly one natural number $b$ such that $b\pplus=a$.
+        \begin{proof}
+            We induct on $a$. Consider the base case $a=1$. $1=0\pplus$ by definition, and by Axiom \ref{axm:successorDistinctness}, 0 is the only $b$ satisfying $1=b\pplus$. Now suppose inductively that $a$ has only one $b$ satisfying $b\pplus=a$. Then $a\pplus$ has only one natural number (namely $a$) satisfying $a\pplus=a\pplus$. This closes the induction.
+        \end{proof}
+    \end{lem}
+    \item \label{exr:2.2.3}Prove the following proposition. Hint: you will need many of the preceding propositions, corollaries, and lemmas.
+    \begin{prop}[Basic properties of order for natural numbers]\label{prp:ordering}
+        Let $a,b,c$ be natural numbers. Then
+        \begin{enumerate}[label={\textup{(}\alph*\textup{)}}]
+            \item \textup{(}Order is reflexive\textup{)} $a\geq a$.
+            \begin{proof}
+                By Lemma \ref{lem:nplus0}, $a=a+0$. The previous expression is in the form $n=m+a$; thus, by Definition \ref{dfn:ordering}, $a\geq a$.
+            \end{proof}
+            \item \textup{(}Order is transitive\textup{)} If $a\geq b$ and $b\geq c$, then $a\geq c$.
+            \begin{proof}
+                If $a\geq b$ and $b\geq c$, then $a=b+n$ and $b=c+m$, respectively, for some $n,m\in\N$. Substituting, $a=(c+m)+n$. By Proposition \ref{prp:associativity}, $a=c+(m+n)$. By Lemma \ref{lem:sumNaturalsIsNatural}, $m+n$ is a natural number. The previous expression is in the form $n=m+a$; thus, by Definition \ref{dfn:ordering}, $a\geq c$.
+            \end{proof}
+            \item \textup{(}Order is anti-symmetric\textup{)} If $a\geq b$ and $b\geq a$, then $a=b$.
+            \begin{proof}
+                If $a\geq b$ and $b\geq a$, then $a=b+n$ and $b=a+m$, respectively, for some $n,m\in\N$. Substituting, $a=(a+m)+n$. By Proposition \ref{prp:associativity}, $a=a+(m+n)$. By Lemma \ref{lem:nplus0}, $a+0=a+(m+n)$. By Proposition \ref{prp:cancellation}, $0=m+n$. By Corollary \ref{cly:AplusBequals0}, $m$ and $n$ both equal 0. Thus, $a=b+0=b$ by Lemma \ref{lem:nplus0}.
+            \end{proof}
+            \item \textup{(}Addition preserves order\textup{)} $a\geq b$ iff $a+c\geq b+c$.
+            \begin{proof}
+                If $a+c\geq b+c$, then $a+c=(b+c)+n$ for some $n\in\N$. Then
+                \begin{align*}
+                    c+a &= n+(b+c)\tag*{Proposition \ref{prp:commutativity}}\\
+                    c+a &= (n+b)+c\tag*{Proposition \ref{prp:associativity}}\\
+                    c+a &= c+(n+b)\tag*{Proposition \ref{prp:commutativity}}\\
+                    a &= n+b\tag*{Proposition \ref{prp:cancellation}}\\
+                    a &= b+n\tag*{Proposition \ref{prp:commutativity}}\\
+                \end{align*}
+                Thus, $a\geq b$.
+            \end{proof}
+            \item $a<b$ iff $a\pplus\leq b$.
+            \begin{proof}
+                If $a\pplus\leq b$, then $b=(a\pplus)+n$ for some $n\in\N$. Then
+                \begin{align*}
+                    b &= (a+n)\pplus\tag*{Definition \ref{dfn:addition}}\\
+                    &= a+(n\pplus)\tag*{Lemma \ref{lem:nplusmpplus}}
+                \end{align*}
+                Since $n\pplus$ is a natural number (Axiom \ref{axm:npplus}), the above proves that $a\leq b$. By Axiom \ref{axm:0NotSuccessor}, $n\pplus\neq 0$. Thus, $b\neq a$ (suppose for the sake of contradiction that $b=a$. Then $b=b+0=a+(n\pplus)$ implies by Proposition \ref{prp:cancellation} that $0=n\pplus$, a contradiction). By definition, since $a\leq b$ and $b\neq a$, $a<b$.
+            \end{proof}
+            \item $a<b$ iff $b=a+d$ for some positive number $d$.
+            \begin{proof}
+                As a positive number, $d$ is a natural number by definition. Thus, $b=a+d$ implies $a\leq b$. Since $d$ is a positive number, $d\neq 0$. For the reasons outlined in the previous proof, this implies that $b\neq a$. Thus, $a<b$.
+            \end{proof}
+        \end{enumerate}
+    \end{prop}
+    \item \label{exr:2.2.4}Justify the three statements marked (why?) in the proof of Proposition \ref{prp:trichotomy}.
+    \begin{enumerate}[label={(\alph*)},ref={2.2.4\alph*}]
+        \item \label{exr:2.2.4a}\emph{If $n$ is a natural number, then $0\leq n$.}
+        \begin{proof}
+            We induct on $n$. By Proposition \ref{prp:ordering}, $0\geq 0$, proving the base case. Suppose inductively that $n\geq 0$. We know that $n\pplus\geq n$ (since $n\pplus=(n+0)\pplus=n+0\pplus$), so by Proposition \ref{prp:ordering}, $n\pplus\geq n$ and $n\geq 0$ transitively imply $n\pplus\geq 0$.
+        \end{proof}
+        \item \label{exr:2.2.4b}\emph{Let $a,b$ be natural numbers. Then if $a>b$, $a\pplus>b$.}
+        \begin{proof}
+            We first need a lemma.
+            \begin{lem}
+                If $a>b$ and $b>c$, then $a>c$.
+                \begin{proof}
+                    If $a>b$ and $b>c$, then $a=b+n$ and $b=c+m$, respectively, for some positive numbers $n,m$. Substituting, $a=(c+m)+n$. By Proposition \ref{prp:associativity}, $a=c+(m+n)$. By Proposition \ref{prp:AplusBpositive}, $m+n$ is a positive number. Thus, by Proposition \ref{prp:ordering}, $a>c$.
+                \end{proof}
+            \end{lem}
+            Note that $a\pplus>a$ --- $a\pplus=(a+0)\pplus=a+0\pplus$ and $0\pplus\neq 0$ (Axiom \ref{axm:0NotSuccessor}), i.e., $a\pplus=a+d$, $d$ being positive. By the lemma, $a\pplus>a$ and $a>b$ imply that $a\pplus>b$.
+        \end{proof}
+        \item \label{exr:2.2.4c}\emph{Let $a,b$ be natural numbers. Then if $a=b$, $a\pplus>b$.}
+        \begin{proof}
+            For the reasons outlined in the previous proof, $a\pplus>a$. Since $a=b$, substituting gives $a\pplus>b$.
+        \end{proof}
+    \end{enumerate}
+\end{enumerate}
 
 
 
