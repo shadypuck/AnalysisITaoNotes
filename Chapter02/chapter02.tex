@@ -174,6 +174,7 @@
     \begin{defn}[Ordering of the natural numbers]\label{dfn:ordering}
         Let $n,m\in\N$. We say that $n$ is \textbf{greater than or equal to} $m$ and write $n\geq m$ or $m\leq n$ iff we have $n=m+a$ for some $a\in\N$. We say that $n$ is \textbf{strictly greater than} $m$ and write $n>m$ or $m<n$ iff $n\geq m$ and $n\neq m$.
     \end{defn}
+    \item Note that $n\pplus>n$ for any $n$.
     \item See Exercise \ref{exr:2.2.3} for more on ordering.
     \item We can now prove the trichotomy.
     \begin{prop}[Trichotomy of order for natural numbers]\label{prp:trichotomy}
@@ -188,7 +189,7 @@
     \begin{itemize}
         \item Strong induction is usually used with $m_0=0$ or $m_0=1$.
     \end{itemize}
-    \item \textbf{Vacuous truth}: A conditional or universal statement that is only true because the antecedent cannot be satisfied, e.g., "all cell phones in the room are turned off" is true even if there are no cell phones in the room.
+    \item \textbf{Vacuous truth}: "A conditional or universal statement that is only true because the antecedent cannot be satisfied. For example, the statement `all cell phones in the room are turned off' will be true even if there are no cell phones in the room" \cite{bib:vacuous}.
 \end{itemize}
 
 
@@ -280,11 +281,11 @@
                     If $a>b$ and $b>c$, then $a=b+n$ and $b=c+m$, respectively, for some positive numbers $n,m$. Substituting, $a=(c+m)+n$. By Proposition \ref{prp:associativity}, $a=c+(m+n)$. By Proposition \ref{prp:AplusBpositive}, $m+n$ is a positive number. Thus, by Proposition \ref{prp:ordering}, $a>c$.
                 \end{proof}
             \end{lem}
-            Note that $a\pplus>a$ --- $a\pplus=(a+0)\pplus=a+0\pplus$ and $0\pplus\neq 0$ (Axiom \ref{axm:0NotSuccessor}), i.e., $a\pplus=a+d$, $d$ being positive. By the lemma, $a\pplus>a$ and $a>b$ imply that $a\pplus>b$.
+            $a\pplus>a$. By the lemma, $a\pplus>a$ and $a>b$ imply that $a\pplus>b$.
         \end{proof}
         \item \label{exr:2.2.4c}\emph{Let $a,b$ be natural numbers. Then if $a=b$, $a\pplus>b$.}
         \begin{proof}
-            For the reasons outlined in the previous proof, $a\pplus>a$. Since $a=b$, substituting gives $a\pplus>b$.
+            $a\pplus>a$. Since $a=b$, substituting gives $a\pplus>b$.
         \end{proof}
     \end{enumerate}
     \item \label{exr:2.2.5}Prove the following proposition. Hint: define $Q(n)$ to be the property that $P(m)$ is true for all $m_0\leq m<n$; note that $Q(n)$ is vacuously true when $n<m_0$.
@@ -302,6 +303,168 @@
         We induct on $n$. For the base case $n=0$, we want to show that $P(m)$ is true for all natural numbers $m\leq n$. Since we are supposing that $P(n)=P(0)$ is true and 0 is the only number $m\in\N$ satisfying $m\leq 0$, the base case is true.\par
         Suppose inductively that we have proved for $P(n)$ true that $P(m)$ is true for all natural numbers $m\leq n$. We want to show that for $P(n\pplus)$ true, $P(m)$ is true for all natural numbers $m\leq n\pplus$. If $P(n\pplus)$ is true, then clearly $P(m)$ is true for all natural numbers $m=n$. By definition, $P(n\pplus)$ true implies $P(n)$ true, and $P(n)$ true implies that $P(m)$ is true for all natural numbers $m\leq n$. Thus, $P(m)$ is true for all natural numbers $m\leq n$ or $m=n\pplus$; these two statements can be combined into $m\leq n\pplus$. This closes the induction.
     \end{proof}
+\end{enumerate}
+
+
+
+\section{Multiplication}
+\begin{itemize}
+    \item \marginnote{6/18:}At this point, all properties of addition can be used without supplying a justification.
+    \item The definition of multiplication is very similar to the definition of addition.
+    \begin{defn}[Multiplication of natural numbers]\label{dfn:multiplication}
+        Let $m$ be a natural number. To multiply 0 to $m$, we define $0\times m:=0$. Now suppose inductively that we have defined how to multiply $n$ to $m$. Then we can multiply $n\pplus$ to $m$ by defining $(n\pplus)\times m:=(n\times m)+m$. 
+    \end{defn}
+    \item See Exercise \ref{exr:2.3.1} for a proof of the commutativity of multiplication.
+    \item At this point, we abbreviate $n\times m$ as $nm$ and use the convention that multiplication takes precedence over addition (i.e., $ab+c=(a\times b)+c$).
+    \item See Exercise \ref{exr:2.3.2} for a proof of the zero product property.
+    \item We can now prove the distributive law.
+    \begin{prop}[Distributive law]\label{prp:distributive}
+        For any natural numbers $a,b,c$, we have $a(b+c)=ab+ac$ and $(b+c)a=ba+ca$.
+        \begin{proof}[Proof\,\footnotemark]
+            \footnotetext{Note that this could be accomplished by induction on $a$. However, for the sake of introducing new concepts, I will transcribe the alternative method from \cite{bib:AnalysisI}.}
+            Since multiplication is commutative, we need only show the first identity $a(b+c)=ab+ac$. We keep $a$ and $b$ fixed, and use induction on $c$. Let's prove the base case $c=0$, i.e., $a(b+0)=ab+a0$. The left-hand side is $ab$, while the right-hand side is $ab+0=ab$, so we are done with the base case. Now let us suppose inductively that $a(b+c)=ab+ac$, and let us prove that $a(b+(c\pplus))=ab+a(c\pplus)$. The left-hand side is $a((b+c)\pplus)=a(b+c)+a$, while the right-hand side is $ab+ac+a=a(b+c)+a$ by the induction hypothesis, and so we can close the induction.
+        \end{proof}
+    \end{prop}
+    \item See Exercise \ref{exr:2.3.3} for a proof of the associativity of multiplication.
+    \item Bringing back order, we can prove that multiplication preserves order.
+    \begin{prop}[Multiplication preserves order]\label{prp:multPreservesOrder}
+        If $a,b$ are natural numbers such that $a<b$, and $c$ is positive, then $ac<bc$.
+        \begin{proof}
+            Since $a<b$, we have $b=a+d$ for some positive $d$. Multiplying by $c$ and using the distributive law, we obtain $bc=ac+dc$. Since $c,d$ are positive, $dc$ is positive, and hence $ac<bc$ as desired.
+        \end{proof}
+    \end{prop}
+    \item Although we still haven't introduced division, we can introduce a multiplicative analogy of the cancellation law.
+    \begin{cly}[Cancellation law]
+        Let $a,b,c$ be natural numbers such that $ac=bc$ and $c$ is non-zero. Then $a=b$.
+        \begin{proof}[Proof\,\footnotemark]
+            \footnotetext{This could be accomplished by induction on $c$.}
+            By the Proposition \ref{prp:trichotomy}, we have three cases: $a<b$, $a=b$, or $a>b$. Suppose first that $a<b$, then by Proposition \ref{prp:multPreservesOrder}, we have $ac<bc$, which contradicts our hypothesis that $ac=bc$. We can obtain a similar contradiction when $a>b$. Thus, the only possibility is that $a=b$, as desired.
+        \end{proof}
+    \end{cly}
+    \item At this point, we can deduce all of the rules of algebra involving addition and multiplication (see Exercise \ref{exr:2.3.4} for such an example).
+    \item With addition and multiplication now defined, we will rarely see incrementation moving forward. Regardless, we can always use $n\pplus=n+1$ to describe it (this is not circular since $n+1$ was originally defined from $n\pplus$).
+    \item See Exercise \ref{exr:2.3.5} for a proof of the Euclidean algorithm.
+    \begin{itemize}
+        \item This algorithm marks the beginning of \textbf{number theory}, which is important but will not be covered any further in this text.
+    \end{itemize}
+    \item The definition of exponentiation is very similar to the definitions of addition and multiplication.
+    \begin{defn}[Exponentiation of natural numbers]\label{dfn:exponentiation}
+        Let $m$ be a natural number. To raise $m$ to the power 0, we define $m^0:=1$; in particular, we define $0^0:=1$. Now suppose recursively that $m^n$ has been defined for some natural number $n$. Then we define $m^{n\pplus}:=m^n\times m$.
+    \end{defn}
+    \item Exponentiation will not be explored too deeply here --- wait until after we define the integers and rationals.
+\end{itemize}
+
+
+\subsection*{Exercises}
+\begin{enumerate}[ref={\thesection.\arabic*}]
+    \item \label{exr:2.3.1}Prove the following lemma. Hint: modify the proofs of Lemmas \ref{lem:nplus0} and \ref{lem:nplusmpplus} and Proposition \ref{prp:commutativity}.
+    \begin{lem}[Multiplication is commutative]\label{lem:commutativityMult}
+        Let $n,m$ be natural numbers. Then $n\times m=m\times n$.
+        \begin{proof}
+            We first need two lemmas.
+            \begin{lem}\label{lem:ntimes0}
+                For any natural number $n$, $n\times 0=0$.
+                \begin{proof}
+                    We induct on $n$. For the base case $n=0$, Definition \ref{dfn:multiplication} gives us $0\times 0=0$. Suppose inductively that $n\times 0=0$. Then $(n\pplus)\times 0=(n\times 0)+0$ by Definition \ref{dfn:multiplication}, which equals $0+0$ by the inductive hypothesis, which equals $0$. This closes the induction.
+                \end{proof}
+            \end{lem}
+            \begin{lem}\label{lem:ntimesmpplus}
+                Let $n,m$ be natural numbers. Then $n\times(m\pplus)=(n\times m)+n$.
+                \begin{proof}
+                    We induct on $n$ (keeping $m$ fixed). For the base case $n=0$, Definition \ref{dfn:multiplication} gives us $0\times(m\pplus)=0$ and $(0\times m)+0=0$. Thus, $0\times(m\pplus)=(0\times m)+0$, proving the base case. Suppose inductively that $n\times(m\pplus)=(n\times m)+n$. Then
+                    \begin{align*}
+                        (n\pplus)\times(m\pplus) &= (n\times(m\pplus))+m\tag*{Definition \ref{dfn:multiplication}}\\
+                        &= ((n\times m)+n)+m\tag*{Inductive hypothesis}\\
+                        &= ((n\times m)+m)+n\\
+                        &= ((n\pplus)\times m)+n\tag*{Definition \ref{dfn:multiplication}}
+                    \end{align*}
+                    This closes the induction.
+                \end{proof}
+            \end{lem}
+            Now for the primary proof, we induct on $n$ (keeping $m$ fixed). For the base case $n=0$, Definition \ref{dfn:multiplication} gives us $0\times m=0$ while Lemma \ref{lem:ntimes0} gives us $m\times 0=0$. Thus, $0\times m=m\times 0$, proving the base case. Now suppose inductively that $n\times m=m\times n$. Then
+            \begin{align*}
+                (n\pplus)\times m &= (n\times m)+m\tag*{Definition \ref{dfn:multiplication}}\\
+                &= (m\times n)+m\tag*{Inductive hypothesis}\\
+                &= m\times (n\pplus)\tag*{Lemma \ref{lem:ntimesmpplus}}
+            \end{align*}
+            This closes the induction.
+        \end{proof}
+    \end{lem}
+    \item \label{exr:2.3.2}Prove the following lemma. Hint: prove the second statement first.
+    \begin{lem}[Positive natural numbers have no zero divisors]
+        Let $n,m$ be natural numbers. Then $n\times m=0$ if and only if at least one of $n,m$ is equal to zero. In particular, if $n$ and $m$ are both positive, then $nm$ is also positive.
+        \begin{proof}
+            We begin by proving the second statement. We induct on $n$ (keeping $m$ fixed). For the base case, $n$ is actually equal to 1 (since 1 is the smallest positive number). We want to show that $1m$ is positive. By Definition \ref{dfn:multiplication}, $1m=0m+m=0+m=m$, which is positive by assumption. Suppose inductively that $nm$ is positive. Then $(n\pplus)m=nm+m$. Since $nm+m$ is the sum of two positive numbers, it is positive (Proposition \ref{prp:AplusBpositive}). This closes the induction.\par
+            Suppose for the sake of contradiction that $n,m$ are both positive natural numbers and $nm=0$. Since $nm=0$, it is not positive by definition. But this contradicts the previous assertion that $nm$ must be positive if $n,m$ are both positive. Thus, at least one of $n,m$ is not positive, implying by definition that at least one of $n,m$ is equal to 0.
+        \end{proof}
+    \end{lem}
+    \item \label{exr:2.3.3}Prove the following proposition. Hint: modify the proof of Proposition \ref{prp:associativity} and use the distributive law.
+    \begin{prop}[Multiplication is associative]
+        For any natural numbers $a,b,c$, we have $(a\times b)\times c=a\times(b\times c)$.
+        \begin{proof}
+            We first need a lemma.
+            \begin{lem}
+                For any natural numbers $n,m$, the product $nm$ is a natural number.
+                \begin{proof}
+                    We induct on $n$ (keeping $m$ fixed). For the base case $n=0$, $0m=0$ by Definition \ref{dfn:multiplication}, which is a natural number. Now suppose inductively that $nm$ is a natural number. Then $(n\pplus)m=nm+m$, which is the sum of two natural numbers. By Lemma \ref{lem:sumNaturalsIsNatural}, $nm+m$ is a natural number. This closes the induction.
+                \end{proof}
+            \end{lem}
+            Now for the primary proof, we induct on $a$ (keeping $b,c$ fixed). For the base case $a=0$, $(0\times b)\times c=0\times c=0$ by two applications of Definition \ref{dfn:multiplication}. Also, $0\times(b\times c)=0$ by Definition \ref{dfn:multiplication} and the lemma (which asserts that $bc$ can be treated as a natural number). Thus, $(0\times b)\times c=0\times(b\times c)$ transitively, proving the base case. Now suppose inductively that $(a\times b)\times c=a\times(b\times c)$. Then
+            \begin{align*}
+                ((a\pplus)\times b)\times c &= ((a\times b)+b)\times c\tag*{Definition \ref{dfn:multiplication}}\\
+                &= (a\times b)\times c+b\times c\tag*{Proposition \ref{prp:distributive}}\\
+                &= a\times(b\times c)+b\times c\tag*{Induction hypothesis}\\
+                &= (a\pplus)\times(b\times c)\tag*{Definition \ref{dfn:multiplication}}
+            \end{align*}
+            This closes the induction.
+        \end{proof}
+    \end{prop}
+    \item \label{exr:2.3.4}Prove the identity $(a+b)^2=a^2+2ab+b^2$ for all natural numbers $a,b$.
+    \begin{proof}
+        We first need two lemmas.
+        \begin{lem}\label{lem:productToSum}
+            For any natural numbers $n,m$, $nm=\underbrace{m+\cdots+m}_\text{$n$ times}$.
+            \begin{proof}
+                We induct on $n$ (keeping $m$ fixed). For the base case $n=0$, $0m=0$ by Definition \ref{dfn:multiplication}. 0 is equal to the sum of zero $m$'s, proving the base case. Suppose inductively that $$nm=\underbrace{m+\cdots+m}_\text{$n$ times}$$ Then $$(n\pplus)m=nm+m=\underbrace{m+\cdots+m}_\text{$n$ times}+m=\underbrace{m+\cdots+m}_\text{$n\pplus$ times}$$ This closes the induction.
+            \end{proof}
+        \end{lem}
+        \begin{lem}\label{lem:expToProduct}
+            For any natural numbers $n,m$, $m^n=\underbrace{m\times\cdots\times m}_\text{$n$ times}$.
+            \begin{proof}
+                We induct on $n$ (keeping $m$ fixed). For the base case $n=0$, $m^0=1$ by Definition \ref{dfn:exponentiation}. 1 is equal to the product of zero $m$'s, proving the base case. Suppose inductively that $$m^n=\underbrace{m\times\cdots\times m}_\text{$n$ times}$$ Then $$m^{n\pplus}=m^n\times m=\underbrace{m\times\cdots\times m}_\text{$n$ times}\times m=\underbrace{m\times\cdots\times m}_\text{$n\pplus$ times}$$ This closes the induction.
+            \end{proof}
+        \end{lem}
+        Now for the primary proof:
+        \begin{align*}
+            (a+b)^2 &= (a+b)(a+b)\tag*{Lemma \ref{lem:expToProduct}}\\
+            &= (a+b)a+(a+b)b\tag*{Proposition \ref{prp:distributive}}\\
+            &= aa+ba+ab+bb\tag*{Proposition \ref{prp:distributive}}\\
+            &= a^2+(ba+ab)+b^2\tag*{Lemma \ref{lem:expToProduct}}\\
+            &= a^2+(ab+ab)+b^2\tag*{Lemma \ref{lem:commutativityMult}}\\
+            &= a^2+2ab+b^2\tag*{Lemma \ref{lem:productToSum}}
+        \end{align*}
+    \end{proof}
+    \item \label{exr:2.3.5}Prove the following proposition. Hint: fix $q$ and induct on $n$.
+    \begin{prop}[Euclidean algorithm]
+        Let $n$ be a natural number, and let $q$ be a positive number. Then there exist natural numbers $m,r$ such that $0\leq r<q$ and $n=mq+r$.
+        \begin{proof}
+            We induct on $n$ (keeping $q$ fixed). For the base case $n=0$, choose $m=0$ and $r=0$. In both cases, 0 is a natural number, and in the latter case, 0 satisfies $0\leq 0<q$ since $0\leq 0$ by Proposition \ref{prp:ordering} and $0<q$ for all positive $q$. Since $m,r$ meet all necessary conditions, $0q+0=0$ by Definition \ref{dfn:multiplication} and \ref{dfn:addition}, and $n=0$ by hypothesis, the base case holds.\par
+            Suppose inductively that $n=mq+r$. We want to show that $n\pplus=m'q+r'$ for some $m',r'$ satisfying the conditions that $m$ and $r$ must satisfy, respectively. To begin, we can show an equality between $m,r$ and $m',r'$ as follows.
+            \begin{align*}
+                m'q+r' &= n\pplus\\
+                &= n+1\\
+                &= mq+r+1
+            \end{align*}
+            From this, it would seem logical to choose $m'=m$ and $r'=r+1$. However, since $r<q$, $r+1\leq q$, so we have two cases to consider. If $r+1<q$, it will indeed suffice to choose $m'=m$ and $r'=r+1$. Both of these choices satisfy all of the necessary requirements. If $r+1=q$, we must choose differently. Choose $m'=m+1$ and $r'=0$. It may be more difficult to understand these choices, but they do work: $m+1$ and $0$ are both natural numbers, 0 satisfies $0\leq 0<q$ as discussed earlier, and the following shows that the choices maintain the equality with $n\pplus$.
+            \begin{align*}
+                (m+1)q+0 &= mq+q\\
+                &= mq+r+1\\
+                &= n+1\\
+                &= n\pplus
+            \end{align*}
+            With both cases treated, the induction may be closed.
+        \end{proof}
+    \end{prop}
 \end{enumerate}
 
 

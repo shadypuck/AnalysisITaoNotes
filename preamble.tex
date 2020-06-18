@@ -2,6 +2,7 @@
 \usepackage{fancyhdr}
 \usepackage{csquotes}
 \usepackage{scrextend}
+\usepackage[bottom]{footmisc}
 \usepackage{appendix}
 \usepackage{marginnote}
 \usepackage{tikz}
@@ -27,7 +28,7 @@
 
 \MakeOuterQuote{"}
 
-\deffootnotemark{\textsuperscript{[\thefootnotemark]}}
+\deffootnotemark{\textsuperscript{\textup{[}\thefootnotemark\textup{]}}}
 \deffootnote[1.8em]{0em}{0em}{\textsuperscript{\thefootnotemark}}
 
 \reversemarginpar
