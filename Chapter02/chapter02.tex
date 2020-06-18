@@ -184,10 +184,15 @@
             Second, show that at least one of the statements is always true. We induct on $a$ (keeping $b$ fixed). When $a=0$, we have $0\leq b$ for all $b$ (see Exercise \ref{exr:2.2.4a}), so we either have $0=b$ or $0<b$, which proves the base case. Now suppose inductively that we have proven the proposition for $a$. From the trichotomy of $a$, there are three cases: $a<b$, $a=b$, and $a>b$. If $a>b$, then $a\pplus>b$ (see Exercise \ref{exr:2.2.4b}). If $a=b$, then $a\pplus>b$ (see Exercise \ref{exr:2.2.4c}). If $a<b$, then $a\pplus\leq b$ by Proposition \ref{prp:ordering}. Thus, either $a\pplus=b$ or $a\pplus<b$. This closes the induction.
         \end{proof}
     \end{prop}
+    \item \marginnote{6/17:}With order, we can obtain a stronger version of induction (see Exercise \ref{exr:2.2.5}).
+    \begin{itemize}
+        \item Strong induction is usually used with $m_0=0$ or $m_0=1$.
+    \end{itemize}
+    \item \textbf{Vacuous truth}: A conditional or universal statement that is only true because the antecedent cannot be satisfied, e.g., "all cell phones in the room are turned off" is true even if there are no cell phones in the room.
 \end{itemize}
 
 
-\subsection{Exercises}
+\subsection*{Exercises}
 \begin{enumerate}[ref={\thesection.\arabic*}]
     \item \label{exr:2.2.1}Prove the following proposition. Hint: fix two of the variables and induct on the third.
     \begin{prop}[Addition is associative]\label{prp:associativity}
@@ -211,7 +216,7 @@
         \end{proof}
     \end{prop}
     \item \label{exr:2.2.2}Prove the following lemma. Hint: use induction.
-    \begin{lem}
+    \begin{lem}\label{lem:backwardsIncrement}
         Let $a$ be a positive number. Then there exists exactly one natural number $b$ such that $b\pplus=a$.
         \begin{proof}
             We induct on $a$. Consider the base case $a=1$. $1=0\pplus$ by definition, and by Axiom \ref{axm:successorDistinctness}, 0 is the only $b$ satisfying $1=b\pplus$. Now suppose inductively that $a$ has only one $b$ satisfying $b\pplus=a$. Then $a\pplus$ has only one natural number (namely $a$) satisfying $a\pplus=a\pplus$. This closes the induction.
@@ -282,6 +287,21 @@
             For the reasons outlined in the previous proof, $a\pplus>a$. Since $a=b$, substituting gives $a\pplus>b$.
         \end{proof}
     \end{enumerate}
+    \item \label{exr:2.2.5}Prove the following proposition. Hint: define $Q(n)$ to be the property that $P(m)$ is true for all $m_0\leq m<n$; note that $Q(n)$ is vacuously true when $n<m_0$.
+    \begin{prop}[Strong principle of induction]
+        Let $m_0$ be a natural number, and let $P(m)$ be a property pertaining to an arbitrary natural number $m$. Suppose that for each $m\geq m_0$, we have the following implication: if $P(m')$ is true for all natural numbers $m_0\leq m'<m$, then $P(m)$ is also true. (In particular, this means that $P(m_0)$ is true, since in this case the hypothesis is vacuous.) Then we can conclude that $P(m)$ is true for all natural numbers $m\geq m_0$.
+        \begin{proof}
+            Let $n$ be a natural number satisfying $n\geq m_0$ and let $Q(n)$ be the property that $P(m)$ is true for all $m_0\leq m<n$. We induct on $n$.\par
+            For the base case $n=0$, we want to show that $Q(0)$ is true. Since $0\leq m_0$ (Exercise \ref{exr:2.2.4a}), either $0=m_0$ or $0<m_0$ (Proposition \ref{prp:trichotomy}). We treat these cases separately. If $0=m_0$, then $Q(0)$ is vacuously true (since there is no $m\in\N$ such that $0\leq m<0$, of course $P(m)$ is true for all $0\leq m<0$ [because there are no cases, $P(m)$ is true in all cases; it's also false, but that's besides the point.]) If $0<m_0$, then $Q(0)$ is also vacuously true (since there is no $m\in\N$ such that $0<m_0\leq m<0$).\par
+            Suppose inductively that for some $n\geq m_0$, $Q(n)$ is true, i.e., "$P(m)$ is true for all $m_0\leq m<n$" is true. We want to show that $Q(n\pplus)$ is true. By the definition of $P$ in the hypothesis, $Q(n)$ is true implies $P(n)$ is true. Thus, $P(m)$ is true for all $m_0\leq m<n\pplus$, so $Q(n\pplus)$ is true. This closes the induction.\par
+            Since $Q(n)$ is true for all $n\geq m_0$, $P(n)$ is true for all $n\geq m_0$ \cite{bib:StrongInduction}.
+        \end{proof}
+    \end{prop}
+    \item \label{exr:2.2.6}Let $n$ be a natural number, and let $P(m)$ be a property pertaining to the natural numbers such that whenever $P(m\pplus)$ is true, then $P(m)$ is true. Suppose that $P(n)$ is also true. Prove that $P(m)$ is true for all natural numbers $m\leq n$; this is known as the \textbf{principle of backwards induction}. Hint: apply induction to the variable $n$.
+    \begin{proof}
+        We induct on $n$. For the base case $n=0$, we want to show that $P(m)$ is true for all natural numbers $m\leq n$. Since we are supposing that $P(n)=P(0)$ is true and 0 is the only number $m\in\N$ satisfying $m\leq 0$, the base case is true.\par
+        Suppose inductively that we have proved for $P(n)$ true that $P(m)$ is true for all natural numbers $m\leq n$. We want to show that for $P(n\pplus)$ true, $P(m)$ is true for all natural numbers $m\leq n\pplus$. If $P(n\pplus)$ is true, then clearly $P(m)$ is true for all natural numbers $m=n$. By definition, $P(n\pplus)$ true implies $P(n)$ true, and $P(n)$ true implies that $P(m)$ is true for all natural numbers $m\leq n$. Thus, $P(m)$ is true for all natural numbers $m\leq n$ or $m=n\pplus$; these two statements can be combined into $m\leq n\pplus$. This closes the induction.
+    \end{proof}
 \end{enumerate}
 
 
