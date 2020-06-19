@@ -82,7 +82,7 @@
     \begin{axm}[Principle of mathematical induction]\label{axm:induction}
         Let $P(n)$ be any property pertaining to a natural number $n$. Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true, $P(n\pplus)$ is also true. Then $P(n)$ is true for every natural number $n$.
     \end{axm}
-    \item Axiom \ref{axm:induction} allows us to exclude numbers such as 0.5, 1.5, 2.5, \dots from our number system because $P(n)$ is only true for $n\in 0,1,2\dots$
+    \item Axiom \ref{axm:induction} allows us to exclude numbers such as $0.5,1.5,2.5,\dots$ from our number system because $P(n)$ is only true for $n\in 0,1,2,\dots$
     \item Proposition 2.1.11 in the book is an excellent template for an induction proof.
     \item Note that there is only one natural number system --- we could call $\{0,1,2,\dots\}$ and $\{O,I,II,III,\dots\}$ different number systems, but they are \textbf{isomorphic}, since a one-to-one correspondence exists between their elements and they obey the same rules.
     \item An interesting property of the naturals is that while every element is finite (0 is finite; if $n$ is finite, then $n\pplus$ is finite), the set is infinite.
@@ -123,9 +123,9 @@
         \begin{proof}
             We keep $m$ fixed and induct on $n$. Base case: if $n=0$, then $0+(m\pplus)=(m)\pplus=(0+m)\pplus$. Induction step: if $n+(m\pplus)=(n+m)\pplus$, then
             \begin{align*}
-                (n\pplus)+(m\pplus) &= (n+(m\pplus))\pplus\\
-                &= ((n+m)\pplus)\pplus\\
-                &= ((n\pplus)+m)\pplus
+                (n\pplus)+(m\pplus) &= (n+(m\pplus))\pplus\tag*{Definition \ref{dfn:addition}}\\
+                &= ((n+m)\pplus)\pplus\tag*{Induction hypothesis}\\
+                &= ((n\pplus)+m)\pplus\tag*{Definition \ref{dfn:addition}}
             \end{align*}
             This closes the induction.
         \end{proof}
@@ -136,7 +136,7 @@
             For all $m\in\N$, Definition \ref{dfn:addition} gives us $0+m=m$ and Lemma \ref{lem:nplus0} gives us $m+0=m$. Since both of the previous statements equal $m$, $0+m=m+0$. Suppose inductively that $n\in\N$ and $n+m=m+n$. If this is true, then
             \begin{align*}
                 (n\pplus)+m &= (n+m)\pplus\tag*{Definition \ref{dfn:addition}}\\
-                &= (m+n)\pplus\tag*{Inductive hypothesis}\\
+                &= (m+n)\pplus\tag*{Induction hypothesis}\\
                 &= m+(n\pplus)\tag*{Lemma \ref{lem:nplusmpplus}}
             \end{align*}
             This closes the induction.
@@ -152,7 +152,7 @@
                 (a\pplus)+b &= (a\pplus)+c\tag*{Given}\\
                 (a+b)\pplus &= (a+c)\pplus\tag*{Definition \ref{dfn:addition}}\\
                 a+b &= a+c\tag*{Axiom \ref{axm:successorDistinctness}}\\
-                b &= c\tag*{Inductive hypothesis}
+                b &= c\tag*{Induction hypothesis}
             \end{align*}
         \end{proof}
     \end{prop}
@@ -166,7 +166,7 @@
     \begin{cly}\label{cly:AplusBequals0}
         If $a,b\in\N$ and $a+b=0$, then $a=0$ and $b=0$.
         \begin{proof}
-            Suppose for the sake of contradiction that $a\neq 0$ or $b\neq 0$. If $a\neq 0$, then $a$ is positive, and hence $a+b=0$ is positive by the previous statement, a contradiction. Similarly, if $b\neq 0$, then $b$ is positive, and hence $a+b=0$ is positive by Proposition \ref{prp:AplusBpositive}, a contradiction. Thus, $a$ and $b$ must both be zero.
+            Suppose for the sake of contradiction that $a\neq 0$ or $b\neq 0$. If $a\neq 0$, then $a$ is positive, and hence $a+b=0$ is positive by Proposition \ref{prp:AplusBpositive}, a contradiction. Similarly, if $b\neq 0$, then $b$ is positive, and hence $a+b=0$ is positive by Proposition \ref{prp:AplusBpositive}, a contradiction. Thus, $a$ and $b$ must both be zero.
         \end{proof}
     \end{cly}
     \item See Exercise \ref{exr:2.2.2} for another property of positive natural numbers.
@@ -203,13 +203,13 @@
             \begin{lem}\label{lem:sumNaturalsIsNatural}
                 The sum of two natural numbers $n+m$ is a natural number.
                 \begin{proof}
-                    We induct on $n$ (keeping $m$ fixed). By Axiom \ref{axm:0inN}, $0\in\N$. Since $m\in\N$, by Definition \ref{dfn:addition}, $0+m$ (the sum of two natural numbers) equals $m$ (a natural number). Thus, the base case holds. Suppose inductively that $n+m$ is a natural number. Then $(n\pplus)+m=(n+m)\pplus$ by Definition \ref{dfn:addition}, $n+m$ is a natural number by the inductive hypothesis, and $(n+m)\pplus$ is a natural number by Axiom \ref{axm:npplus}. This closes the induction.
+                    We induct on $n$ (keeping $m$ fixed). By Axiom \ref{axm:0inN}, $0\in\N$. Since $m\in\N$, by Definition \ref{dfn:addition}, $0+m$ (the sum of two natural numbers) equals $m$ (a natural number). Thus, the base case holds. Suppose inductively that $n+m$ is a natural number. Then $(n\pplus)+m=(n+m)\pplus$ by Definition \ref{dfn:addition}, $n+m$ is a natural number by the induction hypothesis, and $(n+m)\pplus$ is a natural number by Axiom \ref{axm:npplus}. This closes the induction.
                 \end{proof}
             \end{lem}
             Now we induct on $a$ (keeping $b,c$ fixed). By the lemma, $b+c$ is a natural number and can be treated as such. Consider the base case $a=0$. In this case, $0+(b+c)=b+c$ and $0+b=b$ by Definition \ref{dfn:addition}, so $0+(b+c)=b+c=(0+b)+c$. Now suppose inductively that $a+(b+c)=(a+b)+c$. Then
             \begin{align*}
                 (a\pplus)+(b+c) &= (a+(b+c))\pplus\tag*{Definition \ref{dfn:addition}}\\
-                &= ((a+b)+c)\pplus\tag*{Inductive hypothesis}\\
+                &= ((a+b)+c)\pplus\tag*{Induction hypothesis}\\
                 &= ((a+b)\pplus)+c\tag*{Definition \ref{dfn:addition}}\\
                 &= ((a\pplus)+b)+c\tag*{Definition \ref{dfn:addition}}
             \end{align*}
@@ -237,7 +237,7 @@
             \end{proof}
             \item \textup{(}Order is anti-symmetric\textup{)} If $a\geq b$ and $b\geq a$, then $a=b$.
             \begin{proof}
-                If $a\geq b$ and $b\geq a$, then $a=b+n$ and $b=a+m$, respectively, for some $n,m\in\N$. Substituting, $a=(a+m)+n$. By Proposition \ref{prp:associativity}, $a=a+(m+n)$. By Lemma \ref{lem:nplus0}, $a+0=a+(m+n)$. By Proposition \ref{prp:cancellation}, $0=m+n$. By Corollary \ref{cly:AplusBequals0}, $m$ and $n$ both equal 0. Thus, $a=b+0=b$ by Lemma \ref{lem:nplus0}.
+                If $a\geq b$ and $b\geq a$, then $a=b+n$ and $b=a+m$, respectively, for some $n,m\in\N$. Substituting, $a=(a+m)+n$. By Proposition \ref{prp:associativity}, $a=a+(m+n)$. By Lemma \ref{lem:nplus0}, $a+0=a+(m+n)$. By Proposition \ref{prp:cancellation}, $0=m+n$. By Corollary \ref{cly:AplusBequals0}, $m$ and $n$ both equal 0. Thus, $a=b+0=b$ (or $b=a+0=a$) by Lemma \ref{lem:nplus0}.
             \end{proof}
             \item \textup{(}Addition preserves order\textup{)} $a\geq b$ iff $a+c\geq b+c$.
             \begin{proof}
@@ -365,7 +365,7 @@
             \begin{lem}\label{lem:ntimes0}
                 For any natural number $n$, $n\times 0=0$.
                 \begin{proof}
-                    We induct on $n$. For the base case $n=0$, Definition \ref{dfn:multiplication} gives us $0\times 0=0$. Suppose inductively that $n\times 0=0$. Then $(n\pplus)\times 0=(n\times 0)+0$ by Definition \ref{dfn:multiplication}, which equals $0+0$ by the inductive hypothesis, which equals $0$. This closes the induction.
+                    We induct on $n$. For the base case $n=0$, Definition \ref{dfn:multiplication} gives us $0\times 0=0$. Suppose inductively that $n\times 0=0$. Then $(n\pplus)\times 0=(n\times 0)+0$ by Definition \ref{dfn:multiplication}, which equals $0+0$ by the induction hypothesis, which equals $0$. This closes the induction.
                 \end{proof}
             \end{lem}
             \begin{lem}\label{lem:ntimesmpplus}
@@ -374,7 +374,7 @@
                     We induct on $n$ (keeping $m$ fixed). For the base case $n=0$, Definition \ref{dfn:multiplication} gives us $0\times(m\pplus)=0$ and $(0\times m)+0=0$. Thus, $0\times(m\pplus)=(0\times m)+0$, proving the base case. Suppose inductively that $n\times(m\pplus)=(n\times m)+n$. Then
                     \begin{align*}
                         (n\pplus)\times(m\pplus) &= (n\times(m\pplus))+m\tag*{Definition \ref{dfn:multiplication}}\\
-                        &= ((n\times m)+n)+m\tag*{Inductive hypothesis}\\
+                        &= ((n\times m)+n)+m\tag*{Induction hypothesis}\\
                         &= ((n\times m)+m)+n\\
                         &= ((n\pplus)\times m)+n\tag*{Definition \ref{dfn:multiplication}}
                     \end{align*}
@@ -384,7 +384,7 @@
             Now for the primary proof, we induct on $n$ (keeping $m$ fixed). For the base case $n=0$, Definition \ref{dfn:multiplication} gives us $0\times m=0$ while Lemma \ref{lem:ntimes0} gives us $m\times 0=0$. Thus, $0\times m=m\times 0$, proving the base case. Now suppose inductively that $n\times m=m\times n$. Then
             \begin{align*}
                 (n\pplus)\times m &= (n\times m)+m\tag*{Definition \ref{dfn:multiplication}}\\
-                &= (m\times n)+m\tag*{Inductive hypothesis}\\
+                &= (m\times n)+m\tag*{Induction hypothesis}\\
                 &= m\times (n\pplus)\tag*{Lemma \ref{lem:ntimesmpplus}}
             \end{align*}
             This closes the induction.
@@ -439,7 +439,7 @@
             (a+b)^2 &= (a+b)(a+b)\tag*{Lemma \ref{lem:expToProduct}}\\
             &= (a+b)a+(a+b)b\tag*{Proposition \ref{prp:distributive}}\\
             &= aa+ba+ab+bb\tag*{Proposition \ref{prp:distributive}}\\
-            &= a^2+(ba+ab)+b^2\tag*{Lemma \ref{lem:expToProduct}}\\
+            &= a^2+ba+ab+b^2\tag*{Lemma \ref{lem:expToProduct}}\\
             &= a^2+(ab+ab)+b^2\tag*{Lemma \ref{lem:commutativityMult}}\\
             &= a^2+2ab+b^2\tag*{Lemma \ref{lem:productToSum}}
         \end{align*}
@@ -455,7 +455,7 @@
                 &= n+1\\
                 &= mq+r+1
             \end{align*}
-            From this, it would seem logical to choose $m'=m$ and $r'=r+1$. However, since $r<q$, $r+1\leq q$, so we have two cases to consider. If $r+1<q$, it will indeed suffice to choose $m'=m$ and $r'=r+1$. Both of these choices satisfy all of the necessary requirements. If $r+1=q$, we must choose differently. Choose $m'=m+1$ and $r'=0$. It may be more difficult to understand these choices, but they do work: $m+1$ and $0$ are both natural numbers, 0 satisfies $0\leq 0<q$ as discussed earlier, and the following shows that the choices maintain the equality with $n\pplus$.
+            From this, it would seem logical to choose $m':=m$ and $r':=r+1$. However, since $r<q$, $r+1\leq q$, so by Proposition \ref{prp:trichotomy} we have two cases to consider. If $r+1<q$, it will indeed suffice to choose $m':=m$ and $r':=r+1$. Both of these choices satisfy all of the necessary requirements. If $r+1=q$, we must choose differently. Choose $m':=m+1$ and $r':=0$. It may be more difficult to understand these choices, but they do work: $m+1$ and $0$ are both natural numbers, 0 satisfies $0\leq 0<q$ as discussed earlier, and the following shows that the choices maintain the equality with $n\pplus$.
             \begin{align*}
                 (m+1)q+0 &= mq+q\\
                 &= mq+r+1\\
