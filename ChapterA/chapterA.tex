@@ -6,6 +6,71 @@
 
 
 \chapter{Appendix: The Basics of Mathematical Logic}
+\begin{itemize}
+    \item \marginnote{6/19:}\textbf{Mathematical logic}: The language one uses to conduct rigorous mathematical proofs.
+    \item \dq{A logical argument may sometimes look unwieldy, excessively complicated, or otherwise appear unconvincing. The big advantage of writing logically, however, is that one can be absolutely sure that your conclusion will be correct}{305}
+    \item \dq{Being logical is not the only desirable trait in writing, and in fact sometimes it gets in the way; mathematicians for instance often resort to short informal arguments which are not logically rigorous when they wnat to convince other mathematicians of a statement without going through all of the long details}{305}
+    \item \dq{Because logic is innate, the laws of logic that you learn should make sense --- if you find yourself having to memorize one of the principles or laws of logic here, without feeling a mental `click' or comprehending why that law should work, then you will probably not be able to use that law of logic correctly and effectively in practice. So, please don't study this appendix the way you might cram before a final --- that is going to be useless. Instead, put away your highlighter pen, and read and understand this appendix rather than merely studying it}{306}
+\end{itemize}
+
+
+
+\section{Mathematical Statements}
+\begin{itemize}
+    \item \textbf{Mathematical statement}: A precise statement \dq{concerning various mathematical objects (numbers, vectors, functions, etc.) and relations between them (addition, equality, differentiation, etc.)}{306}
+    \begin{itemize}
+        \item Mathematical statements are either true or false.
+        \item For example, $2+2=4$ is true while $2+2=5$ is false.
+    \end{itemize}
+    \item \textbf{Ill-formed} (statement): A statement that is neither true nor false (or perhaps not even a statement). \emph{Also known as} \textbf{ill-defined}.
+    \begin{itemize}
+        \item For example, $0/0=1$.
+        \item The antonym is \textbf{well-formed} or \textbf{well-defined} statements.
+    \end{itemize}
+    \item A logical argument should include only well-formed statements.
+    \item \dq{It is important, especially when just learning a subject, to take care in keeping statements well-fromed and precise. Once you have more skill and confidence, of course you can afford once again to speak loosely\footnote{This is very similar to the English class/media arts idea of "you have to know the rules to be able to break them."}, because you will know what you are doing and won't be in as much danger of veering off into nonsense}{307}
+    \item The principle of \textbf{proof by contradiction} is \dq{to prove that a statement is true, it suffices to show that it is not false, while to show that a statement is false, it suffices to show that it is not true}{307}
+    \item The axioms of logic become more dubious in very non-mathematical situations. One can attempt to apply logic via a mathematical model, but that's science or philosophy. There are other models of logic that attempt to account for these scenarios, but they're beyond the scope of this text.
+    \item Note that statements may be true but not useful ($2=2$) or efficient ($4\leq 4$ --- $4=4$ would be better), and they may be false but still be useful ($\pi=22/7$). However, we concern ourselves at present with truth, alone, not usefulness or efficiency as those are to some extent matters of opinion.
+    \item \textbf{Expression}: \dq{A sequence of mathematical symbols which produces some mathematical object (a number, matrix, function, set, etc.) as its value}{308-09}
+    \begin{itemize}
+        \item For example, $2+3*5$ is an expression while $2+3*5=17$ is a statement.
+        \item An expression is neither true nor false, but it can be well- or ill-defined.
+    \end{itemize}
+    \item \textbf{Relation}: A thing that makes statements out of expressions, such as $=$, $<$, $\geq$, $\in$, $\subset$, etc.
+    \item \textbf{Property}: A thing that makes statements out of expressions, such as "is prime," "is continuous," "is invertible," etc\footnote{With the introduction of properties, it is worth officially noting that mathematical statements can contain English words.}.
+    \item \textbf{Logical connective}: A thing that relates multiple mathematical statements, such as and, or, not, if-then, if-and-only-if, etc.
+    \item \textbf{Compound statement}: Two or more mathematical statements joined by logical connectives.
+    \item \textbf{Conjunction}: \dq{If $X$ is a statement and $Y$ is a statement, the statement `$X$ and $Y$' is true if $X$ and $Y$ are both true, and is false otherwise}{309}
+    \begin{itemize}
+        \item Note that "$X$ and $Y$" can be reworded "$X$ and also $Y$," or "Both $X$ and $Y$ are true," or even "$X$, but $Y$," or a multitude of other ways and convey the same statement logically, if not expressively.
+    \end{itemize}
+    \item \textbf{Disjunction}: \dq{If $X$ is a statement and $Y$ is a statement, the statement `$X$ or $Y$' is true if either $X$ or $Y$ is true, or both}{309}
+    \begin{itemize}
+        \item This is called \textbf{inclusive or}. There is a such thing as \textbf{exclusive or}, but it shows up far less regularly.
+        \item An exclusive or may be, "Either $X$ or $Y$ is true, but not both," or "Exactly one of $X$ or $Y$ is true."
+        \item To verify a disjunction, it suffices to verify just one case --- this comes in handy when it is significantly easier to verify one case over the other.
+    \end{itemize}
+    \item \textbf{Negation}: \dq{The statement `$X$ is false'\dots is true if and only if $X$ is false, and is false if and only if $X$ is true}{310}
+    \begin{itemize}
+        \item Negations convert "and" into "or": The negation of "Jane has black hair and Jane has blue eyes" is "Jane doesn't have black hair or Jane doesn't have blue eyes." Similarly, the negation of "$x\geq 2$ and $x\leq 6$" is "$x<2$ or $x>6$."
+        \item Negations convert "or" into "and": The negation of "John has black hair or brown hair" is "John does not have black hair and does not have brown hair" or, equivalently, "John has neither black nor brown hair." Similarly, the negation of "$x<-1$ or $x>1$" is "$x\geq -1$ and $x\leq 1$."
+        \item Negations can produce clearly false statements: the negation of "$x$ is even or odd" is "$x$ is neither even nor odd."
+        \item Negations can get unwieldy --- be careful!
+    \end{itemize}
+    \item Note that "$X$ is true" can be abbreviated to simply "$X$."
+    \item \textbf{If and only if}: \dq{If $X$ is a statement, and $Y$ is a statement, we say that "$X$ is true if and only if $Y$ is true," [if] whenever $X$ is true, $Y$ has to be also, and whenever $Y$ is true, $X$ has to be also (i.e., $X$ and $Y$ are `equally true')}{311} \emph{Also known as} \textbf{iff}.
+    \begin{itemize}
+        \item Denotes "logically equivalent statements."
+        \item Be familiar with the equivalent notation, "$X\leftrightarrow Y$."
+        \item For example, "$x=3$ if and only if $2x=6$" is true.
+        \item False statements can be logically equivalent: "$2+2=5$ if and only if $4+4=10$."
+        \item Sometimes, it is of interest to show that more than two statements are logically equivalent (See Exercise \ref{exr:A.1.5} and \ref{exr:A.1.6}).
+    \end{itemize}
+\end{itemize}
+
+
+
 \setcounter{section}{7}
 \section{Misc. Notes}
 \begin{itemize}
