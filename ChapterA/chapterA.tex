@@ -70,6 +70,35 @@
 \end{itemize}
 
 
+\subsection*{Exercises}
+\begin{enumerate}[ref={\thesection.\arabic*}]
+    \item \label{exr:A.1.1}What is the negation of the statement, "either $X$ is true, or $Y$ is true, but not both?"
+    \begin{proof}
+        $X$ and $Y$ or neither $X$ nor $Y$.
+    \end{proof}
+    \item \label{exr:A.1.2}What is the negation of the statement, "$X$ is true if and only if $Y$ is true?" There may be multiple ways to phrase this negation.
+    \begin{proof}
+        $X$ is true if and only if $Y$ is false.
+    \end{proof}
+    \item \label{exr:A.1.3}Suppose that you have shown that whenever $X$ is true, then $Y$ is true, and whenever $X$ is false, then $Y$ is false. Have you now demonstrated that $X$ and $Y$ are logically equivalent? Explain.
+    \begin{proof}
+        Yes --- although we have only described the dependence of $Y$ on $X$, the dependence of $X$ on $Y$ is implied (suppose $X$ is false when $Y$ is true --- but since $X$ is false, $Y$ is false, a contradiction; the same holds the other way around).
+    \end{proof}
+    \item \label{exr:A.1.4}Suppose that you have shown that whenever $X$ is true, then $Y$ is true, and whenever $Y$ is false, then $X$ is false. Have you now demonstrated that $X$ is true if and only if $Y$ is true? Explain.
+    \begin{proof}
+        No --- $X$ could be false and $Y$ could still be true without leading to any contradictions.
+    \end{proof}
+    \item \label{exr:A.1.5}Suppose you know that $X$ is true if and only if $Y$ is true, and you know that $Y$ is true if and only if $Z$ is true. Is this enough to show that $X,Y,Z$ are all logically equivalent? Explain.
+    \begin{proof}
+        Yes --- by the supposition, $X\leftrightarrow Y$ and $Y\leftrightarrow Z$. Since $X$ true implies $Y$ true implies $Z$ true, $X$ false implies $Y$ false implies $Z$ false, $Z$ true implies $Y$ true implies $X$ true, and $Z$ false implies $Y$ false implies $X$ false, $X\leftrightarrow Z$. Thus, $X,Y,Z$ are logically equivalent.
+    \end{proof}
+    \item \label{exr:A.1.6}Suppose you know that whenever $X$ is true, then $Y$ is true; that whenever $Y$ is true, then $Z$ is true; and whenever $Z$ is true, then $X$ is true. Is this enough to show that $X,Y,Z$ are all logically equivalent? Explain.
+    \begin{proof}
+        Yes --- clearly $X,Y,Z$ are equally true. If they were not equally false (say if only one or two were false), then we would have a contradiction, as one true implies all the others are true. Thus, they are equally false, too. Therefore, they are logically equivalent.
+    \end{proof}
+\end{enumerate}
+
+
 
 \setcounter{section}{7}
 \section{Misc. Notes}
