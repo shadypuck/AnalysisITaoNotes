@@ -43,6 +43,7 @@
     \item \textbf{Compound statement}: Two or more mathematical statements joined by logical connectives.
     \item \textbf{Conjunction}: \dq{If $X$ is a statement and $Y$ is a statement, the statement `$X$ and $Y$' is true if $X$ and $Y$ are both true, and is false otherwise}{309}
     \begin{itemize}
+        \item Logician's notation: "$X\wedge Y$" or "$X\& Y$."
         \item Note that "$X$ and $Y$" can be reworded "$X$ and also $Y$," or "Both $X$ and $Y$ are true," or even "$X$, but $Y$," or a multitude of other ways and convey the same statement logically, if not expressively.
     \end{itemize}
     \item \textbf{Disjunction}: \dq{If $X$ is a statement and $Y$ is a statement, the statement `$X$ or $Y$' is true if either $X$ or $Y$ is true, or both}{309}
@@ -53,6 +54,7 @@
     \end{itemize}
     \item \textbf{Negation}: \dq{The statement `$X$ is false'\dots is true if and only if $X$ is false, and is false if and only if $X$ is true}{310}
     \begin{itemize}
+        \item Logician's notation: "$\sim X$," "$!X$," or "$\neg X$."
         \item Negations convert "and" into "or": The negation of "Jane has black hair and Jane has blue eyes" is "Jane doesn't have black hair or Jane doesn't have blue eyes." Similarly, the negation of "$x\geq 2$ and $x\leq 6$" is "$x<2$ or $x>6$."
         \item Negations convert "or" into "and": The negation of "John has black hair or brown hair" is "John does not have black hair and does not have brown hair" or, equivalently, "John has neither black nor brown hair." Similarly, the negation of "$x<-1$ or $x>1$" is "$x\geq -1$ and $x\leq 1$."
         \item Negations can produce clearly false statements: the negation of "$x$ is even or odd" is "$x$ is neither even nor odd."
@@ -61,8 +63,8 @@
     \item Note that "$X$ is true" can be abbreviated to simply "$X$."
     \item \textbf{If and only if}: \dq{If $X$ is a statement, and $Y$ is a statement, we say that "$X$ is true if and only if $Y$ is true," [if] whenever $X$ is true, $Y$ has to be also, and whenever $Y$ is true, $X$ has to be also (i.e., $X$ and $Y$ are `equally true')}{311} \emph{Also known as} \textbf{iff}.
     \begin{itemize}
+        \item Logician's notation: "$X\leftrightarrow Y$."
         \item Denotes "logically equivalent statements."
-        \item Be familiar with the equivalent notation, "$X\leftrightarrow Y$."
         \item For example, "$x=3$ if and only if $2x=6$" is true.
         \item False statements can be logically equivalent: "$2+2=5$ if and only if $4+4=10$."
         \item Sometimes, it is of interest to show that more than two statements are logically equivalent (See Exercise \ref{exr:A.1.5} and \ref{exr:A.1.6}).
@@ -72,7 +74,7 @@
 
 \subsection*{Exercises}
 \begin{enumerate}[ref={\thesection.\arabic*}]
-    \item \label{exr:A.1.1}What is the negation of the statement, "either $X$ is true, or $Y$ is true, but not both?"
+    \item \marginnote{6/22:}\label{exr:A.1.1}What is the negation of the statement, "either $X$ is true, or $Y$ is true, but not both?"
     \begin{proof}
         $X$ and $Y$ or neither $X$ nor $Y$.
     \end{proof}
@@ -97,6 +99,54 @@
         Yes --- clearly $X,Y,Z$ are equally true. If they were not equally false (say if only one or two were false), then we would have a contradiction, as one true implies all the others are true. Thus, they are equally false, too. Therefore, they are logically equivalent.
     \end{proof}
 \end{enumerate}
+
+
+
+\section{Implication}
+\begin{itemize}
+    \item \marginnote{6/24:}\textbf{Implication}: \dq{If $X$ is a statement, and $Y$ is a statement, then `if $X$, then $Y$' is the implication from $X$ to $Y$}{312}
+    \begin{itemize}
+        \item Logician's notation: "$X\Longrightarrow Y$."
+        \item Can be reworded "when $X$ is true, $Y$ is true," "$X$ implies $Y$," "$Y$ is true when $X$ is," or "$X$ is true only if $Y$ is true."
+        \item \dq{What this statement `if $X$, then $Y$' means depends on whether $X$ is true or false. If $X$ is true, then `if $X$, then $Y$' is true when $Y$ is true, and false when $Y$ is false. If however $X$ is false, then `if $X$, then $Y$' is \emph{always} true, regardless of whether $Y$ is true or false!}{312}
+        \item \dq{When $X$ is true, the statement `if $X$, then $Y$' implies that $Y$ is true. But when $X$ is false, the statement `if $X$, then $Y$' offers no information about whether $Y$ is true or not; the statement is true, but \textbf{vacuous}}{312}
+    \end{itemize}
+    \item \textbf{Vacuous} (statement): A statement that \dq{does not convey any new information}{312}
+    \begin{itemize}
+        \item Vacuous statements can still be helpful in proofs, though.
+    \end{itemize}
+    \item The only way to disprove an implication (to show that it's false) is to show that the hypothesis (first statement) is true \emph{and} the conclusion (second statement) is false.
+    \item Whereas "if and only if" asserts that $X$ and $Y$ are equally true, an implication only asserts that $Y$ is at least as true as $X$.
+    \item Vacuously true implications are often used in a situation where the conclusion and hypothesis are both false, but the implication is true regardless, e.g., "if John had left work at 5pm, then he would be here by now."
+    \item They can also be used to facilitate a proof by contradiction: We know that "if John had left work at 5pm, then he would be here by now" and that "John is not here now." Suppose that John left work at 5pm. Then he would be here by now, a contradiction. Thus, John did not leave work at 5pm.
+    \item Implications can be true even when there is no causal link between the hypothesis and conclusion\footnote{This is really weird --- I'll need to return to this later.}, e.g., if $1+1=2$, then Washington, D.C. is the capital of the United States is true.
+    \begin{itemize}
+        \item Using such acausal implications in a logical argument is typically frowned upon, since it will likely cause unneeded confusion.
+    \end{itemize}
+    \item To prove, "if $X$, then $Y$," assume $X$ is true and then deduce $Y$ from $X$ and other known hypotheses.
+    \begin{itemize}
+        \item It does not matter whether or not $X$ is true; an implication can be proved true irrespective of whether or not $X$ is true.
+        \item It would be incorrect, though, to assume $Y$ and deduce $X$. One cannot assume the conclusion and deduce the hypothesis.
+    \end{itemize}
+    \item With regard to vacuously true statements, one need not be concerned that some hypotheses in their argument might not be correct, as long as their argument is still structured to give the correct conclusion regardless of whether those hypotheses were true or false (proving $n(n+1)$ is even when $n\in\N$).
+    \item \textbf{Converse} (of "if $X$, then $Y$"): The statement "if $Y$, then $X$."
+    \begin{itemize}
+        \item "$X$ if and only if $Y$" implies that "if $X$, then $Y$" \emph{and} its converse are true.
+    \end{itemize}
+    \item \textbf{Inverse} (of "if $X$, then $Y$"): The statement "if $X$ is false, then $Y$ is false."
+    \begin{itemize}
+        \item The inverse of a true implication is not necessarily a true implication.
+    \end{itemize}
+    \item \textbf{Contrapositive} (of "if $X$, then $Y$"): The statement "if $Y$ is false, then $X$ is false."
+    \begin{itemize}
+        \item The contrapositive and the original statement are equally true.
+    \end{itemize}
+    \item \textbf{Proof by contradiction}: \dq{To show that something must be false, assume first that it is true, and show that this implies something which you know to be false (e.g., that a statement is simultaneoulsy true and not true)}{316} \emph{Also known as} \textbf{reductio ad absurdum}.
+    \begin{itemize}
+        \item Particularly (but not exclusively) useful for proving "negative" statements, e.g., $X$ is false, $a\neq b$, etc.
+    \end{itemize}
+    \item On logician's notation: general-purpose mathematicians do not often use them because English words are often more readable and don't take up that much more space. That being said, $\Longrightarrow$ is a possible exception.
+\end{itemize}
 
 
 
