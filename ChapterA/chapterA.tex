@@ -150,6 +150,97 @@
 
 
 
+\section{The Structure of Proofs}
+\begin{itemize}
+    \item \marginnote{6/25:}\textbf{Direct approach}: Assume the hypothesis and work one's way toward a conclusion.
+    \item For example, to prove "$A$ implies $B$," show $A$ implies $C$, implies $D$, implies $B$. Done.
+    \item We can also work backwards: \dq{To show $B$, it would suffice to show $D$. Since $C$ implies $D$, we just need to show $C$. But $C$ follows from $A$}{318}
+    \begin{itemize}
+        \item Note that this \emph{is} different from starting with the conclusion and proving the hypothesis.
+    \end{itemize}
+    \item One can also move forward and backward at will.
+    \begin{itemize}
+        \item \dq{Thus there are many ways to write the same proof down; how you do so is up to you, but certain ways of writing proofs are more readable and natural than others, and different arrangements tend to emphasize different parts of the argument}{319}
+    \end{itemize}
+    \item Multiple hypotheses and conclusions can split the proof into cases, making it more complicated.
+    \item \dq{There are several things to try when attempting a proof. With experience, it will become clearer which approaches are likely to work easily, which ones will probably work but require much effort, and which ones are probably going to fail}{319}
+    \item \dq{There may definitely be multiple ways to approach a problem, so if you see more than one way to begin a problem, you can just try whichever one looks the easiest, but be prepared to switch to another approach if it begins to look hopeless}{320}
+\end{itemize}
+
+
+
+\section{Variables and Quantifiers}
+\begin{itemize}
+    \item \textbf{Propositional logic}: \dq{Starting with primitive statements (such as `$2+2=4$' or `John has black hair'), then forming compound statements using logical connectives, and then using various laws of logic to pass from one's hypotheses to one's conclusions}{320} \emph{Also known as} \textbf{Boolean logic}.
+    \begin{itemize}
+        \item There are a dozen or so laws of propositional logic, but \cite{bib:AnalysisI} excludes them because memorizing such a list is not how one should learn how to do logic. I will, however, include the list (from \cite{bib:PropositionalLogicLaws}) for reference.
+        \item Let $P$, $Q$, and $R$ be statements. Let $t$ be a formula that is a tautology and let $f$ be a formula that is a contradiction. Then:
+    \end{itemize}
+    \begin{enumerate}
+        \item \textbf{Law of Double Negation}: $\neg\neg P\equiv P$.
+        \item \textbf{Associative Law for Conjunction}: $P\vee(Q\vee R)\equiv (P\vee Q)\vee R$.
+        \item \textbf{Associative Law for Disjunction}: $P\wedge(Q\wedge R)\equiv(P\wedge Q)\wedge R$.
+        \item \textbf{Commutative Law for Conjunction}: $P\vee Q\equiv Q\vee P$.
+        \item \textbf{Commutative Law for Disjunction}: $P\wedge Q\equiv Q\wedge P$.
+        \item \textbf{First Distributive Law}: $P\vee(Q\wedge R)\equiv(P\vee Q)\wedge(P\vee R)$.
+        \item \textbf{Second Distributive Law}: $P\wedge(Q\vee R)\equiv(P\wedge Q)\vee(P\wedge R)$.
+        \item \textbf{Idempotent Law for Conjunction}: $P\vee P\equiv P$.
+        \item \textbf{Idempotent Law for Disjunction}: $P\wedge P\equiv P$.
+        \item \textbf{Identity Law for Tautologies}: $P\wedge t\equiv P$.
+        \item \textbf{Identity Law for Contradictions}: $P\vee f\equiv P$.
+        \item \textbf{Inverse Law for Tautologies}: $P\vee\neg P\equiv t$.
+        \item \textbf{Inverse Law for Contradictions}: $P\wedge\neg P\equiv f$.
+        \item \textbf{Domination Law for Tautologies}: $P\vee t\equiv t$.
+        \item \textbf{Domination Law for Contradictions}: $P\wedge f\equiv f$.
+        \item \textbf{De Morgan's Law 1}: $\neg(P\vee Q)\equiv\neg P\wedge\neg Q$.
+        \item \textbf{De Morgan's Law 2}: $\neg(P\wedge Q)\equiv\neg P\vee\neg Q$.
+    \end{enumerate}
+    \item Propositional logic is insufficient to do all math, though, because it does not incorporate \textbf{variables}.
+    \item \textbf{Mathematical logic}: Propositional logic plus \textbf{variables}.
+    \item \textbf{Variable}: \dq{A symbol, such as $n$ or $x$, which denotes a certain type of mathematical object --- an integer, a vector, a matrix, that kind of thing}{320} They denote \dq{quantities which are unknown, or set to some value, or assumed to obey some property}{320}
+    \begin{itemize}
+        \item In almost all circumstances, the type of object that the variable represents should be declared; variables should have an explicit type.
+        \item $x=x$ is true regardless of the type, but $x+y=y+x$ is only true if $x$ and $y$ are variables for which addition makes sense and are commutative.
+    \end{itemize}
+    \item \dq{The truth of a statement involving a variable may depend on the \textbf{context} of the statement}{321}
+    \item \textbf{Free variable}: A variable with a specified type but an unspecified value.
+    \begin{itemize}
+        \item \dq{Statements with free variables might not have a definite truth value}{321}
+        \item $x+3=5$ does not have a definite truth value if $x$ is a free variable.
+        \item $(x+1)^2=x^2+2x+1$ does have a definite truth value even with $x$ as a free variable.
+    \end{itemize}
+    \item \textbf{Set} (a free variable): Define a value to a free variable via a statement such as "Let $x=2$" or "Set $x$ equal to 2."
+    \item \textbf{Bound variable}: A variable with a specified type that has been set to some value.
+    \begin{itemize}
+        \item \dq{Statements involving only bound variables and no free variables do have a definite truth value}{321}
+    \end{itemize}
+    \item A free variable can be bounded without being set to a \emph{specific} value, per se, with the use of "for all" or "for some."
+    \begin{itemize}
+        \item "$(x+1)^2=x^2+2x+1$" is indefinite; "$(x+1)^2=x^2+2x+1$ for all $x\in\R$" is definite.
+        \item "$x+3=5$" is indefinite; "$x+3=5$ for some $x\in\R$" is definite.
+    \end{itemize}
+    \item \textbf{Universal quantifiers}: A quantifier of the form "for all $x$ of type $T$."
+    \begin{itemize}
+        \item Logician's notation: "$\forall$."
+        \item "$P(x)$ is true for all $x$ of type $T$" is equivalent to the implication, "if $x$ is of type $T$, then $P(x)$ is true."
+        \item Prove such a statement by letting $x$ be any element of type $T$ and showing that $P(x)$ holds.
+        \item Disprove it with just a single counterexample (an element $x\in T$ for which $P(x)$ is false).
+        \item If there are no variables $x$ of type $T$, then "$P(x)$ is true for all $x$ of type $T$" is \textbf{vacuously true}.
+    \end{itemize}
+    \item \textbf{Existential quantifiers}: A quantifier of the form "for some $x$ of type $T$."
+    \begin{itemize}
+        \item Logician's notation: "$\exists$."
+        \item There exists at least one (but possibly numerous) $x$ of type $T$ for which $P(x)$ is true.
+        \begin{itemize}
+            \item To indicate uniqueness, use "for exactly one $x$\dots" instead of "for some $x$\dots"
+        \end{itemize}
+        \item Prove such a statement by providing a single example of such an $x$.
+        \item A vacuously true "for all" statement will be false as a "for some" statement.
+    \end{itemize}
+\end{itemize}
+
+
+
 \setcounter{section}{7}
 \section{Misc. Notes}
 \begin{itemize}
