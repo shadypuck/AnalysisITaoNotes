@@ -262,6 +262,92 @@
 \end{itemize}
 
 
+\subsection*{Exercises}
+\begin{enumerate}[ref={\thesection.\arabic*}]
+    \item \label{exr:A.5.1}\marginnote{7/2:}What does each of the following statements mean, and which of them are true? Can you find gaming metaphors for each of these statements?
+    \begin{enumerate}
+        \item For every positive number $x$, and every positive number $y$, we have $y^2=x$.
+        \begin{proof}
+            It means that for all positive numbers $x$, the statement "$y^2=x$ for all positive number $y$" is true. However, this is a false statement ($2^3\neq 3$, for example). As a gaming metaphor, suppose you play a game where your opponent picks two positive numbers $x$ and $y$. If $y^2=x$, then you win. If you can always win, then the statement is true.
+        \end{proof}
+        \item There exists a positive number $x$ such that for every positive number $y$, we have $y^2=x$.
+        \begin{proof}
+            It means that for some positive number $x$, the statement "$y^2=x$ for all positive numbers $y$" is true. However, this is a false statement (no positive number exists such that every positive number squared equals it). As a gaming metaphor, suppose you play a game where you first pick a positive number $x$, and then your opponent picks a positive number $y$. If you can pick an $x$ such that any $y$ picked by your opponent satisfies $y^2=x$, then you win. If you can win once, then the statement is true.
+        \end{proof}
+        \item There exists a positive number $x$, and there exists a positive number $y$, such that $y^2=x$.
+        \begin{proof}
+            It means that the statement "$y^2=x$" is true for some pair of positive numbers $x,y$. This statement is true. As a gaming metaphor, suppose you play a game where you pick two positive numbers $x$ and $y$. If $y^2=x$, then you win. If you can win once, then the statement is true.
+        \end{proof}
+        \item For every positive number $y$, there exists a positive number $x$ such that $y^2=x$.
+        \begin{proof}
+            It means that for all positive numbers $y$, the statement "$y^2=x$ for some positive number $x$" is true. This statement is true. As a gaming metaphor, suppose you play a game where your opponent first picks a positive number $y$, and then you pick a positive number $x$. If $y^2=x$, then you win. If you can always win, then the statement is true.
+        \end{proof}
+        \item There exists a positive number $y$ such that for every positive number $x$, we have $y^2=x$.
+        \begin{proof}
+            It means that for some positive number $y$, the statement "$y^2=x$ for all positive numbers $x$" is true. However, this is a false statement (no positive number exists such that the square root of every positive number equals it). As a gaming metaphor, suppose you play a game where you first pick a positive number $y$, and then your opponent picks a positive number $x$. If you can pick a $y$ such that any $x$ piked by your opponent satisfies $y^2=x$, then you win. If you can win once, then the statement is true.
+        \end{proof}
+    \end{enumerate}
+\end{enumerate}
+
+
+
+\section{Some Examples of Proofs and Quantifiers}
+\begin{itemize}
+    \item This section proves some simple results involving the "for all" and the "for some" quantifiers to demonstrate how the quantifiers are arranged and how the proofs are structured. Let's begin.
+    \item \leavevmode\vspace{-\dimexpr\baselineskip+\topsep}
+    \begin{prop}
+        For every $\varepsilon>0$ there exists a $\delta>0$ such that $2\delta<\varepsilon$.
+        \begin{proof}
+            Let $\varepsilon>0$ be arbitrary. We have to show that there exists a $\delta>0$ such that $2\delta<\varepsilon$. We only need to pick one such $\delta$; choosing $\delta:=\frac{\varepsilon}{3}$ will work, since one then has $2\delta=\frac{2}{3}\varepsilon<\varepsilon$.
+        \end{proof}
+    \end{prop}
+    \begin{itemize}
+        \item Since we are proving something for \emph{every} $\varepsilon$, we must make $\varepsilon$ arbitrary.
+        \item On the other hand, $\delta$ can be chosen as we wish, because we only need to show that there exists \emph{some} $\delta$ which does what we want.
+        \item The $\delta$ can depend on $\varepsilon$ because \dq{the $\delta$-quantifier is nested inside the $\varepsilon$-quantifier}{328}
+    \end{itemize}
+    \item \leavevmode\vspace{-\dimexpr\baselineskip+\topsep}
+    \begin{prop}
+        There exists an $\varepsilon>0$ such that $\sin x>\frac{x}{2}$ for all $0<x<\varepsilon$.
+        \begin{proof}
+            We pick $\varepsilon>0$ to be chosen later, and let $0<x<\varepsilon$. Since the derivative of $\sin x$ is $\cos x$, we see from the mean-value theorem we have $$\frac{\sin x}{x}=\frac{\sin x-\sin 0}{x-0}=\cos y$$ for some $0\leq y\leq x$. Thus, in order to ensure that $\sin x>\frac{x}{2}$, it would suffice to ensure that $\cos y>\frac{1}{2}$. To do this, it would suffice to ensure that $0\leq y<\frac{\pi}{3}$ (since the cosine function takes the value of 1 at 0, takes the value of $\frac{1}{2}$ at $\frac{\pi}{3}$, and is decreasing in between). Since $0\leq y\leq x$ and $0<x<\varepsilon$, we see that $0\leq y<\varepsilon$. Thus if we pick $\varepsilon:=\frac{\pi}{3}$, then we have $0\leq y<\frac{\pi}{3}$ as desired, and so we can ensure that $\sin x>\frac{x}{2}$ for all $0<x<\varepsilon$.
+        \end{proof}
+    \end{prop}
+    \begin{itemize}
+        \item Normally, when proving a "there exists ($\varepsilon$) such that $X$ is true" statement, one proceeds by selecting $\varepsilon$ carefully, and then showing that $X$ is true for that $\varepsilon$. However, when the selection would require a lot of foresight, we defer it until later in the argument, as above.
+        \item Note that since the value of $\varepsilon$ didn't depend on the nested variables $x$ and $y$, the proof is legitimate.
+    \end{itemize}
+\end{itemize}
+
+
+
+\section{Equality}
+\begin{itemize}
+    \item \textbf{Equality}: The most important relation. It links two objects $x,y$ of the same type $T$. \dq{Given two such objects $x$ and $y$, the statement $x=y$ may or may not be true; it depends on the value of $x$ and $y$ and also on how equality is defined for the class of objects under consideration}{329}
+    \begin{itemize}
+        \item For example, $12\neq 2$ in ordinary arithmetic, but $12=2$ in modular arithmetic with modulus 10.
+    \end{itemize}
+    \item For the purposes of logic, equality obeys the following four \textbf{axioms of equality}.
+    \item \textbf{Reflexive axiom}: Given any object $x$, we have $x=x$.
+    \item \textbf{Symmetry axiom}: Given any two objects $x$ and $y$ of the same type, if $x=y$, then $y=x$.
+    \item \textbf{Transitive axiom}: Given any three objects $x,y,z$ of the same type, if $x=y$ and $y=z$, then $x=z$.
+    \item \textbf{Substitution axiom}: Given any two objects $x$ and $y$ of the same type, if $x=y$, then $f(x)=f(y)$ for all functions or operations $f$. Similarly, for any property $P(x)$ depending on $x$, if $x=y$, then $P(x)$ and $P(y)$ are equivalent statements.
+    \begin{itemize}
+        \item The first three axioms assert that equality is an \textbf{equivalence relation}.
+    \end{itemize}
+    \item \dq{Thus, from the point of view of logic, we can define equality on a class of objects however we please, so long as it obeys the reflexive, symmetry, and transitive axioms, and is consistent with all other operations on the class of objects under discussion in the sense that the substitution axiom was true for all of those operations}{330}
+\end{itemize}
+
+
+\subsection*{Exercises}
+\begin{enumerate}[ref={\thesection.\arabic*}]
+    \item \label{exr:A.7.1}Suppose you have four real numbers $a,b,c,d$ and you know that $a=b$ and $c=d$. Use the above four axioms to deduce that $a+d=b+c$.
+    \begin{proof}
+        Let $f(x)=x+c$. By the substitution axiom, since $a=b$, $f(a)=f(b) \Rightarrow a+c=b+c$. Let $g(x)=a+x$. By the substitution axiom, since $c=d$, $f(c)=f(d) \Rightarrow a+c=a+d$. By the symmetry axiom, $a+d=a+c$. By the transitive axiom, $a+d=a+c=b+c$.
+    \end{proof}
+\end{enumerate}
+
+
 
 \setcounter{section}{7}
 \section{Misc. Notes}
