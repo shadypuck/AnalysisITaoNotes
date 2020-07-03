@@ -13,6 +13,8 @@ Extra Ch. 3 Math.gdoc
 *.glg
 *.glo
 *.gls
+*.bcf
+*.run.xml
 *.ist
 *.gdoc
 "Icon^M"

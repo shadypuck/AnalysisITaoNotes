@@ -1,5 +1,10 @@
 \documentclass[../main.tex]{subfiles}
 
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter:\ #1}{}}
+\renewcommand{\chaptername}{Appendix}
+\renewcommand{\thechapter}{\Alph{chapter}}
+
 \begin{document}
 
 
@@ -102,7 +107,7 @@
 
 
 
-\section{Implication}
+\section{Implication}\label{sss:A.2}
 \begin{itemize}
     \item \marginnote{6/24:}\textbf{Implication}: \dq{If $X$ is a statement, and $Y$ is a statement, then `if $X$, then $Y$' is the implication from $X$ to $Y$}{312}
     \begin{itemize}
@@ -174,8 +179,8 @@
     \item \textbf{Propositional logic}: \dq{Starting with primitive statements (such as `$2+2=4$' or `John has black hair'), then forming compound statements using logical connectives, and then using various laws of logic to pass from one's hypotheses to one's conclusions}{320} \emph{Also known as} \textbf{Boolean logic}.
     \begin{itemize}
         \item There are a dozen or so laws of propositional logic, but \cite{bib:AnalysisI} excludes them because memorizing such a list is not how one should learn how to do logic. I will, however, include the list (from \cite{bib:PropositionalLogicLaws}) for reference.
-        \item Let $P$, $Q$, and $R$ be statements. Let $t$ be a formula that is a tautology and let $f$ be a formula that is a contradiction. Then:
     \end{itemize}
+    \item Let $P$, $Q$, and $R$ be statements. Let $t$ be a formula that is a tautology and let $f$ be a formula that is a contradiction. Then:
     \begin{enumerate}
         \item \textbf{Law of Double Negation}: $\neg\neg P\equiv P$.
         \item \textbf{Associative Law for Conjunction}: $P\vee(Q\vee R)\equiv (P\vee Q)\vee R$.
@@ -295,24 +300,24 @@
 \begin{itemize}
     \item This section proves some simple results involving the "for all" and the "for some" quantifiers to demonstrate how the quantifiers are arranged and how the proofs are structured. Let's begin.
     \item \leavevmode\vspace{-\dimexpr\baselineskip+\topsep}
-    \begin{prop}
+    \begin{prp}
         For every $\varepsilon>0$ there exists a $\delta>0$ such that $2\delta<\varepsilon$.
         \begin{proof}
             Let $\varepsilon>0$ be arbitrary. We have to show that there exists a $\delta>0$ such that $2\delta<\varepsilon$. We only need to pick one such $\delta$; choosing $\delta:=\frac{\varepsilon}{3}$ will work, since one then has $2\delta=\frac{2}{3}\varepsilon<\varepsilon$.
         \end{proof}
-    \end{prop}
+    \end{prp}
     \begin{itemize}
         \item Since we are proving something for \emph{every} $\varepsilon$, we must make $\varepsilon$ arbitrary.
         \item On the other hand, $\delta$ can be chosen as we wish, because we only need to show that there exists \emph{some} $\delta$ which does what we want.
         \item The $\delta$ can depend on $\varepsilon$ because \dq{the $\delta$-quantifier is nested inside the $\varepsilon$-quantifier}{328}
     \end{itemize}
     \item \leavevmode\vspace{-\dimexpr\baselineskip+\topsep}
-    \begin{prop}
+    \begin{prp}
         There exists an $\varepsilon>0$ such that $\sin x>\frac{x}{2}$ for all $0<x<\varepsilon$.
         \begin{proof}
             We pick $\varepsilon>0$ to be chosen later, and let $0<x<\varepsilon$. Since the derivative of $\sin x$ is $\cos x$, we see from the mean-value theorem we have $$\frac{\sin x}{x}=\frac{\sin x-\sin 0}{x-0}=\cos y$$ for some $0\leq y\leq x$. Thus, in order to ensure that $\sin x>\frac{x}{2}$, it would suffice to ensure that $\cos y>\frac{1}{2}$. To do this, it would suffice to ensure that $0\leq y<\frac{\pi}{3}$ (since the cosine function takes the value of 1 at 0, takes the value of $\frac{1}{2}$ at $\frac{\pi}{3}$, and is decreasing in between). Since $0\leq y\leq x$ and $0<x<\varepsilon$, we see that $0\leq y<\varepsilon$. Thus if we pick $\varepsilon:=\frac{\pi}{3}$, then we have $0\leq y<\frac{\pi}{3}$ as desired, and so we can ensure that $\sin x>\frac{x}{2}$ for all $0<x<\varepsilon$.
         \end{proof}
-    \end{prop}
+    \end{prp}
     \begin{itemize}
         \item Normally, when proving a "there exists ($\varepsilon$) such that $X$ is true" statement, one proceeds by selecting $\varepsilon$ carefully, and then showing that $X$ is true for that $\varepsilon$. However, when the selection would require a lot of foresight, we defer it until later in the argument, as above.
         \item Note that since the value of $\varepsilon$ didn't depend on the nested variables $x$ and $y$, the proof is legitimate.
@@ -321,7 +326,7 @@
 
 
 
-\section{Equality}
+\section{Equality}\label{sss:A.7}
 \begin{itemize}
     \item \textbf{Equality}: The most important relation. It links two objects $x,y$ of the same type $T$. \dq{Given two such objects $x$ and $y$, the statement $x=y$ may or may not be true; it depends on the value of $x$ and $y$ and also on how equality is defined for the class of objects under consideration}{329}
     \begin{itemize}

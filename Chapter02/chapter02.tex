@@ -1,5 +1,10 @@
 \documentclass[../main.tex]{subfiles}
 
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter: #1}{}}
+\setcounter{chapter}{1}
+\externaldocument{../main}
+
 \begin{document}
 
 
@@ -50,16 +55,16 @@
         If $n$ is a natural number, then $n\pplus$ is also a natural number.
     \end{axm}
     \item To avoid having to use incrementation notation for every number, we adopt a convention.
-    \begin{defn}
+    \begin{dfn}
         We define 1 to be the number $0\pplus$, 2 to be the number $(0\pplus)\pplus$, 3 to be the number $((0\pplus)\pplus)\pplus$, etc.
-    \end{defn}
+    \end{dfn}
     \item From these axioms, we can already prove things.
-    \begin{prop}
+    \begin{prp}
         3 is a natural number.
         \begin{proof}
             By Axiom \ref{axm:0inN}, 0 is a natural number. By Axiom \ref{axm:npplus}, $0\pplus=1$ is a natural number. By Axiom \ref{axm:npplus} again, $1\pplus=2$ is a natural number. By Axiom \ref{axm:npplus} again, $2\pplus=3$ is a natural number.
         \end{proof}
-    \end{prop}
+    \end{prp}
     \item It seems like Axioms \ref{axm:0inN} and \ref{axm:npplus} have us pretty well covered. However, what if the number system wraps around (e.g., if $3\pplus=0$)? We can fix this with the following.
     \begin{axm}\label{axm:0NotSuccessor}
         0 is not the successor of any natural number; i.e., we have $n\pplus\neq 0$ for every natural number $n$.
@@ -68,15 +73,15 @@
     \item However, there are still issues --- what if the number system hits a ceiling at 4, e.g., $4\pplus=4$?
     \item A good way to prevent this kind of behavior is via the following.
     \begin{axm}\label{axm:successorDistinctness}
-        Different natural numbers must have different successors, i.e., if $n,m\in\N$ and $n\neq m$, then $n\pplus\neq m\pplus$. Equivalently\footnote{This is an example of reformulating an implication using its \textbf{contrapositive}. In the converse direction, it is the \textbf{axiom of substitution}.}, if $n\pplus=m\pplus$, then $n=m$.
+        Different natural numbers must have different successors, i.e., if $n,m\in\N$ and $n\neq m$, then $n\pplus\neq m\pplus$. Equivalently\footnote{This is an example of reformulating an implication using its \textbf{contrapositive} (see Section \ref{sss:A.2}). In the converse direction, it is the \textbf{axiom of substitution} (see Section \ref{sss:A.7}).}, if $n\pplus=m\pplus$, then $n=m$.
     \end{axm}
     \item We can now prove propositions like the following, extending our anti-wrap around proving ability.
-    \begin{prop}
+    \begin{prp}
         6 is not equal to 2.
         \begin{proof}
             Suppose $6=2$. Then $5\pplus=1\pplus$, so by Axiom \ref{axm:successorDistinctness}, $5=1$. Then $4\pplus=0\pplus$, so by Axiom \ref{axm:successorDistinctness}, $4=0$, which contradicts our proof that $4\neq 0$.
         \end{proof}
-    \end{prop}
+    \end{prp}
     \item \marginnote{6/16:}Before going any further, we're going to need an \textbf{axiom schema}.
     \item \textbf{Axiom schema}: An axiom that functions as \dq{a template for producing an (infinite) number of axioms, rather than a single axiom in its own right}{20}
     \begin{axm}[Principle of mathematical induction]\label{axm:induction}
@@ -92,12 +97,12 @@
         \item \dq{The great discovery of the late nineteenth century was that numbers can be understood abstractly via axioms, without necessarily needing a concrete model; of course a mathematician can use any of these models [e.g., counting beads] when it is convenient, to aid his or her intuition and understanding, but they can also be just as easily discarded when they begin to get in the way [of understanding $-3$, $1/3$, $\sqrt{2}$, $3+4i$, \dots]}{23}
     \end{itemize}
     \item With the axioms (and the concept of a function, which does not rely on said axioms), we can introduce recursive definitions, which will be useful in defining addition and multiplication.
-    \begin{prop}[Recursive definitions]
+    \begin{prp}[Recursive definitions]
         Suppose for each natural number $n$, we have some function $f_n:\N\to\N$ from the natural numbers to the natural numbers. Let $c$ be a natural number. Then we can assign a unique natural number $a_n$ to each natural number $n$, such that $a_0=c$ and $a_{n\pplus}=f_n(a_n)$ for each natural number $n$.
         \begin{proof}
             (Informal) We use induction. First, a single value $c$ is given to $a_0$ (no other value $a_{n\pplus}:=f_n(a_n)$ will be assigned to 0 by Axiom \ref{axm:0NotSuccessor}). Given that $a_n$ has a unique value, $a_{n\pplus}$ will have a unique value $f_n(a_n)$, distinct from any other $a_{m\pplus}$ by Axiom \ref{axm:successorDistinctness}.
         \end{proof}
-    \end{prop}
+    \end{prp}
 \end{itemize}
 
 
@@ -105,9 +110,9 @@
 \section{Addition}
 \begin{itemize}
     \item We can define addition recursively.
-    \begin{defn}[Addition of natural numbers]\label{dfn:addition}
+    \begin{dfn}[Addition of natural numbers]\label{dfn:addition}
         Let $m$ be a natural number. To add zero to $m$, we define $0+m:=m$. Now suppose inductively that we have defined how to add $n$ to $m$. Then we can add $n\pplus$ to $m$ by defining $(n\pplus)+m:=(n+m)\pplus$.
-    \end{defn}
+    \end{dfn}
     \begin{itemize}
         \item If we want to find $2+5$, we can find $0+5=5$, $1+5=(0\pplus)+5=(0+5)\pplus=5\pplus=6$, $2+5=(1\pplus)+5=(1+5)\pplus=6\pplus=7$.
     \end{itemize}
@@ -130,7 +135,7 @@
             This closes the induction.
         \end{proof}
     \end{lem}
-    \begin{prop}[Addition is commutative]\label{prp:commutativity}
+    \begin{prp}[Addition is commutative]\label{prp:commutativity}
         For any natural numbers $n$ and $m$, $n+m=m+n$.
         \begin{proof}
             For all $m\in\N$, Definition \ref{dfn:addition} gives us $0+m=m$ and Lemma \ref{lem:nplus0} gives us $m+0=m$. Since both of the previous statements equal $m$, $0+m=m+0$. Suppose inductively that $n\in\N$ and $n+m=m+n$. If this is true, then
@@ -141,10 +146,10 @@
             \end{align*}
             This closes the induction.
         \end{proof}
-    \end{prop}
+    \end{prp}
     \item And associativity (see Exercise \ref{exr:2.2.1}).
     \item The next proposition deals with cancelling. Although we cannot use subtraction or negative numbers to prove it, it will be instrumental in allowing us to define subtraction and integers later.
-    \begin{prop}[Cancellation law]\label{prp:cancellation}
+    \begin{prp}[Cancellation law]\label{prp:cancellation}
         Let $a,b,c$ be natural numbers such that $a+b=a+c$. Then we have $b=c$.
         \begin{proof}
             We induct on $a$ (keeping $b,c$ fixed). Consider the base case $a=0$. If $0+b=0+c$ by assumption and $0+b=b$ and $0+c=c$ by Definition \ref{dfn:addition}, then $b=c$. Suppose inductively that $a+b=a+c$ implies that $b=c$. We must prove that $(a\pplus)+b=(a\pplus)+c$ implies $b=c$. This may be done as follows.
@@ -155,14 +160,14 @@
                 b &= c\tag*{Induction hypothesis}
             \end{align*}
         \end{proof}
-    \end{prop}
+    \end{prp}
     \item \textbf{Positive natural numbers}: A natural number $n\neq 0$.
-    \begin{prop}\label{prp:AplusBpositive}
+    \begin{prp}\label{prp:AplusBpositive}
         If $a$ is positive and $b$ is a natural number, then $a+b$ is positive (and hence $b+a$ is also by Proposition \ref{prp:commutativity}).
         \begin{proof}
             We induct on $b$ (keeping $a$ fixed). In the base case, if $b=0$, then $a+0=a$ (a positive number) by Lemma \ref{lem:nplus0}. Suppose inductively that $a+b$ is positive. Then $a+(b\pplus)=(a+b)\pplus$ by Lemma \ref{lem:nplusmpplus}, and $(a+b)\pplus$ is positive by Axiom \ref{axm:0NotSuccessor} --- $a+(b\pplus)$ is equal to the successor of a natural number, and the successor of a natural number is never 0, thus always positive. This closes the induction.
         \end{proof}
-    \end{prop}
+    \end{prp}
     \begin{cly}\label{cly:AplusBequals0}
         If $a,b\in\N$ and $a+b=0$, then $a=0$ and $b=0$.
         \begin{proof}
@@ -171,32 +176,31 @@
     \end{cly}
     \item See Exercise \ref{exr:2.2.2} for another property of positive natural numbers.
     \item With addition, we can begin to order the natural numbers.
-    \begin{defn}[Ordering of the natural numbers]\label{dfn:ordering}
+    \begin{dfn}[Ordering of the natural numbers]\label{dfn:ordering}
         Let $n,m\in\N$. We say that $n$ is \textbf{greater than or equal to} $m$ and write $n\geq m$ or $m\leq n$ iff we have $n=m+a$ for some $a\in\N$. We say that $n$ is \textbf{strictly greater than} $m$ and write $n>m$ or $m<n$ iff $n\geq m$ and $n\neq m$.
-    \end{defn}
+    \end{dfn}
     \item Note that $n\pplus>n$ for any $n$.
     \item See Exercise \ref{exr:2.2.3} for more on ordering.
     \item We can now prove the trichotomy.
-    \begin{prop}[Trichotomy of order for natural numbers]\label{prp:trichotomy}
+    \begin{prp}[Trichotomy of order for natural numbers]\label{prp:trichotomy}
         Let $a$ and $b$ be natural numbers. Then exactly one of the following statements is true: $a<b$, $a=b$, or $a>b$.
         \begin{proof}
             See Exercise \ref{exr:2.2.4} to fill in the gaps.\par
             First, show that no two (or three) of the statements can hold simultaneously. If $a<b$ or $a>b$, then $a\neq b$ by definition. Also, if $a>b$ and $a<b$, then $a=b$, a contradiction.\par
             Second, show that at least one of the statements is always true. We induct on $a$ (keeping $b$ fixed). When $a=0$, we have $0\leq b$ for all $b$ (see Exercise \ref{exr:2.2.4a}), so we either have $0=b$ or $0<b$, which proves the base case. Now suppose inductively that we have proven the proposition for $a$. From the trichotomy of $a$, there are three cases: $a<b$, $a=b$, and $a>b$. If $a>b$, then $a\pplus>b$ (see Exercise \ref{exr:2.2.4b}). If $a=b$, then $a\pplus>b$ (see Exercise \ref{exr:2.2.4c}). If $a<b$, then $a\pplus\leq b$ by Proposition \ref{prp:ordering}. Thus, either $a\pplus=b$ or $a\pplus<b$. This closes the induction.
         \end{proof}
-    \end{prop}
+    \end{prp}
     \item \marginnote{6/17:}With order, we can obtain a stronger version of induction (see Exercise \ref{exr:2.2.5}).
     \begin{itemize}
         \item Strong induction is usually used with $m_0=0$ or $m_0=1$.
     \end{itemize}
-    \item \textbf{Vacuous truth}: "A conditional or universal statement that is only true because the antecedent cannot be satisfied. For example, the statement `all cell phones in the room are turned off' will be true even if there are no cell phones in the room" \cite{bib:vacuous}.
 \end{itemize}
 
 
 \subsection*{Exercises}
 \begin{enumerate}[ref={\thesection.\arabic*}]
     \item \label{exr:2.2.1}Prove the following proposition. Hint: fix two of the variables and induct on the third.
-    \begin{prop}[Addition is associative]\label{prp:associativity}
+    \begin{prp}[Addition is associative]\label{prp:associativity}
         For any natural numbers $a,b,c$, we have $(a+b)+c=a+(b+c)$.
         \begin{proof}
             We first need a lemma.
@@ -215,7 +219,7 @@
             \end{align*}
             This closes the induction.
         \end{proof}
-    \end{prop}
+    \end{prp}
     \item \label{exr:2.2.2}Prove the following lemma. Hint: use induction.
     \begin{lem}\label{lem:backwardsIncrement}
         Let $a$ be a positive number. Then there exists exactly one natural number $b$ such that $b\pplus=a$.
@@ -224,7 +228,7 @@
         \end{proof}
     \end{lem}
     \item \label{exr:2.2.3}Prove the following proposition. Hint: you will need many of the preceding propositions, corollaries, and lemmas.
-    \begin{prop}[Basic properties of order for natural numbers]\label{prp:ordering}
+    \begin{prp}[Basic properties of order for natural numbers]\label{prp:ordering}
         Let $a,b,c$ be natural numbers. Then
         \begin{enumerate}[label={\textup{(}\alph*\textup{)}}]
             \item \textup{(}Order is reflexive\textup{)} $a\geq a$.
@@ -265,7 +269,7 @@
                 As a positive number, $d$ is a natural number by definition. Thus, $b=a+d$ implies $a\leq b$. Since $d$ is a positive number, $d\neq 0$. For the reasons outlined in the previous proof, this implies that $b\neq a$. Thus, $a<b$.
             \end{proof}
         \end{enumerate}
-    \end{prop}
+    \end{prp}
     \item \label{exr:2.2.4}Justify the three statements marked (why?) in the proof of Proposition \ref{prp:trichotomy}.
     \begin{enumerate}[label={(\alph*)},ref={2.2.4\alph*}]
         \item \label{exr:2.2.4a}\emph{If $n$ is a natural number, then $0\leq n$.}
@@ -289,15 +293,15 @@
         \end{proof}
     \end{enumerate}
     \item \label{exr:2.2.5}Prove the following proposition. Hint: define $Q(n)$ to be the property that $P(m)$ is true for all $m_0\leq m<n$; note that $Q(n)$ is vacuously true when $n<m_0$.
-    \begin{prop}[Strong principle of induction]
+    \begin{prp}[Strong principle of induction]
         Let $m_0$ be a natural number, and let $P(m)$ be a property pertaining to an arbitrary natural number $m$. Suppose that for each $m\geq m_0$, we have the following implication: if $P(m')$ is true for all natural numbers $m_0\leq m'<m$, then $P(m)$ is also true. (In particular, this means that $P(m_0)$ is true, since in this case the hypothesis is vacuous.) Then we can conclude that $P(m)$ is true for all natural numbers $m\geq m_0$.
         \begin{proof}
             Let $n$ be a natural number satisfying $n\geq m_0$ and let $Q(n)$ be the property that $P(m)$ is true for all $m_0\leq m<n$. We induct on $n$.\par
             For the base case $n=0$, we want to show that $Q(0)$ is true. Since $0\leq m_0$ (Exercise \ref{exr:2.2.4a}), either $0=m_0$ or $0<m_0$ (Proposition \ref{prp:trichotomy}). We treat these cases separately. If $0=m_0$, then $Q(0)$ is vacuously true (since there is no $m\in\N$ such that $0\leq m<0$, of course $P(m)$ is true for all $0\leq m<0$ [because there are no cases, $P(m)$ is true in all cases; it's also false, but that's besides the point.]) If $0<m_0$, then $Q(0)$ is also vacuously true (since there is no $m\in\N$ such that $0<m_0\leq m<0$).\par
             Suppose inductively that for some $n\geq m_0$, $Q(n)$ is true, i.e., "$P(m)$ is true for all $m_0\leq m<n$" is true. We want to show that $Q(n\pplus)$ is true. By the definition of $P$ in the hypothesis, $Q(n)$ is true implies $P(n)$ is true. Thus, $P(m)$ is true for all $m_0\leq m<n\pplus$, so $Q(n\pplus)$ is true. This closes the induction.\par
-            Since $Q(n)$ is true for all $n\geq m_0$, $P(n)$ is true for all $n\geq m_0$ \cite{bib:StrongInduction}.
+            Since $Q(n)$ is true for all $n\geq m_0$, $P(n)$ is true for all $n\geq m_0$ (proof modified from \cite{bib:StrongInduction}).
         \end{proof}
-    \end{prop}
+    \end{prp}
     \item \label{exr:2.2.6}Let $n$ be a natural number, and let $P(m)$ be a property pertaining to the natural numbers such that whenever $P(m\pplus)$ is true, then $P(m)$ is true. Suppose that $P(n)$ is also true. Prove that $P(m)$ is true for all natural numbers $m\leq n$; this is known as the \textbf{principle of backwards induction}. Hint: apply induction to the variable $n$.
     \begin{proof}
         We induct on $n$. For the base case $n=0$, we want to show that $P(m)$ is true for all natural numbers $m\leq n$. Since we are supposing that $P(n)=P(0)$ is true and 0 is the only number $m\in\N$ satisfying $m\leq 0$, the base case is true.\par
@@ -311,28 +315,28 @@
 \begin{itemize}
     \item \marginnote{6/18:}At this point, all properties of addition can be used without supplying a justification.
     \item The definition of multiplication is very similar to the definition of addition.
-    \begin{defn}[Multiplication of natural numbers]\label{dfn:multiplication}
+    \begin{dfn}[Multiplication of natural numbers]\label{dfn:multiplication}
         Let $m$ be a natural number. To multiply 0 to $m$, we define $0\times m:=0$. Now suppose inductively that we have defined how to multiply $n$ to $m$. Then we can multiply $n\pplus$ to $m$ by defining $(n\pplus)\times m:=(n\times m)+m$. 
-    \end{defn}
+    \end{dfn}
     \item See Exercise \ref{exr:2.3.1} for a proof of the commutativity of multiplication.
     \item At this point, we abbreviate $n\times m$ as $nm$ and use the convention that multiplication takes precedence over addition (i.e., $ab+c=(a\times b)+c$).
     \item See Exercise \ref{exr:2.3.2} for a proof of the zero product property.
     \item We can now prove the distributive law.
-    \begin{prop}[Distributive law]\label{prp:distributive}
+    \begin{prp}[Distributive law]\label{prp:distributive}
         For any natural numbers $a,b,c$, we have $a(b+c)=ab+ac$ and $(b+c)a=ba+ca$.
         \begin{proof}[Proof\,\footnotemark]
             \footnotetext{Note that this could be accomplished by induction on $a$. However, for the sake of introducing new concepts, I will transcribe the alternative method from \cite{bib:AnalysisI}.}
             Since multiplication is commutative, we need only show the first identity $a(b+c)=ab+ac$. We keep $a$ and $b$ fixed, and use induction on $c$. Let's prove the base case $c=0$, i.e., $a(b+0)=ab+a0$. The left-hand side is $ab$, while the right-hand side is $ab+0=ab$, so we are done with the base case. Now let us suppose inductively that $a(b+c)=ab+ac$, and let us prove that $a(b+(c\pplus))=ab+a(c\pplus)$. The left-hand side is $a((b+c)\pplus)=a(b+c)+a$, while the right-hand side is $ab+ac+a=a(b+c)+a$ by the induction hypothesis, and so we can close the induction.
         \end{proof}
-    \end{prop}
+    \end{prp}
     \item See Exercise \ref{exr:2.3.3} for a proof of the associativity of multiplication.
     \item Bringing back order, we can prove that multiplication preserves order.
-    \begin{prop}[Multiplication preserves order]\label{prp:multPreservesOrder}
+    \begin{prp}[Multiplication preserves order]\label{prp:multPreservesOrder}
         If $a,b$ are natural numbers such that $a<b$, and $c$ is positive, then $ac<bc$.
         \begin{proof}
             Since $a<b$, we have $b=a+d$ for some positive $d$. Multiplying by $c$ and using the distributive law, we obtain $bc=ac+dc$. Since $c,d$ are positive, $dc$ is positive, and hence $ac<bc$ as desired.
         \end{proof}
-    \end{prop}
+    \end{prp}
     \item Although we still haven't introduced division, we can introduce a multiplicative analogy of the cancellation law.
     \begin{cly}[Cancellation law]
         Let $a,b,c$ be natural numbers such that $ac=bc$ and $c$ is non-zero. Then $a=b$.
@@ -348,9 +352,9 @@
         \item This algorithm marks the beginning of \textbf{number theory}, which is important but will not be covered any further in this text.
     \end{itemize}
     \item The definition of exponentiation is very similar to the definitions of addition and multiplication.
-    \begin{defn}[Exponentiation of natural numbers]\label{dfn:exponentiation}
+    \begin{dfn}[Exponentiation of natural numbers]\label{dfn:exponentiation}
         Let $m$ be a natural number. To raise $m$ to the power 0, we define $m^0:=1$; in particular, we define $0^0:=1$. Now suppose recursively that $m^n$ has been defined for some natural number $n$. Then we define $m^{n\pplus}:=m^n\times m$.
-    \end{defn}
+    \end{dfn}
     \item Exponentiation will not be explored too deeply here --- wait until after we define the integers and rationals.
 \end{itemize}
 
@@ -399,7 +403,7 @@
         \end{proof}
     \end{lem}
     \item \label{exr:2.3.3}Prove the following proposition. Hint: modify the proof of Proposition \ref{prp:associativity} and use the distributive law.
-    \begin{prop}[Multiplication is associative]
+    \begin{prp}[Multiplication is associative]
         For any natural numbers $a,b,c$, we have $(a\times b)\times c=a\times(b\times c)$.
         \begin{proof}
             We first need a lemma.
@@ -418,7 +422,7 @@
             \end{align*}
             This closes the induction.
         \end{proof}
-    \end{prop}
+    \end{prp}
     \item \label{exr:2.3.4}Prove the identity $(a+b)^2=a^2+2ab+b^2$ for all natural numbers $a,b$.
     \begin{proof}
         We first need two lemmas.
@@ -445,7 +449,7 @@
         \end{align*}
     \end{proof}
     \item \label{exr:2.3.5}Prove the following proposition. Hint: fix $q$ and induct on $n$.
-    \begin{prop}[Euclidean algorithm]
+    \begin{prp}[Euclidean algorithm]
         Let $n$ be a natural number, and let $q$ be a positive number. Then there exist natural numbers $m,r$ such that $0\leq r<q$ and $n=mq+r$.
         \begin{proof}
             We induct on $n$ (keeping $q$ fixed). For the base case $n=0$, choose $m=0$ and $r=0$. In both cases, 0 is a natural number, and in the latter case, 0 satisfies $0\leq 0<q$ since $0\leq 0$ by Proposition \ref{prp:ordering} and $0<q$ for all positive $q$. Since $m,r$ meet all necessary conditions, $0q+0=0$ by Definition \ref{dfn:multiplication} and \ref{dfn:addition}, and $n=0$ by hypothesis, the base case holds.\par
@@ -464,7 +468,7 @@
             \end{align*}
             With both cases treated, the induction may be closed.
         \end{proof}
-    \end{prop}
+    \end{prp}
 \end{enumerate}
 
 
