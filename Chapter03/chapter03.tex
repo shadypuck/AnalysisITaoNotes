@@ -1,0 +1,61 @@
+\documentclass[../main.tex]{subfiles}
+
+\pagestyle{main}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter: #1}{}}
+\setcounter{chapter}{2}
+\externaldocument{../main}
+
+\begin{document}
+
+
+
+
+\chapter{Set Theory}
+\begin{itemize}
+    \item \marginnote{7/4:}Set theory will be frequently used in the subsequent chapters; it is part of the foundation of almost every other branch of mathematics.
+    \begin{itemize}
+        \item Note that Euclidean geometry will not be defined --- we will use the Cartesian coordinate system's parallel with the real numbers instead.
+    \end{itemize}
+    \item This chapter covers the elementary aspects, chapter \ref{chr:8} covers more advanced topics, and the finer subtleties are well beyond the scope of this text.
+\end{itemize}
+
+
+
+\section{Fundamentals}
+\begin{itemize}
+    \item We define sets axiomatically, as we did with the natural numbers\footnote{Note that the following list of axioms will be somewhat overcomplete, as some axioms may be derived from others. However, this is helpful for pedagogical reasons, and there is no real harm being done.}.
+    \begin{axm}[Sets are objects]
+        If $A$ is a set, then $A$ is also an object. In particular, given two sets $A$ and $B$, it is meaningful to ask whether $A$ is also an element of $B$.
+    \end{axm}
+    \item Note that while all sets are objects, not all objects are sets.
+    \begin{itemize}
+        \item For example, $1$ is not a set while $\{1\}$ is.
+        \item Note, though, that \textbf{pure set theory} considers all objects to be sets. However, impure set theory (where some objects are not sets) is conceptually easier to deal with.
+        \begin{itemize}
+            \item Since both types are equal for the purposes of mathematics, we will take a middle-ground approach.
+        \end{itemize}
+    \end{itemize}
+    \item If $x,y$ are objects and $A$ a set, then the statement $x\in A$ is either true or false. Note that $x\in y$ is neither true nor false, simply meaningless.
+    \item We now define equality for sets.
+    \begin{dfn}[Equality of sets]\label{dfn:setEquality}
+        Two sets $A$ and $B$ are equal, $A=B$, iff every element of $A$ is an element of $B$ and vice versa. To put it another way, $A=B$ if and only if every element $x$ of $A$ belongs also to $B$, and every element $y$ of $B$ belongs also to $A$.
+    \end{dfn}
+    \item Note that this implies that repetition of elements does not effect equality ($\{3,3\}=\{3\}$, for example).
+    \item It can be proven that this notion of equality is reflexive, symmetric, and transitive (see Exercise \ref{exr:3.1.1}).
+\end{itemize}
+
+
+\subsection*{Exercises}
+\begin{enumerate}[ref={\thesection.\arabic*}]
+    \item \label{exr:3.1.1}Show that the definition of equality in Definition \ref{dfn:setEquality} is reflexive, symmetric, and transitive.
+    \begin{proof}
+        Given a set $A$, suppose $A\neq A$. Then, by Definition \ref{dfn:setEquality}, every element of $A$ is not an element of $A$, a contradiction. Thus, $A=A$.\par
+        Let sets $A=B$. Then, by Definition \ref{dfn:setEquality}, every element $x$ of $A$ belongs also to $B$, and every element $y$ of $B$ belongs also to $A$. Identically, every element $y$ of $B$ belongs also to $A$, and every element $X$ of $A$ belongs also to $B$. Thus, $B=A$.\par
+        Let sets $A=B$ and $B=C$. Then, by Definition \ref{dfn:setEquality}, every element $x$ of $A$ belongs also to $B$, and every element $y$ of $B$ belongs also to $A$. Similarly, every element $y$ of $B$ belongs also to $C$, and every element $z$ of $C$ belongs also to $B$. Since $x\in A\Rightarrow x\in B\Rightarrow x\in C$, and $y\in C\Rightarrow y\in B\Rightarrow y\in A$, $A=C$.
+    \end{proof}
+\end{enumerate}
+
+
+
+
+\end{document}
