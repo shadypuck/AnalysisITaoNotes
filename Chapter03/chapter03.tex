@@ -24,7 +24,7 @@
 \section{Fundamentals}
 \begin{itemize}
     \item We define sets axiomatically, as we did with the natural numbers\footnote{Note that the following list of axioms will be somewhat overcomplete, as some axioms may be derived from others. However, this is helpful for pedagogical reasons, and there is no real harm being done.}.
-    \begin{axm}[Sets are objects]
+    \begin{axm}[Sets are objects]\label{axm:setsAreObjects}
         If $A$ is a set, then $A$ is also an object. In particular, given two sets $A$ and $B$, it is meaningful to ask whether $A$ is also an element of $B$.
     \end{axm}
     \item Note that while all sets are objects, not all objects are sets.
@@ -42,6 +42,120 @@
     \end{dfn}
     \item Note that this implies that repetition of elements does not effect equality ($\{3,3\}=\{3\}$, for example).
     \item It can be proven that this notion of equality is reflexive, symmetric, and transitive (see Exercise \ref{exr:3.1.1}).
+    \item \marginnote{7/14:}Since $x\in A$ and $A=B$ implies $x\in B$, the $\in$ relation obeys the axiom of substitution as well.
+    \begin{itemize}
+        \item Thus, any operation defined in terms of the $\in$ relation obeys the axiom of substitution.
+    \end{itemize}
+    \item We define sets in an analogous way to how we defined natural numbers from 0, onward.
+    \begin{axm}[Empty set]\label{axm:emptyset}
+        There exists a set $\emptyset$ \textup{(}also denoted $\{\}$\textup{)}, known as the empty set, which contains no elements, i.e., for every object $x$, we have $x\notin\emptyset$.
+    \end{axm}
+    \begin{itemize}
+        \item Note that there is only one empty set --- if $\emptyset$ and $\emptyset'$ were supposedly distinct empty sets, then Definition \ref{dfn:setEquality} would prove that $\emptyset=\emptyset'$.
+    \end{itemize}
+    \item \textbf{Non-empty set}: A set that \dq{is not equal to the empty set}{36}
+    \item Non-empty sets must contain at least one object.
+    \begin{lem}[Single choice]
+        Let $A$ be a non-empty set. Then there exists an object $x$ such that $x\in A$.
+        \begin{proof}
+            Suppose for the sake of contradiction that no object $x$ exists such that $x\in A$, i.e., for all objects $x$, we have $x\notin A$. By Axiom \ref{axm:emptyset}, we have $x\notin\emptyset$ either. Thus, $x\in A \Longleftrightarrow x\in\emptyset$ (denoting logical equivalence; both statements are equally false), so, by Definition \ref{dfn:setEquality}, $A=\emptyset$, a contradiction.
+        \end{proof}
+    \end{lem}
+    \item There exist more sets than just the empty set.
+    \begin{axm}[Singleton sets and pair sets]\label{axm:singletonPair}
+        If $a$ is an object, then there exists a set $\{a\}$ whose only element is $a$, i.e., for every object $y$, we have $y\in\{a\}$ if and only if $y=a$; we refer to $\{a\}$ as the \textbf{singleton set} whose element is $a$. Furthermore, if $a$ and $b$ are objects, then there exists a set $\{a,b\}$ whose elements are $a$ and $b$; i.e., for every object $y$, we have $y\in\{a,b\}$ if and only if $y=a$ or $y=b$; we refer to this set as the \textbf{pair set} formed by $a$ and $b$.
+    \end{axm}
+    \item By Definition \ref{dfn:setEquality}, there exists only one singleton set for each object $a$ and only one pair set for any two objects $a,b$.
+    \item Note that the singleton set axiom follows from the pair set axiom, and the pair set axiom follows from the singleton set axiom and the pairwise union axiom, below.
+    \item As alluded to, the pairwise union axiom allows us to build sets with more than two elements.
+    \begin{axm}[Pairwise union]\label{axm:pairwiseUnion}
+        Given any two sets $A,B$, there exists a set $A\cup B$ called the \textbf{union} $A\cup B$ of $A$ and $B$, whose elements consist of all the elements which belong to $A$ or $B$ or both. In other words, for any object $x$,
+        \begin{equation*}
+            x\in A\cup B \Longleftrightarrow (x\in A\text{ or }x\in B)
+        \end{equation*}
+    \end{axm}
+    \item The $\cup$ operation obeys the axiom of substitution (if $A=A'$, then $A\cup B=A'\cup B$).
+    \item We now prove some basic properties of unions (one below and three in Exercise \ref{exr:3.1.3}).
+    \begin{lem}\label{lem:associativitySetUnion}
+        If $A,B,C$ are sets, then the union operation is associative, i.e., $(A\cup B)\cup C=A\cup(B\cup C)$.
+        \begin{proof}
+            By Definition \ref{dfn:setEquality}, showing that every element $x$ of $(A\cup B)\cup C$ is an element of $A\cup(B\cup C)$ and vice versa will suffice to prove this lemma. Suppose first that $x\in(A\cup B)\cup C$. By Axiom \ref{axm:pairwiseUnion}, this means that at least one of $x\in A\cup B$ or $x\in C$ is true. We now divide into two cases. If $x\in C$, then by Axiom \ref{axm:pairwiseUnion}, $x\in B\cup C$, and, so, by Axiom \ref{axm:pairwiseUnion} again, we have $x\in A\cup(B\cup C)$. Now suppose instead that $x\in A\cup B$. Then by Axiom \ref{axm:pairwiseUnion}, $x\in A$ or $x\in B$. If $x\in A$, then $x\in A\cup(B\cup C)$ by Axiom \ref{axm:pairwiseUnion}, while if $x\in B$, then by consecutive applications of Axiom \ref{axm:pairwiseUnion}, we have $x\in B\cup C$ and, hence, $x\in A\cup (B\cup C)$. A similar argument shows that every element of $A\cup(B\cup C)$ lies in $(A\cup B)\cup C$, and so $(A\cup B)\cup C=A\cup(B\cup C)$, as desired.
+        \end{proof}
+    \end{lem}
+    \item As a consequence of the above, we are free to write $A\cup B\cup C\cup\cdots$ to denote repeated unions without having to use parentheses.
+    \item We can also now define triplet sets ($\{a,b,c\}:=\{a\}\cup\{b\}\cup\{c\}$), quadruplet sets, and so forth.
+    \begin{itemize}
+        \item However, we cannot yet define a set of $n$ objects or an infinite set.
+    \end{itemize}
+    \item Note that addition and union are analogous, but importantly \emph{not} identical.
+    \item Some sets are "larger" than others; hence, subsets.
+    \begin{dfn}[Subsets]\label{dfn:subsets}
+        Let $A,B$ be sets. We say that $A$ is a \textbf{subset} of $B$, denoted $A\subseteq B$, iff every element of $A$ is also an element of $B$, i.e., for any object $x$, $x\in A \Longrightarrow x\in B$. We say that $A$ is a \textbf{proper subset} of $B$, denoted $A\subsetneq B$ if $A\subseteq B$ and $A\neq B$.
+    \end{dfn}
+    \item The $\subseteq$ and $\subsetneq$ operations obey the axiom of substitution (since both $=$ and $\in$, the two component operations of $\subseteq$ and $\subsetneq$, obey it).
+    \item Note that $A\subseteq A$ and $\emptyset\subseteq A$ for any set $A$.
+    \item Note that less than or equal to and subset are analogous, but not identical, either (see below for one related property and Exercise \ref{exr:3.1.4} for two more).
+    \begin{prp}[Sets are partially ordered by set inclusion 1]
+        Let $A,B,C$ be sets. If $A\subseteq B$ and $B\subseteq C$, then $A\subseteq C$.
+        \begin{proof}
+            Suppose that $A\subseteq B$ and $B\subseteq C$. To prove that $A\subseteq C$, we have to prove that every element of $A$ is an element of $C$. Let $x\in A$. Then $x\in B$ (since $A\subseteq B$), implying that $x\in C$ (since $B\subseteq C$).
+        \end{proof}
+    \end{prp}
+    \item There exist relations between subsets and unions (see Exercise \ref{exr:3.1.7}).
+    \item Note this difference between $\subsetneq$ and $<$: Given any two distinct natural numbers $n,m$, one is smaller than the other (Proposition \ref{prp:trichotomy}). However, given any two distinct sets, it is not in general true that one is a subset of the other. This is why we say that sets are \textbf{partially ordered} while the natural numbers (for example) are \textbf{totally ordered} (see Definitions \ref{dfn:partiallyOrderedSets} and \ref{dfn:totallyOrderedSet}, respectively).
+    \item Note that $\in$ and $\subseteq$ are distinct ($2\in\{1,2,3\}$, but $2\nsubseteq\{1,2,3\}$; similarly, $\{2\}\subseteq\{1,2,3\}$, but $\{2\}\notin\{1,2,3\}$).
+    \item It is important to distinguish sets from their elements, for they can have different properties ($\N$ is an infinite set of finite elements, and $\{\N,\Z,\Q,\R\}$ is a finite set of infinite objects).
+    \item We now formally state that it is acceptable to create subsets.
+    \begin{axm}[Axiom of specification]\label{axm:specification}
+        Let $A$ be a set, and for each $x\in A$, let $P(x)$ be a property pertaining to $x$ \textup{(}i.e., $P(x)$ is either a true statement or a false statement\textup{)}. Then there exists a set, called $\{x\in A:P(x)\text{ is true}\}$ \textup{(}or simply $\{x\in A:P(x)\}$ for short\textup{)}, whose elements are precisely the elements $x$ in $A$ for which $P(x)$ is true. In other words, for any object $y$,
+        \begin{equation*}
+            y\in\{x\in A:P(x)\text{ is true}\} \Longleftrightarrow (y\in A\text{ and }P(y)\text{ is true})
+        \end{equation*}
+    \end{axm}
+    \item \emph{Also known as} \textbf{axiom of separation}.
+    \item Specification obeys the axiom of substitution (since $\in$ obeys it).
+    \item Sometimes $\{x\in A:P(x)\}$ is denoted by $\{x\in A\Big|P(x)\}$ (useful when we need the colon for something else, e.g., $f:X\to Y$).
+    \item We use Axiom \ref{axm:specification} to define intersections.
+    \begin{dfn}[Intersections]\label{dfn:intersection}
+        The \textbf{intersection} $S_1\cap S_2$ of two sets is defined to be the set
+        \begin{equation*}
+            S_1\cap S_2 := \{x\in S_1:x\in S_2\}
+        \end{equation*}
+        In other words, $S_1\cap S_2$ consists of all the elements which belong to both $S_1$ and $S_2$. Thus, for all objects $x$,
+        \begin{equation*}
+            x\in S_1\cap S_2 \Longleftrightarrow x\in S_1\text{ and }x\in S_2
+        \end{equation*}
+    \end{dfn}
+    \item The $\cap$ operation obeys the axiom of substitution (since $\in$ obeys it).
+    \begin{itemize}
+        \item Note that since $\cap$ is defined in terms of more primitive operations, it is well-defined.
+    \end{itemize}
+    \item Problems with the English word, "and."
+    \begin{itemize}
+        \item It can mean union or intersection depending on the context.
+        \begin{itemize}
+            \item If $X,Y$ are sets, "the set of elements of $X$ and elements of $Y$" refers to $X\cup Y$, e.g., "the set of singles and males."
+            \item If $X,Y$ are sets, "the set of objects that are elements of $X$ and elements of $Y$" refers to $X\cap Y$, e.g., "the set of people who are single and male."
+        \end{itemize}
+        \item It can also denote addition.
+        \begin{itemize}
+            \item "2 and 3 is 5" means $2+3=5$.
+        \end{itemize}
+        \item \dq{One reason we resort to mathematical symbols instead of English words such as `and' is that mathematical symbols always have a precise and unambiguous meaning, whereas one must often look very carefully at the context in order to work out what an English word means}{42}
+    \end{itemize}
+    \item \textbf{Disjoint} (sets): Two sets $A,B$ such that $A\cap B=\emptyset$.
+    \item \textbf{Distinct} (sets): Two sets $A,B$ such that $A\neq B$.
+    \begin{itemize}
+        \item Note that $\emptyset$ and $\emptyset$ are disjoint but not distinct.
+    \end{itemize}
+    \item We also use Axiom \ref{axm:specification} to define difference sets.
+    \begin{dfn}[Difference sets]
+        Given two sets $A$ and $B$, we define the set $A-B$ or $A\setminus B$ to be the set $A$ with any elements of $B$ removed, i.e.,
+        \begin{equation*}
+            A\setminus B := \{x\in A:x\notin B\}
+        \end{equation*}
+    \end{dfn}
+    \item For example, $\{1,2,3,4\}\setminus\{2,4,6\}=\{1,3\}$ --- in many cases, $B\subseteq A$, but not necessarily.
 \end{itemize}
 
 
@@ -52,6 +166,58 @@
         Given a set $A$, suppose $A\neq A$. Then, by Definition \ref{dfn:setEquality}, every element of $A$ is not an element of $A$, a contradiction. Thus, $A=A$.\par
         Let sets $A=B$. Then, by Definition \ref{dfn:setEquality}, every element $x$ of $A$ belongs also to $B$, and every element $y$ of $B$ belongs also to $A$. Identically, every element $y$ of $B$ belongs also to $A$, and every element $X$ of $A$ belongs also to $B$. Thus, $B=A$.\par
         Let sets $A=B$ and $B=C$. Then, by Definition \ref{dfn:setEquality}, every element $x$ of $A$ belongs also to $B$, and every element $y$ of $B$ belongs also to $A$. Similarly, every element $y$ of $B$ belongs also to $C$, and every element $z$ of $C$ belongs also to $B$. Since $x\in A\Rightarrow x\in B\Rightarrow x\in C$, and $y\in C\Rightarrow y\in B\Rightarrow y\in A$, $A=C$.
+    \end{proof}
+    \item \label{exr:3.1.2}Using only Definition \ref{dfn:setEquality}, Axiom \ref{axm:setsAreObjects}, Axiom \ref{axm:emptyset}, and Axiom \ref{axm:singletonPair}, prove that the sets $\emptyset$, $\{\emptyset\}$, $\{\{\emptyset\}\}$, and $\{\emptyset,\{\emptyset\}\}$ are all distinct (i.e., no two of them are equal to each other).
+    \begin{proof}
+        % Super rigorous: Suppose for the sake of contradiction that $\emptyset=\{\emptyset\}$. By Axiom \ref{axm:setsAreObjects}, $\emptyset$ is an object, implying by Axiom \ref{axm:singletonPair} that there exists a set $\{\emptyset\}$ (which happens to be the set on the right of the hypothesized equality). It follows that $\emptyset\in\{\emptyset\}$. Since $\emptyset=\{\emptyset\}$, by Definition \ref{dfn:setEquality}, $\emptyset\in\emptyset$ as well. But this contradicts Axiom \ref{axm:emptyset}, which asserts that $x\notin\emptyset$ for all objects $x$, including $\emptyset$. Therefore, $\emptyset\neq\{\emptyset\}$.
+        First, we show that all sets are distinct from the empty set. Axiom \ref{axm:setsAreObjects} asserts that $\emptyset$ and $\{\emptyset\}$ are objects. By Axiom \ref{axm:singletonPair}, we have $\emptyset\in\{\emptyset\}$, $\emptyset\in\{\emptyset,\{\emptyset\}\}$, and $\{\emptyset\}\in\{\{\emptyset\}\}$. Since $x\notin\emptyset$ for all objects $x$ (Axiom \ref{axm:emptyset}), $\{\emptyset\}$, $\{\{\emptyset\}\}$, and $\{\emptyset,\{\emptyset\}\}$ all contain objects that $\emptyset$ does not (namely, $\emptyset$, $\{\emptyset\}$, and $\emptyset$, respectively). Thus, by Definition \ref{dfn:setEquality}, $\emptyset\neq\{\emptyset\}$, $\emptyset\neq\{\{\emptyset\}\}$, and $\emptyset\neq\{\emptyset,\{\emptyset\}\}$.\par
+        Next, we show that $\{\emptyset\}\neq\{\emptyset,\{\emptyset\}\}$. By Axiom \ref{axm:singletonPair}, $\{\emptyset\}\in\{\emptyset,\{\emptyset\}\}$ and $y\in\{\emptyset\}$ iff $y=\emptyset$. Since $\{\emptyset\}\neq\emptyset$ (see above), $\{\emptyset\}\notin\{\emptyset\}$. Thus, $\{\emptyset,\{\emptyset\}\}$ contains an object that $\{\emptyset\}$ does not, implying by Definition \ref{dfn:setEquality} that $\{\emptyset\}\neq\{\emptyset,\{\emptyset\}\}$.\par
+        Lastly, we show that $\{\emptyset\}\neq\{\{\emptyset\}\}$ and that $\{\emptyset,\{\emptyset\}\}\neq\{\{\emptyset\}\}$. We proceed in a similar manner to the above. By Axiom \ref{axm:singletonPair}, $\emptyset\in\{\emptyset\}$, $\emptyset\in\{\emptyset,\{\emptyset\}\}$, and $y\in\{\{\emptyset\}\}$ iff $y=\{\emptyset\}$. Since $\emptyset\neq\{\emptyset\}$ (see above), $\emptyset\notin\{\{\emptyset\}\}$. Thus, $\{\emptyset\}$ and $\{\emptyset,\{\emptyset\}\}$ both contain an object that $\{\{\emptyset\}\}$ does not, implying by Definition \ref{dfn:setEquality} that $\{\emptyset\}\neq\{\{\emptyset\}\}$ and that $\{\emptyset,\{\emptyset\}\}\neq\{\{\emptyset\}\}$.\par
+        % Second, we show that $\{\emptyset\}\neq\{\{\emptyset\}\}$. By Axiom \ref{axm:singletonPair}, $\emptyset\in\{\emptyset\}$ and $y\in\{\{\emptyset\}\}$ iff $y=\{\emptyset\}$. Since $\emptyset\neq\{\emptyset\}$ (see above), $\emptyset\notin\{\{\emptyset\}\}$. Thus, $\{\emptyset\}$ contains an object that $\{\{\emptyset\}\}$ does not, implying by Definition \ref{dfn:setEquality} that $\{\emptyset\}\neq\{\{\emptyset\}\}$.\par
+        % Lastly, we show that $\{\{\emptyset\}\}\neq\{\emptyset,\{\emptyset\}\}$. We proceed in a similar manner to the previous two. By Axiom \ref{axm:singletonPair}, $\emptyset\in\{\emptyset,\{\emptyset\}\}$ and $y\in\{\{\emptyset\}\}$ iff $y=\{\emptyset\}$. Since $\emptyset\neq\{\emptyset\}$ (see above), $\emptyset\notin\{\{\emptyset\}\}$. Thus, $\{\emptyset,\{\emptyset\}\}$ contains an object that $\{\{\emptyset\}\}$ does not, implying by Definition \ref{dfn:setEquality} that $\{\{\emptyset\}\}\neq\{\emptyset,\{\emptyset\}\}$.
+        %  and $\{\emptyset\}\neq\{\emptyset,\{\emptyset\}\}$.
+    \end{proof}
+    \item \label{exr:3.1.3}Prove the following lemmas.
+    \begin{lem}\label{lem:commutativityUnion}
+        If $a$ and $b$ are objects, then $\{a,b\}=\{a\}\cup\{b\}$.
+        \begin{proof}
+            % $\{a\}$ and $\{b\}$ are sets. Thus, by Axiom \ref{axm:pairwiseUnion}, there exists a set $\{a\}\cup\{b\}$ whose elements consist of all the elements which belong to $\{a\}$ or $\{b\}$ or both. By Axiom \ref{axm:singletonPair}, $x\in\{a\}$ iff $x=a$ (implying that $a$ is the only element of $\{a\}$) and $y\in\{b\}$ iff $y=b$ (implying that $b$ is the only element of $\{b\}$). Thus, $\{a\}\cup\{b\}$ must contain exclusively $a,b$. By Axiom \ref{axm:singletonPair}, the set that contains just $a,b$ is $\{a,b\}$. Therefore, $\{a,b\}=\{a\}\cup\{b\}$.
+            By Definition \ref{dfn:setEquality}, it will suffice to show that every element $x$ of $\{a,b\}$ is an element of $\{a\}\cup\{b\}$ and vice versa. By Axiom \ref{axm:singletonPair}, if $x\in\{a,b\}$, then $x=a$ or $x=b$. By Axiom \ref{axm:pairwiseUnion}, if $x\in\{a\}\cup\{b\}$, then $x\in\{a\}$ or $x\in\{b\}$, implying by Axiom \ref{axm:singletonPair} that $x=a$ or $x=b$. Thus, the elements of $\{a,b\}$ and of $\{a\}\cup\{b\}$ are both $a,b$, so by Definition \ref{dfn:setEquality}, the sets are equal.
+        \end{proof}
+    \end{lem}
+    \begin{lem}
+        If $A,B,C$ are sets, then the union operation is commutative, i.e., $A\cup B=B\cup A$.
+        \begin{proof}
+            By Definition \ref{dfn:setEquality}, it will suffice to show that every element $x$ of $A\cup B$ is an element of $B\cup A$ and vice versa. Let $x\in A\cup B$. By Axiom \ref{axm:pairwiseUnion}, $x\in A$ or $x\in B$. If, on the one hand, $x\in A$, then $x\in B\cup A$ (by Axiom \ref{axm:pairwiseUnion}). If, on the other hand, $x\in B$, then $x\in B\cup A$ (by Axiom \ref{axm:pairwiseUnion}). A similar argument holds if we choose an element $y\in B\cup A$ first.
+        \end{proof}
+    \end{lem}
+    \begin{lem}
+        If $A$ is a set, then $A=A\cup\emptyset=\emptyset\cup A=A\cup A$.
+        \begin{proof}
+            First, we show that $A\cup\emptyset=\emptyset\cup A$. This is a direct consequence of Lemma \ref{lem:commutativityUnion}.\par
+            Next, we show that $A=A\cup\emptyset$. By Definition \ref{dfn:setEquality}, it will suffice to show that every element $x$ of $A$ is an element of $A\cup\emptyset$ and vice versa. By Axiom \ref{axm:pairwiseUnion}, every element $x$ of $A$ is an element of $A\cup\emptyset$. Now let $x\in A\cup\emptyset$. Then by Axiom \ref{axm:pairwiseUnion}, $x\in A$ or $x\in\emptyset$. By Axiom \ref{axm:emptyset}, $x\notin\emptyset$, so $x\in A$. Thus, every element of $A\cup\emptyset$ is an element of $A$. We now have by the transitive property that $A=A\cup\emptyset=\emptyset\cup A$.\par
+            Lastly, we show that $A=A\cup A$. By Definition \ref{dfn:setEquality}, it will suffice to show that every element $x$ of $A$ is an element of $A\cup A$ and vice versa. By Axiom \ref{axm:pairwiseUnion}, every element $x$ of $A$ is an element of $A\cup A$. Now let $x\in A\cup A$. Then by Axiom \ref{axm:pairwiseUnion}, $x\in A$ or $x\in A$, implying $x\in A$. We have, at last, by the transitive property that $A=A\cup\emptyset=\emptyset\cup A=A\cup A$.
+        \end{proof}
+    \end{lem}
+    \item \label{exr:3.1.4}Prove the following propositions.
+    \begin{lem}[Sets are partially ordered by set inclusion 2]
+        Let $A,B$ be sets. If $A\subseteq B$ and $B\subseteq A$, then $A=B$.
+        \begin{proof}
+            Suppose that $A\subseteq B$ and $B\subseteq A$. By Definition \ref{dfn:subsets}, $A\subseteq B$ implies that every element of $A$ is also an element of $B$ and $B\subseteq A$ implies that every element of $B$ is also an element of $A$. Thus, by Definition \ref{dfn:setEquality}, $A=B$.
+        \end{proof}
+    \end{lem}
+    \begin{lem}[Sets are partially ordered by set inclusion 3]
+        Let $A,B,C$ be sets. If $A\subsetneq B$ and $B\subsetneq C$, then $A\subsetneq C$.
+        \begin{proof}
+            Suppose that $A\subsetneq B$ and $B\subsetneq C$. Then, by Definition \ref{dfn:subsets}, $A\subseteq B$ and $B\subseteq C$, implying $A\subseteq C$ by the first claim proved. Since $A\subsetneq B$, $A\neq B$ (implying, by Definition \ref{dfn:setEquality}, that every element of $A$ is not an element of $B$ or every element of $B$ is not an element of $A$) and every element of $A$ is an element of $B$; hence, every element of $B$ is not an element of $A$. Therefore, $B$ \emph{must} contain some element that $A$ does not. Similarly, $B\subsetneq C$ implies that $C$ must contain some element that $B$ does not. Hence $C$ contains at least two elements that $A$ does not, proving that $A\neq C$, too.
+        \end{proof}
+    \end{lem}
+    \item \label{exr:3.1.5}Let $A,B$ be sets. Show that the three statements $A\subseteq B$, $A\cup B=B$, and $A\cap B=A$ are logically equivalent (any one of them implies the other two).
+    \begin{proof}
+        First, we show that $A\subseteq B \Longrightarrow (A\cup B=B\text{ and }A\cap B=A)$. Next, we show that $A\cup B=B \Longrightarrow A\subseteq B$ (which, in turn, implies $A\cap B=A$). Lastly, we show that $A\cap B=A \Longrightarrow A\subseteq B$ (which, in turn, implies $A\cup B=B$). Let's begin.\par
+        Suppose that $A\subseteq B$. To prove $A\cup B=B$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $A\cup B$ is an element of $B$ and vice versa. By Axiom \ref{axm:pairwiseUnion}, $x\in B \Longrightarrow x\in A\cup B$. By Axiom \ref{axm:pairwiseUnion}, $x\in A\cup B \Longrightarrow (x\in A\text{ or }x\in B)$. By Definition \ref{dfn:subsets}, $A\subseteq B$ means that $x\in A \Longrightarrow x\in B$. Thus, $x\in A\cup B \Longrightarrow (x\in A\text{ or }x\in B) \Longrightarrow x\in B$. Therefore, if $A\subseteq B$, then $A\cup B=B$. To prove that $A\cap B=A$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $A\cap B$ is an element of $A$ and vice versa. By Definition \ref{dfn:intersection}, $x\in A\cap B \Longrightarrow x\in A$ (and $x\in B$). Since $x\in A \Longrightarrow x\in B$ (see above), $x\in A \Longrightarrow (x\in A\text{ and }x\in B) \Longrightarrow x\in A\cap B$ (Definition \ref{dfn:intersection}). Therefore, if $A\subseteq B$, then $A\cap B=A$.\par
+        Suppose that $A\cup B=B$. To prove $A\subseteq B$, Definition \ref{dfn:subsets} tells us that it will suffice to show that every element of $A$ is also an element of $B$. By Axiom \ref{axm:pairwiseUnion}, $x\in A \Longrightarrow x\in A\cup B$. By Definition \ref{dfn:setEquality}, $y\in A\cup B \Longrightarrow y\in B$. Thus, $x\in A \Longrightarrow x\in A\cup B \Longrightarrow x\in B$. Therefore, if $A\cup B=B$, $A\subseteq B$ (and $A\cap B=A$).\par
+        Suppose that $A\cap B=A$. To prove that $A\subseteq B$, Definition \ref{dfn:subsets} tells us that it will suffice to show that every element of $A$ is also an element of $B$. By Definition \ref{dfn:setEquality}, $x\in A \Longrightarrow x\in A\cap B$. By Definition \ref{dfn:intersection}, $y\in A\cap B \Longrightarrow y\in B$. Thus, $x\in A \Longrightarrow x\in A\cap B \Longrightarrow x\in B$. Therefore, if $A\cap B=A$, $A\subseteq B$ (and $A\cup B=B$).
     \end{proof}
 \end{enumerate}
 
