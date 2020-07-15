@@ -141,6 +141,7 @@
     \item \textbf{Inverse} (of "if $X$, then $Y$"): The statement "if $X$ is false, then $Y$ is false."
     \begin{itemize}
         \item The inverse of a true implication is not necessarily a true implication.
+        \item If $X\leftrightarrow Y$, then the inverse of "if $X$, then $Y$" holds (namely, we know that "if $X$ is false, then $Y$ is false").
     \end{itemize}
     \item \textbf{Contrapositive} (of "if $X$, then $Y$"): The statement "if $Y$ is false, then $X$ is false."
     \begin{itemize}
@@ -174,7 +175,7 @@
 
 
 
-\section{Variables and Quantifiers}
+\section{Variables and Quantifiers}\label{sss:A.4}
 \begin{itemize}
     \item \textbf{Propositional logic}: \dq{Starting with primitive statements (such as `$2+2=4$' or `John has black hair'), then forming compound statements using logical connectives, and then using various laws of logic to pass from one's hypotheses to one's conclusions}{320} \emph{Also known as} \textbf{Boolean logic}.
     \begin{itemize}
@@ -183,14 +184,14 @@
     \item Let $P$, $Q$, and $R$ be statements. Let $t$ be a formula that is a tautology and let $f$ be a formula that is a contradiction. Then:
     \begin{enumerate}
         \item \textbf{Law of Double Negation}: $\neg\neg P\equiv P$.
-        \item \textbf{Associative Law for Conjunction}: $P\vee(Q\vee R)\equiv (P\vee Q)\vee R$.
-        \item \textbf{Associative Law for Disjunction}: $P\wedge(Q\wedge R)\equiv(P\wedge Q)\wedge R$.
-        \item \textbf{Commutative Law for Conjunction}: $P\vee Q\equiv Q\vee P$.
-        \item \textbf{Commutative Law for Disjunction}: $P\wedge Q\equiv Q\wedge P$.
+        \item \textbf{Associative Law for Conjunction}: $P\wedge(Q\wedge R)\equiv(P\wedge Q)\wedge R$.
+        \item \textbf{Associative Law for Disjunction}: $P\vee(Q\vee R)\equiv (P\vee Q)\vee R$.
+        \item \textbf{Commutative Law for Conjunction}: $P\wedge Q\equiv Q\wedge P$.
+        \item \textbf{Commutative Law for Disjunction}: $P\vee Q\equiv Q\vee P$.
         \item \textbf{First Distributive Law}: $P\vee(Q\wedge R)\equiv(P\vee Q)\wedge(P\vee R)$.
         \item \textbf{Second Distributive Law}: $P\wedge(Q\vee R)\equiv(P\wedge Q)\vee(P\wedge R)$.
-        \item \textbf{Idempotent Law for Conjunction}: $P\vee P\equiv P$.
-        \item \textbf{Idempotent Law for Disjunction}: $P\wedge P\equiv P$.
+        \item \textbf{Idempotent Law for Conjunction}: $P\wedge P\equiv P$.
+        \item \textbf{Idempotent Law for Disjunction}: $P\vee P\equiv P$.
         \item \textbf{Identity Law for Tautologies}: $P\wedge t\equiv P$.
         \item \textbf{Identity Law for Contradictions}: $P\vee f\equiv P$.
         \item \textbf{Inverse Law for Tautologies}: $P\vee\neg P\equiv t$.
