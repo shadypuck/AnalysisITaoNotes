@@ -237,18 +237,18 @@
         \end{proof}
     \end{lem}
     \item \label{exr:3.1.4}Prove the following propositions.
-    \begin{lem}[Sets are partially ordered by set inclusion 2]
+    \begin{prp}[Sets are partially ordered by set inclusion 2]
         Let $A,B$ be sets. If $A\subseteq B$ and $B\subseteq A$, then $A=B$.
         \begin{proof}
             Suppose that $A\subseteq B$ and $B\subseteq A$. By Definition \ref{dfn:subsets}, $A\subseteq B$ implies that every element of $A$ is also an element of $B$ and $B\subseteq A$ implies that every element of $B$ is also an element of $A$. Thus, by Definition \ref{dfn:setEquality}, $A=B$.
         \end{proof}
-    \end{lem}
-    \begin{lem}[Sets are partially ordered by set inclusion 3]
+    \end{prp}
+    \begin{prp}[Sets are partially ordered by set inclusion 3]
         Let $A,B,C$ be sets. If $A\subsetneq B$ and $B\subsetneq C$, then $A\subsetneq C$.
         \begin{proof}
-            Suppose that $A\subsetneq B$ and $B\subsetneq C$. Then, by Definition \ref{dfn:subsets}, $A\subseteq B$ and $B\subseteq C$, implying $A\subseteq C$ by the first claim proved. Since $A\subsetneq B$, $A\neq B$ (implying, by Definition \ref{dfn:setEquality}, that every element of $A$ is not an element of $B$ or every element of $B$ is not an element of $A$) and every element of $A$ is an element of $B$; hence, every element of $B$ is not an element of $A$. Therefore, $B$ \emph{must} contain some element that $A$ does not. Similarly, $B\subsetneq C$ implies that $C$ must contain some element that $B$ does not. Hence $C$ contains at least two elements that $A$ does not, proving that $A\neq C$, too.
+            Suppose that $A\subsetneq B$ and $B\subsetneq C$. Then, by Definition \ref{dfn:subsets}, $A\subseteq B$ and $B\subseteq C$, implying $A\subseteq C$ by the first claim proved. Since $A\subsetneq B$, $A\neq B$ (implying, by Definition \ref{dfn:setEquality}, that every element of $A$ is not an element of $B$ or every element of $B$ is not an element of $A$) and every element of $A$ is an element of $B$; hence, every element of $B$ is not an element of $A$. Therefore, $B$ \emph{must} contain some element that $A$ does not. Similarly, $B\subsetneq C$ implies that $C$ must contain some element that $B$ does not. Hence, $C$ contains at least two elements that $A$ does not, proving that $A\neq C$, too.
         \end{proof}
-    \end{lem}
+    \end{prp}
     \item \label{exr:3.1.5}Let $A,B$ be sets. Show that the three statements $A\subseteq B$, $A\cup B=B$, and $A\cap B=A$ are logically equivalent (any one of them implies the other two).
     \begin{proof}
         First, we show that $A\subseteq B \Longrightarrow (A\cup B=B\text{ and }A\cap B=A)$. Next, we show that $A\cup B=B \Longrightarrow A\subseteq B$ (which, in turn, implies $A\cap B=A$). Lastly, we show that $A\cap B=A \Longrightarrow A\subseteq B$ (which, in turn, implies $A\cup B=B$). Let's begin.\par
@@ -259,34 +259,34 @@
     \item \label{exr:3.1.6}\marginnote{7/15:}Prove the following proposition. (Hint: one can use some of these claims to prove others. Some of the claims have also appeared previously in Lemma \ref{lem:associativitySetUnion} and Exercise \ref{exr:3.1.3}.)
     \begin{prp}[Sets form a boolean algebra]\label{prp:booleanAlgebra}
         Let $A,B,C$ be sets, and let $X$ be a set containing $A,B,C$ as subsets.
-        \begin{enumerate}[label={\textup{(}\alph*\textup{)}}]
-            \item (Minimal element) We have $A\cup\emptyset=A$ and $A\cap\emptyset=\emptyset$.
+        \begin{enumerate}[label={\textup{(}\alph*\textup{)}},ref={\theenumi\alph*}]
+            \item \label{exr:3.1.6a}(Minimal element) We have $A\cup\emptyset=A$ and $A\cap\emptyset=\emptyset$.
             \begin{proof}
                 See Exercise \ref{exr:3.1.3} for the first claim.\par
                 To prove $A\cap\emptyset=\emptyset$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $A\cap\emptyset$ is an element of $\emptyset$ and vice versa.
                 % By Axiom \ref{axm:emptyset}, $x\notin\emptyset$ for all objects $x$. By Definition \ref{dfn:intersection}, $A\cap\emptyset=\{x\in A:x\in\emptyset\}$. But $x\in\emptyset$ is necessarily false for all $x$ (see above). Thus, $x\notin A\cap\emptyset$ for all objects $x$ (specifically, all $x\in A$). Therefore, the statement "every element $x$ of $A\cap\emptyset$ is an element of $\emptyset$ and vice versa" is vacuously true.
                 First off, "every element $x\in\emptyset$ is an element of $A\cap\emptyset$" is vacuously true (by Axiom \ref{axm:emptyset}, there exists no $x\in\emptyset$). In the other direction, suppose for the sake of contradiction that $x\in A\cap\emptyset$ for some object $x$. By Definition \ref{dfn:intersection}, $x\in A$ and $x\in \emptyset$. But $x\in\emptyset$ contradicts Axiom \ref{axm:emptyset}. Therefore, $x\notin A\cap\emptyset$ for all objects $x$. Thus, the statement "every element $x\in A\cap\emptyset$ is an element of $\emptyset$" is vacuously true (there exists no $x\in A\cap\emptyset$).
             \end{proof}
-            \item (Maximal element) We have $A\cup X=X$ and $A\cap X=A$.
+            \item \label{exr:3.1.6b}(Maximal element) We have $A\cup X=X$ and $A\cap X=A$.
             \begin{proof}
                 See Exercise \ref{exr:3.1.5}.
             \end{proof}
-            \item (Identity) We have $A\cap A=A$ and $A\cup A=A$.
+            \item \label{exr:3.1.6c}(Identity) We have $A\cap A=A$ and $A\cup A=A$.
             \begin{proof}
                 To prove that $A\cap A=A$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $A\cap A$ is an element of $A$ and vice versa. By Definition \ref{dfn:intersection}, $x\in A\cap A \Longrightarrow (x\in A\text{ and }x\in A) \Longrightarrow x\in A$. On the other hand, $x\in A \Longrightarrow (x\in A\text{ and }x\in A)$ (idempotent law for conjunction), $(x\in A\text{ and }x\in A) \Longrightarrow x\in\{x\in A:x\in A\}$ (Axiom \ref{axm:specification}), and $x\in\{x\in A:x\in A\} \Longrightarrow x\in A\cap A$ (Definition \ref{dfn:intersection}).\par
                 See Exercise \ref{exr:3.1.3} for the second claim.
             \end{proof}
-            \item (Commutativity) We have $A\cup B=B\cup A$ and $A\cap B=B\cap A$.
+            \item \label{exr:3.1.6d}(Commutativity) We have $A\cup B=B\cup A$ and $A\cap B=B\cap A$.
             \begin{proof}
                 See Exercise \ref{exr:3.1.3} for the first claim.\par
                 To prove $A\cap B=B\cap A$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $A\cap B$ is an element of $B\cap A$ and vice versa. By two applications of Definition \ref{dfn:intersection} with the commutative law for conjunction in between, $x\in A\cap B \Longrightarrow (x\in A\text{ and }x\in B) \Longrightarrow (x\in B\text{ and }x\in A) \Longrightarrow x\in B\cap A$. A similar argument works in the opposite direction.
             \end{proof}
-            \item (Associativity) We have $(A\cup B)\cup C=A\cup(B\cup C)$ and $(A\cap B)\cap C=A\cap(B\cap C)$.
+            \item \label{exr:3.1.6e}(Associativity) We have $(A\cup B)\cup C=A\cup(B\cup C)$ and $(A\cap B)\cap C=A\cap(B\cap C)$.
             \begin{proof}
                 See Lemma \ref{lem:associativitySetUnion} for the first claim.\par
                 By Definition \ref{dfn:setEquality}, showing that every element $x$ of $(A\cap B)\cap C$ is an element of $A\cap(B\cap C)$ and vice versa will suffice to prove this lemma. Suppose first that $x\in (A\cap B)\cap C$. By Definition \ref{dfn:intersection}, $x\in A\cap B$ and $x\in C$, which implies by a second application of Definition \ref{dfn:intersection} that $x\in A$ and $x\in B$ and $x\in C$. It follows by consecutive applications of Definition \ref{dfn:intersection} that $x\in A$ and $x\in B\cap C$, and that $x\in A\cap(B\cap C)$. A similar argument shows that every element of $A\cap(B\cap C)$ lies in $(A\cap B)\cap C$.
             \end{proof}
-            \item (Distributivity) We have $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$ and $A\cup(B\cap C)=(A\cup B)\cap(A\cup C)$.
+            \item \label{exr:3.1.6f}(Distributivity) We have $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$ and $A\cup(B\cap C)=(A\cup B)\cap(A\cup C)$.
             \begin{proof}
                 To prove $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $A\cap(B\cup C)$ is an element of $(A\cap B)\cup(A\cap C)$ and vice versa. By Definition \ref{dfn:intersection}, $x\in A\cap(B\cup C) \Longrightarrow (x\in A\text{ and }x\in B\cup C)$. By Axiom \ref{axm:pairwiseUnion}, $x\in B\cup C \Longrightarrow x\in B\text{ or }x\in C$. Thus, we know that $x\in A$, and we know that $x\in B$ or $x\in C$ (or both). We divide into two cases. Suppose first that $x\in B$. Since $x\in A$ as well, $x\in A\cap B$ (Definition \ref{dfn:intersection}). This implies by Axiom \ref{axm:pairwiseUnion} that $x\in(A\cap B)\cup(A\cap C)$. Now suppose that $x\in C$. Since $x\in A$ as well, $x\in A\cap C$ (Definition \ref{dfn:intersection}). This implies by Axiom \ref{axm:pairwiseUnion} that $x\in(A\cap B)\cup(A\cap C)$. A similar argument shows that every element of $(A\cap B)\cup(A\cap C)$ lies in $A\cap(B\cup C)$.\par
                 The second proof is similar to the first (and similar to all the rest of the proofs written for this exercise thus far). Thus, for the sake of variety, we will do this one entirely symbolically, using the laws of propositional logic from Section \ref{sss:A.4}.
@@ -299,19 +299,35 @@
                 \end{align*}
                 A similar argument works in reverse.
             \end{proof}
-            \item (Partition) We have $A\cup(X\setminus A)=X$ and $A\cap(X\setminus A)=\emptyset$.
+            \item \label{exr:3.1.6g}(Partition) We have $A\cup(X\setminus A)=X$ and $A\cap(X\setminus A)=\emptyset$.
             \begin{proof}
                 To prove $A\cup(X\setminus A)=X$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $A\cup(X\setminus A)$ is an element of $X$ and vice versa. Suppose $x\in A\cup(X\setminus A)$. Then by Axiom \ref{axm:pairwiseUnion}, $x\in A$ or $x\in X\setminus A$. We divide into two cases. Suppose first that $x\in A$. Since $A\subseteq X$, Definition \ref{dfn:subsets} asserts that $x\in X$. Now suppose that $x\in X\setminus A$. This implies by Definition \ref{dfn:differenceSets} that $x\in\{y\in X:y\notin A\}$, which means by Axiom \ref{axm:specification} that $x\in X$ (and $x\notin A$, but that's not relevant). On the other hand, suppose $x\in X$. Naturally, either $x\in A$ or $x\notin A$ ($x\in A$ is false). If $x\in A$, then $x\in A\cup(X\setminus A)$ (Axiom \ref{axm:pairwiseUnion}). If $x\notin A$, since $x\in X$ as well, Axiom \ref{axm:specification} asserts that $x\in\{x\in X:x\notin A\}$, which, by Definition \ref{dfn:differenceSets}, implies that $x\in X\setminus A$. This, in turn, implies that $x\in A\cup(X\setminus A)$ (Axiom \ref{axm:pairwiseUnion}).\par
                 To prove $A\cap(X\setminus A)=\emptyset$, it suffices to prove that for every object $x$, we have $x\notin A\cap(X\setminus A)$ (because of the uniqueness of the empty set). Suppose for the sake of contradiction that $x\in A\cap(X\setminus A)$ for some object $x$. By Definition \ref{dfn:intersection}, $x\in A$ and $x\in X\setminus A$. By Definition \ref{dfn:differenceSets}, $x\in\{y\in X:y\notin A\}$. By Axiom \ref{axm:specification}, $x\in X$ and $x\notin A$. But this contradicts the previously derived fact that $x\in A$. Therefore, $x\notin A\cap(X\setminus A)$ for all objects $x$.
                 % To prove $A\cap(X\setminus A)=\emptyset$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $A\cap(X\setminus A)$ is an element of $\emptyset$ and vice versa. First off, "every element $x\in\emptyset$ is an element of $A\cap(X\setminus A)$" is vacuously true (by Axiom \ref{axm:emptyset}, there exists no $x\in\emptyset$). In the other direction, suppose for the sake of contradiction that $x\in A\cap(X\setminus A)$ for some object $x$. By Definition \ref{dfn:intersection}, $x\in A$ and $x\in X\setminus A$. By Definition \ref{dfn:differenceSets}, $x\in\{y\in X:y\notin A\}$. By Axiom \ref{axm:specification}, $x\in X$ and $x\notin A$. But this contradicts the previously derived fact that $x\in A$. Therefore, $x\notin A\cap(X\setminus A)$ for all objects $x$. Thus, the statement "every element $x\in A\cap(X\setminus A)$ is an element of $\emptyset$" is vacuously true (there exists no $x\in A\cap(X\setminus A)$).
             \end{proof}
-            \item (De Morgan laws) We have $X\setminus(A\cup B)=(X\setminus A)\cap(X\setminus B)$ and $X\setminus(A\cap B)=(X\setminus A)\cup(X\setminus B)$.
+            \item \label{exr:3.1.6h}(De Morgan laws) We have $X\setminus(A\cup B)=(X\setminus A)\cap(X\setminus B)$ and $X\setminus(A\cap B)=(X\setminus A)\cup(X\setminus B)$.
             \begin{proof}
                 To prove $X\setminus(A\cup B)=(X\setminus A)\cap(X\setminus B)$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $X\setminus(A\cup B)$ is an element of $(X\setminus A)\cap(X\setminus B)$ and vice versa. Suppose that $x\in X\setminus(A\cup B)$. Then by Definition \ref{dfn:differenceSets}, $x\in\{y\in X:y\notin A\cup B\}$. By Axiom \ref{axm:specification}, $x\in X$ and $x\notin A\cup B$. By the inverse of Axiom \ref{axm:pairwiseUnion} (which is a valid assertion since Axiom \ref{axm:pairwiseUnion} asserts the logical equivalence of "$x\in A\cup B$" and "$x\in A$ and $x\in B$"), $x\notin A\cup B \Longrightarrow (x\notin A\text{ and }x\notin B)$. By Axiom \ref{axm:specification} and Definition \ref{dfn:differenceSets}, $(x\in X\text{ and }x\notin A) \Longrightarrow x\in\{y\in X:y\notin A\} \Longrightarrow x\in X\setminus A$. Similarly, $(x\in X\text{ and }x\notin B) \Longrightarrow x\in\{y\in X:y\notin B\} \Longrightarrow x\in X\setminus B$. Thus, by Definition \ref{dfn:intersection}, $x\in(X\setminus A)\cap(X\setminus B)$. A similar, reversed argument will work in the other direction.\par
                 To prove $X\setminus(A\cap B)=(X\setminus A)\cup(X\setminus B)$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $X\setminus(A\cap B)$ is an element of $(X\setminus A)\cup(X\setminus B)$ and vice versa. By Definition \ref{dfn:differenceSets} and Axiom \ref{axm:specification}, $x\in X\setminus(A\cap B) \Longrightarrow x\in\{y\in X:y\notin A\cap B\} \Longrightarrow (x\in X\text{ and }x\notin A\cap B)$. By the inverse of Definition \ref{dfn:intersection} (which, again, is a valid assertion since $x\in A\cap B \leftrightarrow ((x\in A) \wedge (x\in B))$), $x\notin A\cap B \Longrightarrow (x\notin A\text{ or }x\notin B)$. We divide into two cases. Suppose $x\notin A$. Then by Axiom \ref{axm:specification} and Definition \ref{dfn:differenceSets}, $(x\in X\text{ and }x\notin A) \Longrightarrow x\in\{y\in X:y\notin A\} \Longrightarrow x\in X\setminus A$. Thus, by Axiom \ref{axm:pairwiseUnion}, $x\in(X\setminus A)\cup(X\setminus B)$. Now suppose $x\notin B$. Then by Axiom \ref{axm:specification} and Definition \ref{dfn:differenceSets}, $(x\in X\text{ and }x\notin B) \Longrightarrow x\in\{y\in X:y\notin B\} \Longrightarrow x\in X\setminus B$. Thus, by Axiom \ref{axm:pairwiseUnion}, $x\in(X\setminus A)\cup(X\setminus B)$.
             \end{proof}
         \end{enumerate}
     \end{prp}
+    \item \label{exr:3.1.7}\marginnote{7/17:}Let $A,B,C$ be sets. Show that $A\cap B\subseteq A$ and $A\cap B\subseteq B$. Furthermore, show that $C\subseteq A$ and $C\subseteq B$ iff $C\subseteq A\cap B$. In a similar spirit, show that $A\subseteq A\cup B$ and $B\subseteq A\cup B$, and furthermore that $A\subseteq C$ and $B\subseteq C$ iff $A\cup B\subseteq C$.
+    \begin{proof}
+        To prove that $A\cap B\subseteq A$ and $A\cap B\subseteq B$, Definition \ref{dfn:subsets} tells us that it will suffice to show that every element of $A\cap B$ is an element of $A$ and $B$. By Definition \ref{dfn:intersection}, $x\in A\cap B \Longrightarrow (x\in A\text{ and }x\in B)$.\par
+        \marginnote{7/19:}To prove that $C\subseteq A$ and $C\subseteq B$ iff $C\subseteq A\cap B$, it will suffice to show that $C\subseteq A$ and $C\subseteq B$ imply $C\subseteq A\cap B$ and vice versa. Suppose first that $C\subseteq A$ and $C\subseteq B$. Then by two applications of Definition \ref{dfn:subsets}, $x\in C \Longrightarrow x\in A$ and $x\in C \Longrightarrow x\in B$. By Definition \ref{dfn:intersection}, $(x\in A\text{ and }x\in B) \Longrightarrow x\in A\cap B$. Thus, every element $x$ of $C$ is an element of $A\cap B$, so by Definition \ref{dfn:subsets}, $C\subseteq A\cap B$. Now suppose that $C\subseteq A\cap B$. Then by Definition \ref{dfn:subsets}, $x\in C \Longrightarrow x\in A\cap B$. By Definition \ref{dfn:intersection}, $x\in A\cap B \Longrightarrow (x\in A\text{ and }x\in B)$. Thus, every element $x$ of $C$ is an element of $A$ and $B$, so by two applications of Definition \ref{dfn:subsets}, $C\subseteq A$ and $C\subseteq B$.\par
+        To prove that $A\subseteq A\cup B$ and that $B\subseteq A\cup B$, Definition \ref{dfn:subsets} tells us that it will suffice to show that every element $x$ of $A$ is an element of $A\cup B$ and that every element $y$ of $B$ is an element of $A\cup B$, respectively. By two applications of Axiom \ref{axm:pairwiseUnion}, $x\in A \Longrightarrow x\in A\cup B$, and $y\in B \Longrightarrow y\in A\cup B$.\par
+        To prove that $A\subseteq C$ and $B\subseteq C$ iff $A\cup B\subseteq C$, it will suffice to show that $A\subseteq C$ and $B\subseteq C$ imply $A\cup B\subseteq C$ and vice versa. Suppose first that $A\subseteq C$ and $B\subseteq C$. By Axiom \ref{axm:pairwiseUnion}, $x\in A\cup B \Longrightarrow (x\in A\text{ or }x\in B)$. We divide into two cases. If $x\in A$, then Definition \ref{dfn:subsets} ensures that $x\in C$. If $x\in B$, then Definition \ref{dfn:subsets} similarly ensures that $x\in C$. Thus, either way, $x\in A\cup B \Longrightarrow x\in C$, so by Definition \ref{dfn:subsets}, $A\cup B\subseteq C$. Now suppose that $A\cup B\subseteq C$. By Axiom \ref{axm:pairwiseUnion} followed by Definition \ref{dfn:subsets}, $x\in A \Longrightarrow x\in A\cup B \Longrightarrow x\in C$. A similar argument shows that $x\in B \Longrightarrow x\in C$. Thus, $A\subseteq C$ and $B\subseteq C$.
+    \end{proof}
+    \item \label{exr:3.1.8}Let $A,B$ be sets. Prove the \textbf{absorption laws} $A\cap(A\cup B)=A$ and $A\cup(A\cap B)=A$.
+    \begin{proof}
+        By Exercise \ref{exr:3.1.7}, $A\subseteq A\cup B$. By Exercise \ref{exr:3.1.6b} (with $A=A$ and $X=A\cup B$), $A\cap(A\cup B)=A$.\par
+        By Exercise \ref{exr:3.1.7}, $A\cap B\subseteq A$. By Exercise \ref{exr:3.1.6b} (with $A=A\cap B$ and $X=A$), $A\cup(A\cap B)=A$.
+    \end{proof}
+    \item \label{exr:3.1.9}Let $A,B,X$ be sets such that $A\cup B=X$ and $A\cap B=\emptyset$. Show that $A=X\setminus B$ and $B=X\setminus A$.
+    \begin{proof}
+        To prove $A=X\setminus B$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $A$ is an element of $X\setminus B$ and vice versa. Suppose first that $x\in A$. Then by Axiom \ref{axm:pairwiseUnion}, $x\in A\cup B$. Since $A\cup B=X$, we have by Definition \ref{dfn:setEquality} that $x\in X$. Now suppose for the sake of contradiction that $x\in B$. Since $x\in A$ as well, by Definition \ref{dfn:intersection}, $x\in A\cap B$. But $A\cap B=\emptyset$, so by Definition \ref{dfn:setEquality}, $x\in\emptyset$, which contradicts Axiom \ref{axm:emptyset}. Therefore, $x\notin B$. Since $x\in X$ and $x\notin B$, by Definition \ref{dfn:differenceSets}, $x\in X\setminus B$. Now suppose that $x\in X\setminus B$. Then by Definition \ref{dfn:differenceSets}, $x\in X$ and $x\notin B$. By Definition \ref{dfn:setEquality}, $x\in A\cup B$. Thus, by Axiom \ref{axm:pairwiseUnion}, $x\in A$ or $x\in B$. Since $x\notin B$, $x$ must be an element of $A$. A similar argument shows that $B=X\setminus A$.
+    \end{proof}
 \end{enumerate}
 
 
