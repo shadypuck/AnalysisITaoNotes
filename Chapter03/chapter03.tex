@@ -16,12 +16,12 @@
     \begin{itemize}
         \item Note that Euclidean geometry will not be defined --- we will use the Cartesian coordinate system's parallel with the real numbers instead.
     \end{itemize}
-    \item This chapter covers the elementary aspects, chapter \ref{chr:8} covers more advanced topics, and the finer subtleties are well beyond the scope of this text.
+    \item This chapter covers the elementary aspects, Chapter \ref{chr:8} covers more advanced topics, and the finer subtleties are well beyond the scope of this text.
 \end{itemize}
 
 
 
-\section{Fundamentals}
+\section{Fundamentals}\label{sse:3.1}
 \begin{itemize}
     \item We define sets axiomatically, as we did with the natural numbers\footnote{Note that the following list of axioms will be somewhat overcomplete, as some axioms may be derived from others. However, this is helpful for pedagogical reasons, and there is no real harm being done.}.
     \begin{axm}[Sets are objects]\label{axm:setsAreObjects}
@@ -95,7 +95,7 @@
     \item The $\subseteq$ and $\subsetneq$ operations obey the axiom of substitution (since both $=$ and $\in$, the two component operations of $\subseteq$ and $\subsetneq$, obey it).
     \item Note that $A\subseteq A$ and $\emptyset\subseteq A$ for any set $A$.
     \item Note that less than or equal to and subset are analogous, but not identical, either (see below for one related property and Exercise \ref{exr:3.1.4} for two more).
-    \begin{prp}[Sets are partially ordered by set inclusion 1]
+    \begin{prp}[Sets are partially ordered by set inclusion 1]\label{prp:subsetTransitive}
         Let $A,B,C$ be sets. If $A\subseteq B$ and $B\subseteq C$, then $A\subseteq C$.
         \begin{proof}
             Suppose that $A\subseteq B$ and $B\subseteq C$. To prove that $A\subseteq C$, we have to prove that every element of $A$ is an element of $C$. Let $x\in A$. Then $x\in B$ (since $A\subseteq B$), implying that $x\in C$ (since $B\subseteq C$).
@@ -327,6 +327,93 @@
     \item \label{exr:3.1.9}Let $A,B,X$ be sets such that $A\cup B=X$ and $A\cap B=\emptyset$. Show that $A=X\setminus B$ and $B=X\setminus A$.
     \begin{proof}
         To prove $A=X\setminus B$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $A$ is an element of $X\setminus B$ and vice versa. Suppose first that $x\in A$. Then by Axiom \ref{axm:pairwiseUnion}, $x\in A\cup B$. Since $A\cup B=X$, we have by Definition \ref{dfn:setEquality} that $x\in X$. Now suppose for the sake of contradiction that $x\in B$. Since $x\in A$ as well, by Definition \ref{dfn:intersection}, $x\in A\cap B$. But $A\cap B=\emptyset$, so by Definition \ref{dfn:setEquality}, $x\in\emptyset$, which contradicts Axiom \ref{axm:emptyset}. Therefore, $x\notin B$. Since $x\in X$ and $x\notin B$, by Definition \ref{dfn:differenceSets}, $x\in X\setminus B$. Now suppose that $x\in X\setminus B$. Then by Definition \ref{dfn:differenceSets}, $x\in X$ and $x\notin B$. By Definition \ref{dfn:setEquality}, $x\in A\cup B$. Thus, by Axiom \ref{axm:pairwiseUnion}, $x\in A$ or $x\in B$. Since $x\notin B$, $x$ must be an element of $A$. A similar argument shows that $B=X\setminus A$.
+    \end{proof}
+    \item \label{exr:3.1.10}\marginnote{7/22:}Let $A$ and $B$ be sets. Show that the three sets $A\setminus B$, $A\cap B$, and $B\setminus A$ are disjoint, and that their union is $A\cup B$.
+    \begin{proof}
+        To show that $A\setminus B$, $A\cap B$, and $B\setminus A$ are disjoint, we must show that
+        \begin{equation*}
+            (A\setminus B)\cap(A\cap B) = (A\setminus B)\cap(B\setminus A)
+            = (A\cap B)\cap(B\setminus A)
+            = \emptyset
+        \end{equation*}
+        We may do this by showing that no object $x$ is an element of any of the left three sets above (because of the uniqueness of the empty set). We do this via three contradiction proofs, as follows.\par
+        Suppose for the sake of contradiction that $x\in(A\setminus B)\cap(A\cap B)$. Then by Definition \ref{dfn:intersection}, $x\in A\setminus B$ and $x\in A\cap B$. Since $x\in A\setminus B$, Definition \ref{dfn:differenceSets} tells us that $x\notin B$ (and $x\in A$). But since $x\in A\cap B$, Definition \ref{dfn:intersection} tells us that $x\in B$ (and $x\in A$), a contradiction.\par
+        A similar argument to the above can handle $(A\cap B)\cap(B\setminus A)$.\par
+        Suppose for the sake of contradiction that $x\in (A\setminus B)\cap(B\setminus A)$. Then by Definition \ref{dfn:intersection}, $x\in A\setminus B$ and $x\in B\setminus A$. By the first statement, $x\in A$ and $x\notin B$, while by the second statement, $x\in B$ and $x\notin A$, two contradictions.\par
+        We now turn our attention to proving the following.
+        \begin{equation*}
+            A\cup B = (A\setminus B)\cup(A\cap B)\cup(B\setminus A)
+        \end{equation*}
+        We can actually prove this solely on the basis of prior results (and one additional lemma).
+        \begin{lem}\label{lem:unionMinus}
+            Let $A$ and $B$ be sets. Show that $(A\cup B)\setminus A=B\setminus A$.
+            \begin{proof}
+                To prove $(A\cup B)\setminus A=B\setminus A$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $(A\cup B)\setminus A$ is an element of $B\setminus A$ and vice versa. Suppose first that $x\in(A\cup B)\setminus A$. Then by Definition \ref{dfn:differenceSets}, $x\in A\cup B$ and $x\notin A$. Since $x\in A\cup B$, by Axiom \ref{axm:pairwiseUnion}, $x\in A$ or $x\in B$. But $x\notin A$, so $x$ must be an element of $B$. Having established that $x\in B$ and $x\notin A$, Definition \ref{dfn:differenceSets} tells us that $x\in B\setminus A$. Now suppose that $x\in B\setminus A$. Then by Definition \ref{dfn:differenceSets}, $x\in B$ and $x\notin A$. Since $x\in B$, by Axiom \ref{axm:pairwiseUnion}, $x\in A\cup B$. Consequently, by Definition \ref{dfn:differenceSets}, $x\in(A\cup B)\setminus A$.
+            \end{proof}
+        \end{lem}
+        Now we can begin. By Exercise \ref{exr:3.1.7}, $A\cap B\subseteq A$ and $A\subseteq A\cup B$. This implies by Proposition \ref{prp:subsetTransitive} that $A\cap B\subseteq A\cup B$. Thus,
+        \begin{align*}
+            A\cup B &= (A\cap B)\cup((A\cup B)\setminus(A\cap B))\tag*{Exercise \ref{exr:3.1.6g}}\\
+            &= (A\cap B)\cup((A\cup B)\setminus A)\cup((A\cup B)\setminus B)\tag*{Exercise \ref{exr:3.1.6h}}\\
+            &= (A\cap B)\cup(B\setminus A)\cup(A\setminus B)\tag*{Lemma \ref{lem:unionMinus}}
+        \end{align*}
+    \end{proof}
+    \item \label{exr:3.1.11}Show that the axiom of replacement implies the axiom of specification.
+    \begin{proof}
+        Let $P(x,y)$ be the statement "$y=x$ and $P(y)$ is true." Then by Axiom \ref{axm:replacement}, there exists a set
+        \begin{align*}
+            \{y:P(x,y)\text{ is true for some }x\in A\} &= \{y:y=x\text{ and }P(y)\text{ is true for some }x\in A\}\\
+            &= \{y:y\in A\text{ and }P(y)\text{ is true}\}\\
+            &= \{y\in A:P(y)\text{ is true}\}
+        \end{align*}
+        Moreover,
+        \begin{align*}
+            z\in \{y\in A:P(y)\text{ is true}\} &\Longrightarrow z\in\{y:P(x,y)\text{ is true for some }x\in A\}\\
+            &\Longrightarrow P(x,z)\text{ is true for some }x\in A\\
+            &\Longrightarrow z=x\text{ and }P(z)\text{ is true for some }x\in A\\
+            &\Longrightarrow z\in A\text{ and }P(z)\text{ is true}
+        \end{align*}
+        The above logic also works in reverse. Thus, all the tenets of Axiom \ref{axm:specification} have been shown to follow from Axiom \ref{axm:replacement} (proof modified from \cite{bib:ReplacementToSpecification}).
+    \end{proof}
+\end{enumerate}
+
+
+
+\section{Russell's Paradox}
+\begin{itemize}
+    \item Suppose that we could unify the multitude of axioms in Section \ref{sse:3.1} into a single axiom. The following would be a good candidate (in fact, it implies the majority of the Section \ref{sse:3.1} axioms --- see Exercise \ref{exr:3.2.1}).
+    \begin{axm}[Universal specification]\label{axm:universalSpecification}
+        (Dangerous!) Suppose for every object $x$ we have a property $P(x)$ pertaining to $x$ (so that for every $x$, $P(x)$ is either a true statement or a false statement). Then there exists a set $\{x:P(x)\text{ is true}\}$ such that for every object $y$,
+        \begin{equation*}
+            y\in\{x:P(x)\text{ is true}\} \Longleftrightarrow P(y)\text{ is true}
+        \end{equation*}
+    \end{axm}
+    \item \emph{Also known as} \textbf{axiom of comprehension}.
+    \item Basically, Axiom \ref{axm:universalSpecification} asserts that \dq{every property corresponds to a set}{46}
+    \item Unfortunately, Axiom \ref{axm:universalSpecification} cannot be introduced into set theory because it creates a logical contradiction known as \textbf{Russell's paradox}.
+    \begin{itemize}
+        \item Discovered by philosopher and logician Bertrand Russell (1872-1970) in 1901.
+    \end{itemize}
+    \item \textbf{Russell's paradox}: \dq{Let $P(x)$ be the statement\dots "$x$ is a set, and $x\notin x$"; i.e., $P(x)$ is true only when $x$ is a set which does not contain itself. For instance, $P(\{2,3,4\})$ is true, since the set $\{2,3,4\}$ is not one of the three elements 2, 3, 4 of $\{2,3,4\}$. On the other hand, if we let $S$ be the set of all sets (which we would know to exist from the axiom of universal specification), then since $S$ is itself a set, it is an element of $S$, and so $P(S)$ is false. Now use the axiom of universal specification to create the set
+    \begin{equation*}
+        \Omega := \{x:P(x)\text{ is true}\} = \{x:x\text{ is a set and }x\notin x\}
+    \end{equation*}
+    i.e., the set of all sets which do not contain themselves. Now ask the question: does $\Omega$ contain itself, i.e. is $\Omega\in\Omega$? If $\Omega$ did contain itself, then by definition this means that $P(\Omega)$ is true, i.e., $\Omega$ is a set and $\Omega\notin\Omega$. On the other hand, if $\Omega$ did not contain itself, then $P(\Omega)$ would be true, and hence $\Omega\in\Omega$. Thus in either case we have both $\Omega\in\Omega$ and $\Omega\notin\Omega$, which is absurd}{46-47}
+    \begin{itemize}
+        \item To clarify the last point: Is $\Omega\in\Omega$? Suppose $\Omega\in\Omega$. Then since $\Omega$ contains only sets for which $P(x)$ is true, $P(\Omega)$ must be true. But this implies, by the definition of $P(x)$, that $\Omega\notin\Omega$. Similarly, suppose $\Omega\notin\Omega$. Then since "$\Omega$ is a set and $\Omega\notin\Omega$" is a true statement, $P(\Omega)$ must be true. But this implies, since $\Omega$ contains all sets for which $P(x)$ is true, that $\Omega\in\Omega$. In either case, we have both $\Omega\in\Omega$ and $\Omega\notin\Omega$ (contradictions).
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Exercises}
+\begin{enumerate}[ref={\thesection.\arabic*}]
+    \item \label{exr:3.2.1}Show that the universal specification axiom, Axiom \ref{axm:universalSpecification}, if assumed to be true, would imply Axioms \ref{axm:emptyset}, \ref{axm:singletonPair}, \ref{axm:pairwiseUnion}, \ref{axm:specification}, and \ref{axm:replacement}. (If we assume that all natural numbers are objects, we also obtain Axiom \ref{axm:infinity}.) Thus, this axiom, if permitted, would simplify the foundations of set theory tremendously (and can be viewed as one basis for an intuitive model of set theory known as "naive set theory"). Unfortunately, as we have seen, Axiom \ref{axm:universalSpecification} is "too good to be true!"
+    \begin{proof}
+        Axiom \ref{axm:emptyset}: Let $P(x)$ be a false statement for all objects $x$. By Axiom \ref{axm:universalSpecification}, there exists a set $\{x:P(x)\text{ is true}\}$, which contains no elements. (Suppose for the sake of contradiction that $y\in\{x:P(x)\text{ is true}\}$ for some object $y$. Then $P(y)$ is true. But $P(y)$ is false by definition, a contradiction. Therefore, $y\notin\{x:P(x)\text{ is true}\}$ for all objects $y$.) Incidentally, that contradiction proof solidifies the symbolic statement of Axiom \ref{axm:emptyset}. Lastly, this set may be denoted $\emptyset$ or $\{\}$.\par
+        Axiom \ref{axm:singletonPair}: Let $P(x)$ be the statement $x=a$. By Axiom \ref{axm:universalSpecification}, there exists a set $\{x:P(x)\text{ is true}\}=\{x:x=a\}=\{a\}$ whose element is $a$. For every object $y$, we have $y\in\{a\}$ iff $P(y)$ is true, i.e., iff $y=a$. This set may be called the \textbf{singleton set} whose element is $a$. Now let $P(x)$ be the statement "$x=a$ or $x=b$." By Axiom \ref{axm:universalSpecification}, there exists a set $\{x:P(x)\text{ is true}\}=\{x:x=a\text{ or }x=b\}=\{a,b\}$ whose elements are $a$ and $b$. For every object $y$, we have $y\in\{a,b\}$ iff $P(y)$ is true, i.e., iff $y=a$ or $y=b$. This set may be called the \textbf{pair set} formed by $a$ and $b$.\par
+        Axiom \ref{axm:pairwiseUnion}: Let $A,B$ be sets. Let $P(x)$ be the statement "$x\in A$ or $x\in B$." By Axiom \ref{axm:universalSpecification}, there exists a set $\{x:P(x)\text{ is true}\}=\{x:x\in A\text{ or }x\in B\}$. This set may be called the \textbf{union} $A\cup B$ of $A$ and $B$. By Axiom \ref{axm:universalSpecification}, $y\in A\cup B$ iff $P(y)$ is true, i.e., iff $y\in A$ or $y\in B$. Thus, $A\cup B$ is clearly a set whose elements consist of all the elements which belong to $A$ or $B$ or both.\par
+        Axiom \ref{axm:replacement}: Let $A$ be a set. Let $P(y)$ be the statement "$P(x,y)$ is true for some $x\in A$," where $P(x,y)$ is a statement pertaining to $x$ and $y$ such that for each $x\in A$, there is at most one $y$ for which $P(x,y)$ is true. By Axiom \ref{axm:universalSpecification}, there exists a set $\{y:P(y)\text{ is true}\}=\{y:P(x,y)\text{ is true for some }x\in A\}$. By Axiom \ref{axm:universalSpecification}, $z\in\{y:P(x,y)\text{ is true for some }x\in A\}$ iff $P(z)$ is true, i.e., iff $P(x,z)$ is true for some $x\in A$.\par
+        Axiom \ref{axm:specification}: Implied by the axiom of replacement (see Exercise \ref{exr:3.1.11}).
     \end{proof}
 \end{enumerate}
 
