@@ -198,7 +198,7 @@
 
 \subsection*{Exercises}
 \begin{enumerate}[ref={\thesection.\arabic*}]
-    \item \label{exr:3.1.1}\marginnote{7/4:}Show that the definition of equality in Definition \ref{dfn:setEquality} is reflexive, symmetric, and transitive.
+    \item \label{exr:3.1.1}\marginnote{7/4:}Show that the definition of equality in Definition \ref{dfn:setEquality} is reflexive, symmetric, and transitive\footnote{Note that since Definition \ref{dfn:setEquality} should be an axiom (should axiomatize equality and all that that entails for sets), this exercise is silly (see \cite{bib:TaoErrata}).}.
     \begin{proof}
         Given a set $A$, suppose $A\neq A$. Then, by Definition \ref{dfn:setEquality}, every element of $A$ is not an element of $A$, a contradiction. Thus, $A=A$.\par
         Let sets $A=B$. Then, by Definition \ref{dfn:setEquality}, every element $x$ of $A$ belongs also to $B$, and every element $y$ of $B$ belongs also to $A$. Identically, every element $y$ of $B$ belongs also to $A$, and every element $X$ of $A$ belongs also to $B$. Thus, $B=A$.\par
@@ -402,18 +402,138 @@
     \begin{itemize}
         \item To clarify the last point: Is $\Omega\in\Omega$? Suppose $\Omega\in\Omega$. Then since $\Omega$ contains only sets for which $P(x)$ is true, $P(\Omega)$ must be true. But this implies, by the definition of $P(x)$, that $\Omega\notin\Omega$. Similarly, suppose $\Omega\notin\Omega$. Then since "$\Omega$ is a set and $\Omega\notin\Omega$" is a true statement, $P(\Omega)$ must be true. But this implies, since $\Omega$ contains all sets for which $P(x)$ is true, that $\Omega\in\Omega$. In either case, we have both $\Omega\in\Omega$ and $\Omega\notin\Omega$ (contradictions).
     \end{itemize}
+    \item \marginnote{7/23:}The main problem highlighted by Russell's paradox is that Axiom \ref{axm:universalSpecification} allows for the creation of sets that are too "large," i.e., sets that contain themselves, which is somewhat silly.
+    \begin{itemize}
+        \item This problem can be informally resolved by creating a hierarchy: primitive objects are below primitive sets (which only contain primitive objects), are below second-level sets (which only contain primitive objects and primitive sets), and so on and so forth. Formalizing this notion is complicated and will not be explored further here.
+        \item Note that in pure set theory, there are no primitive objects --- only one primitive set (the empty set).
+    \end{itemize}
+    \item To avoid the complications of Russell's paradox, we create a new axiom.
+    \begin{axm}[Regularity]\label{axm:regularity}
+        If $A$ is a non-empty set, then there is at least one element $x$ of $A$ which is either not a set or is disjoint from $A$.
+    \end{axm}
+    \item \emph{Also known as} \textbf{axiom of foundation}.
+    \item Axiom \ref{axm:regularity} asserts that \dq{at least one of the elements of $A$ is so low on the hierarchy of objects that it does not contain any of the other elements of $A$}{48} It also asserts that sets may not contain themselves (see Exercise \ref{exr:3.2.2}).
+    \item As a less intuitive axiom, one might question whether or not Axiom \ref{axm:regularity} is needed. In fact, it is not necessary for the purposes of doing analysis, as all sets considered in analysis are very low on the hierarchy. However, it is necessary to perform more advanced set theory, so \cite{bib:AnalysisI} included it for the sake of completeness.
 \end{itemize}
 
 
 \subsection*{Exercises}
 \begin{enumerate}[ref={\thesection.\arabic*}]
-    \item \label{exr:3.2.1}Show that the universal specification axiom, Axiom \ref{axm:universalSpecification}, if assumed to be true, would imply Axioms \ref{axm:emptyset}, \ref{axm:singletonPair}, \ref{axm:pairwiseUnion}, \ref{axm:specification}, and \ref{axm:replacement}. (If we assume that all natural numbers are objects, we also obtain Axiom \ref{axm:infinity}.) Thus, this axiom, if permitted, would simplify the foundations of set theory tremendously (and can be viewed as one basis for an intuitive model of set theory known as "naive set theory"). Unfortunately, as we have seen, Axiom \ref{axm:universalSpecification} is "too good to be true!"
+    \item \label{exr:3.2.1}\marginnote{7/22:}Show that the universal specification axiom, Axiom \ref{axm:universalSpecification}, if assumed to be true, would imply Axioms \ref{axm:emptyset}, \ref{axm:singletonPair}, \ref{axm:pairwiseUnion}, \ref{axm:specification}, and \ref{axm:replacement}. (If we assume that all natural numbers are objects, we also obtain Axiom \ref{axm:infinity}.) Thus, this axiom, if permitted, would simplify the foundations of set theory tremendously (and can be viewed as one basis for an intuitive model of set theory known as "naive set theory"). Unfortunately, as we have seen, Axiom \ref{axm:universalSpecification} is "too good to be true!"
     \begin{proof}
         Axiom \ref{axm:emptyset}: Let $P(x)$ be a false statement for all objects $x$. By Axiom \ref{axm:universalSpecification}, there exists a set $\{x:P(x)\text{ is true}\}$, which contains no elements. (Suppose for the sake of contradiction that $y\in\{x:P(x)\text{ is true}\}$ for some object $y$. Then $P(y)$ is true. But $P(y)$ is false by definition, a contradiction. Therefore, $y\notin\{x:P(x)\text{ is true}\}$ for all objects $y$.) Incidentally, that contradiction proof solidifies the symbolic statement of Axiom \ref{axm:emptyset}. Lastly, this set may be denoted $\emptyset$ or $\{\}$.\par
         Axiom \ref{axm:singletonPair}: Let $P(x)$ be the statement $x=a$. By Axiom \ref{axm:universalSpecification}, there exists a set $\{x:P(x)\text{ is true}\}=\{x:x=a\}=\{a\}$ whose element is $a$. For every object $y$, we have $y\in\{a\}$ iff $P(y)$ is true, i.e., iff $y=a$. This set may be called the \textbf{singleton set} whose element is $a$. Now let $P(x)$ be the statement "$x=a$ or $x=b$." By Axiom \ref{axm:universalSpecification}, there exists a set $\{x:P(x)\text{ is true}\}=\{x:x=a\text{ or }x=b\}=\{a,b\}$ whose elements are $a$ and $b$. For every object $y$, we have $y\in\{a,b\}$ iff $P(y)$ is true, i.e., iff $y=a$ or $y=b$. This set may be called the \textbf{pair set} formed by $a$ and $b$.\par
         Axiom \ref{axm:pairwiseUnion}: Let $A,B$ be sets. Let $P(x)$ be the statement "$x\in A$ or $x\in B$." By Axiom \ref{axm:universalSpecification}, there exists a set $\{x:P(x)\text{ is true}\}=\{x:x\in A\text{ or }x\in B\}$. This set may be called the \textbf{union} $A\cup B$ of $A$ and $B$. By Axiom \ref{axm:universalSpecification}, $y\in A\cup B$ iff $P(y)$ is true, i.e., iff $y\in A$ or $y\in B$. Thus, $A\cup B$ is clearly a set whose elements consist of all the elements which belong to $A$ or $B$ or both.\par
         Axiom \ref{axm:replacement}: Let $A$ be a set. Let $P(y)$ be the statement "$P(x,y)$ is true for some $x\in A$," where $P(x,y)$ is a statement pertaining to $x$ and $y$ such that for each $x\in A$, there is at most one $y$ for which $P(x,y)$ is true. By Axiom \ref{axm:universalSpecification}, there exists a set $\{y:P(y)\text{ is true}\}=\{y:P(x,y)\text{ is true for some }x\in A\}$. By Axiom \ref{axm:universalSpecification}, $z\in\{y:P(x,y)\text{ is true for some }x\in A\}$ iff $P(z)$ is true, i.e., iff $P(x,z)$ is true for some $x\in A$.\par
         Axiom \ref{axm:specification}: Implied by the axiom of replacement (see Exercise \ref{exr:3.1.11}).
+    \end{proof}
+    \item \label{exr:3.2.2}\marginnote{7/23:}Use the axiom of regularity (and the singleton set axiom) to show that if $A$ is a set, then $A\notin A$. Furthermore, show that if $A$ and $B$ are two sets, then either $A\notin B$ or $B\notin A$ (or both).
+    \begin{proof}
+        % Let $A$ be a set. Then by Axiom \ref{axm:setsAreObjects}, $A$ is an object. Thus, by Axiom \ref{axm:singletonPair}, there exists a set $\{A\}$ whose only element is $A$. Now by Axiom \ref{axm:regularity}, there exists an element of $\{A\}$ (which must be $A$, as referenced above) that is either not a set or is disjoint from $\{A\}$. Since $A$ is a set, we have that $A$ is disjoint from $\{A\}$, i.e., $A\cap\{A\}=\emptyset$. By Axiom \ref{axm:emptyset}, $x\notin A\cap\{A\}$ for all objects $x$. This implies by Definition \ref{dfn:intersection} that $x\notin A$ or $x\notin\{A\}$. But $x\notin\{A\}$ implies that $x\neq A$, so we have either $x\neq A$ or $x\notin A$. Therefore, if $x=A$, then $x\notin A$, implying that $A\notin A$.\par
+        Suppose for the sake of contradiction that $A$ is a set and $A\in A$. By Axioms \ref{axm:setsAreObjects} and \ref{axm:singletonPair}, $A\in\{A\}$. Since $A\in A$ and $A\in\{A\}$, Definition \ref{dfn:intersection} tells us that $A\in A\cap\{A\}$. Since there exists an object $x$ (namely $A$) such that $x\in A\cap\{A\}$, by Axiom \ref{axm:emptyset} and Definition \ref{dfn:setEquality}, $A\cap\{A\}\neq\emptyset$. Thus, we have $A$ is a set and $A\cap\{A\}\neq\emptyset$. But by Axiom \ref{axm:regularity}, as the only element of $\{A\}$, $A$ must either not be a set or satisfy $A\cap\{A\}=\emptyset$, a contradiction. Therefore, $A$ is not a set or $A\notin A$. Thus, if $A$ is a set, then $A\notin A$.\par
+        Suppose for the sake of contradiction that for two sets $A,B$, $A\in B$ and $B\in A$. By Axioms \ref{axm:setsAreObjects} and \ref{axm:singletonPair}, there exists a set $\{A,B\}$ whose only elements are $A$ and $B$. Since $A\in B$ and $A\in\{A,B\}$, Definition \ref{dfn:intersection}, tells us that $A\in B\cap\{A,B\}$. Since there exists an object $x$ (namely $A$) such that $x\in B\cap\{A,B\}$, by Axiom \ref{axm:emptyset} and Definition \ref{dfn:setEquality}, $B\cap\{A,B\}\neq\emptyset$. By a similar argument, $A\cap\{A,B\}\neq\emptyset$. Thus, we have $A,B$ are sets, $B\cap\{A,B\}\neq\emptyset$, and $A\cap\{A,B\}\neq\emptyset$. But by Axiom \ref{axm:regularity}, an element $x$ of $\{A,B\}$ (namely $A$ or $B$) must either not be a set or satisfy $x\cap\{A,B\}=\emptyset$, a contradiction. Therefore, $A\notin B$ or $B\notin A$.
+    \end{proof}
+    \item \label{exr:3.2.3}Show (assuming the other axioms of set theory) that the universal specification axiom, Axiom \ref{axm:universalSpecification}, is equivalent to an axiom postulating the existence of a "universal set" $\Omega$ consisting of all objects (i.e., for all objects $x$, we have $x\in\Omega$). In other words, if Axiom \ref{axm:universalSpecification} is true, then a universal set exists, and conversely, if a universal set exists, then Axiom \ref{axm:universalSpecification} is true. (This may explain why Axiom \ref{axm:universalSpecification} is called the axiom of \emph{universal} specification). Note that if a universal set $\Omega$ existed, then we would have $\Omega\in\Omega$ by Axiom \ref{axm:setsAreObjects}, contradicting Exercise \ref{exr:3.2.2}. Thus, the axiom of foundation specifically rules out the axiom of universal specification.
+    \begin{proof}
+        Suppose Axiom \ref{axm:universalSpecification} is true. Let $P(x)$ be a true statement for all objects $x$. Then there exists a set $\Omega:=\{x:P(x)\text{ is true}\}$, and we have $y\in\Omega$ iff $P(y)$ is true, i.e., iff $y$ is an object, i.e., for all objects $y$. Therefore, a universal set exists. Now suppose that a universal set $\Omega$ exists. By Axiom \ref{axm:specification}, there exists a set $\{x\in\Omega:P(x)\text{ is true}\}$ for some property $P(x)$ pertaining to $x$ (note that this implies that $P(x)$ pertains to all $x$) and $y\in\{x\in\Omega:P(x)\text{ is true}\}$ iff $y\in\Omega$ and $P(y)$ is true. Since $x\in\Omega$ and $y\in\Omega$ are, by the definition of $\Omega$, always true, we have $y\in\{x:P(x)\text{ is true}\}$ iff $P(y)$ is true. Therefore, Axiom \ref{axm:universalSpecification} is true.
+    \end{proof}
+\end{enumerate}
+
+
+
+\section{Functions}
+\begin{itemize}
+    \item For analysis, we need not just the notion of a set but the notion of a function from one set to another.
+    \begin{dfn}[Functions]
+        Let $X,Y$ be sets, and let $P(x,y)$ be a property pertaining to an object $x\in X$ and an object $y\in Y$, such that for every $x\in X$, there is exactly one $y\in Y$ for which $P(x,y)$ is true (this is sometimes known as the \textbf{vertical line test}). Then we define the \textbf{function} $f:X\to Y$ defined by $P$ on the \textbf{domain} $X$ and \textbf{range} $Y$ to be the object which, given any \textbf{input} $x\in X$, assigns an output $f(x)\in Y$, defined to be the unique object $f(x)$ for which $P(x,f(x))$ is true. Thus, for any $x\in X$ and $y\in Y$,
+        \begin{equation*}
+            y = f(x) \Longleftrightarrow P(x,y)\text{ is true}
+        \end{equation*}
+    \end{dfn}
+    \item \emph{Also known as} \textbf{maps}, \textbf{transformations}, and \textbf{morphisms}.
+    \begin{itemize}
+        \item Note, however, that a morphism \dq{refers to a more general class of object, which may or may not correspond to actual functions, depending on the context}{49}
+    \end{itemize}
+    \item Functions obey the axiom of substitution.
+    \begin{itemize}
+        \item Note that equal inputs imply equal outputs, but unequal inputs do not necessary ensure unequal outputs.
+    \end{itemize}
+    \item It can be proven that this notion of equality is reflexive, symmetric, and transitive (see Exercise \ref{exr:3.3.1}).
+    \item We can now formally define the increment function: Let $X=\N$, $Y=\N$, and $P(x,y)$ be the property that $y=x\pplus$. By Axiom \ref{axm:successorDistinctness}, for each $x\in\N$, there is exactly one $y$ for which $P(x,y)$ is true. Thus, we can define the increment function $f:\N\to\N$ so that $f(x)=x\pplus$ for all $x$. While we cannot define a \emph{decrement} function $g:\N\to\N$ ($0\neq n\pplus$ for any $n\in\N$ by Axiom \ref{axm:0NotSuccessor}), we can define a decrement function $g:\N\setminus\{0\}\to\N$ (by Lemma \ref{lem:backwardsIncrement}).
+    \item Informally: Note that while we cannot define a square root function $\sqrt{}:\R\to\R$, we can define the square root function $\sqrt{}:[0,+\infty)\to[0,+\infty)$.
+    \item Functions can be defined \textbf{explicitly} or \textbf{implicitly}.
+    \begin{itemize}
+        \item Explicit definitions: Specify the domain, range, and how one generates the output $f(x)$ from each input.
+        \begin{itemize}
+            \item For example, the increment function $f$ could be defined explicitly by saying that the domain and range of $f$ are equal to $\N$, and $f(x):=x\pplus$ for all $x\in\N$.
+        \end{itemize}
+        \item Implicit definitions: Specify what property $P(x,y)$ links the input $x$ with the output $f(x)$.
+        \begin{itemize}
+            \item For example, the square root function $\sqrt{}$ was defined implicitly by the relation $(\sqrt{x})^2=x$.
+            \item Note that implicit definitions are only valid if we know that for every input, there is only one output that obeys the implicit relation.
+        \end{itemize}
+    \end{itemize}
+    \item Often the domain and range are not specified for the sake of brevity.
+    \begin{itemize}
+        \item For example, we could refer to the increment function $f$ as "the function $f(x):=x\pplus$," "the function $x\mapsto x\pplus$," "the function $x\pplus$," or the extremely abbreviated "$\pplus$."
+        \item Note, however, that too much abbreviation can be dangerous, omitting valuable or even necessary information.
+    \end{itemize}
+    \item Note that while we now use parentheses to clarify the order of operations and enclose the arguments of functions and properties, the usages should be unambiguous from context.
+    \begin{itemize}
+        \item For example, if $a$ is a number, then $a(b+c)$ denotes $a\times(b+c)$, but if $a$ is a function, then $a(b+c)$ denotes the output of $a$ when the input is $b+c$.
+        \item Note that argument are sometimes subscripted --- \dq{a sequence of natural numbers $a_0,a_1,a_2,a_3,\dots$ is, strictly speaking, a function from $\N$ to $\N$, but is denoted by $n\mapsto a_n$ rather than $n\mapsto a(n)$}{51}
+    \end{itemize}
+    \item Note that functions are not sets and sets are not functions (no $x\in f$ and $A:X\nrightarrow Y$), but we can start with a function $f:X\to Y$ and construct its \textbf{graph} $\{(x,f(x)):x\in X\}$, which describes the function completely (see Section \ref{sse:3.5} for more).
+    \item We now define equality for functions.
+    \begin{dfn}[Equality of functions]\label{dfn:functionEquality}
+        Two functions $f:X\to Y$, $g:X\to Y$ with the same domain and range are said to be equal, $f=g$, if and only if $f(x)=g(x)$ for all $x\in X$. (If $f(x)$ and $g(x)$ agree for some values of $x$, but not others, then we do not consider $f$ and $g$ to be equal.)
+    \end{dfn}
+    \item Note that functions can be equal over only a certain domain.
+    \begin{itemize}
+        \item For example, $x\mapsto x$ and $x\mapsto|x|$ are equal if defined only on the positive real axis, and are not equal if defined on $\R$.
+    \end{itemize}
+    \item There exists the \textbf{empty function} $f:\emptyset\to X$. We need not specify what $f$ does to any input (since there are none), and Definition \ref{dfn:functionEquality} asserts that for each set $X$, there is only one function from $\emptyset$ to $X$.
+    \item A fundamental operation of functions is composition.
+    \begin{dfn}[Composition]\label{dfn:composition}
+        Let $f:X\to Y$ and $g:Y\to Z$ be two functions, such that the range of $f$ is the same set as the domain of $g$. We then define the \textbf{composition} $g\circ f:X\to Z$ of the two functions $g$ and $f$ to be the function defined explicitly by the formula
+        \begin{equation*}
+            (g\circ f)(x) := g(f(x))
+        \end{equation*}
+    \end{dfn}
+    \item It can be proven that composition obeys the axiom of substitution (see Exercise \ref{exr:3.3.1}).
+    \item Composition is not commutative.
+    \item However, it is associative.
+    \begin{lem}[Composition is associative]
+        Let $f:Z\to W$, $g:Y\to Z$, and $h:X\to Y$ be functions. Then $f\circ(g\circ h)=(f\circ g)\circ h$.
+        \begin{proof}
+            Since $g\circ h$ is a function from $X$ to $Z$, $f\circ(g\circ h)$ is a function from $X$ to $W$. Similarly, $f\circ g$ is a function from $Y\to W$, and hence $(f\circ g)\circ h$ is a function from $X\to W$. Thus, $f\circ(g\circ h)$ and $(f\circ g)\circ h$ have the same domain and range. In order to check that they are equal, we see from Definition \ref{dfn:functionEquality} that we have to verify that $(f\circ(g\circ h))(x)=((f\circ g)\circ h)(x)$ for all $x\in X$. But by Definition \ref{dfn:composition}, we have
+            \begin{align*}
+                (f\circ(g\circ h))(x) &= f((g\circ h)(x))\\
+                &= f(g(h(x)))\\
+                &= (f\circ g)(h(x))\\
+                &= ((f\circ g)\circ h)(x)
+            \end{align*}
+            as desired.
+        \end{proof}
+    \end{lem}
+\end{itemize}
+
+
+\subsection*{Exercises}
+\begin{enumerate}[ref={\thesection.\arabic*}]
+    \item \label{exr:3.3.1}Show that the definition of equality in Definition \ref{dfn:functionEquality} is reflexive, symmetric, and transitive\footnote{Note that since Definition \ref{dfn:functionEquality} should be an axiom (should axiomatize equality and all that that entails for functions), this part of the exercise is silly (see \cite{bib:TaoErrata}).}. Also verify the substitution property: if $f,\tilde{f}:X\to Y$ and $g,\tilde{g}:Y\to Z$ are functions such that $f=\tilde{f}$ and $g=\tilde{g}$, then $g\circ f=\tilde{g}\circ\tilde{f}$.
+    \begin{proof}
+        Let $f:X\to Y$ be a function. For any object $f(x)\in Y$, we have $f(x)=f(x)$ by the reflexive axiom of equality (see Section \ref{sss:A.7}). Thus, we have $f(x)=f(x)$ for all $f(x)\in Y$, i.e., for all $x\in X$. Therefore, by Definition \ref{dfn:functionEquality}, we have $f=f$.\par
+        Let $f:X\to Y$, $g:X\to Y$ be functions, and let $f=g$. By Definition \ref{dfn:functionEquality}, $f(x)=g(x)$ for all $x\in X$. Since equal objects are of the same type (i.e., follow the reflexive axiom of equality), we have $g(x)=f(x)$ for all $x\in X$. Therefore, by Definition \ref{dfn:functionEquality}, we have $g=f$.\par
+        Let $f:X\to Y$, $g:X\to Y$, $h:X\to Y$ be functions, $f=g$, and $g=h$. By Definition \ref{dfn:functionEquality}, $f(x)=g(x)$ for all $x\in X$ and $g(x)=h(x)$ for all $x\in X$. Since equal objects are of the same type (i.e., follow the transitive axiom of equality), we have $f(x)=h(x)$ for all $x\in X$. Therefore, by Definition \ref{dfn:functionEquality}, we have $f=h$.\par
+        First, we see that both $g\circ f$ and $\tilde{g}\circ\tilde{f}$ are functions from $X$ to $Z$, i.e., have the same domain and range. To show that $g\circ f=\tilde{g}\circ\tilde{f}$, Definition \ref{dfn:functionEquality} tells us that it will suffice to verify that $(g\circ f)(x)=(\tilde{g}\circ\tilde{f})(x)$ for all $x\in X$. To begin, we see from Definition \ref{dfn:functionEquality} that $f(x)=\tilde{f}(x)$ for all $x\in X$, and that $g(y)=\tilde{g}(y)$ for all $y\in Y$. Since $f(x)\in Y$ for all $f(x)$, we have by Definition \ref{dfn:composition} that
+        \begin{align*}
+            (g\circ f)(x) &= g(f(x))\\
+            &= \tilde{g}(f(x))\\
+            &= \tilde{g}(\tilde{f}(x))\\
+            &= (\tilde{g}\circ\tilde{f})(x)
+        \end{align*}
+        as desired.
     \end{proof}
 \end{enumerate}
 
