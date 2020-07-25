@@ -444,7 +444,7 @@
 \section{Functions}
 \begin{itemize}
     \item For analysis, we need not just the notion of a set but the notion of a function from one set to another.
-    \begin{dfn}[Functions]
+    \begin{dfn}[Functions]\label{dfn:functions}
         Let $X,Y$ be sets, and let $P(x,y)$ be a property pertaining to an object $x\in X$ and an object $y\in Y$, such that for every $x\in X$, there is exactly one $y\in Y$ for which $P(x,y)$ is true (this is sometimes known as the \textbf{vertical line test}). Then we define the \textbf{function} $f:X\to Y$ defined by $P$ on the \textbf{domain} $X$ and \textbf{range} $Y$ to be the object which, given any \textbf{input} $x\in X$, assigns an output $f(x)\in Y$, defined to be the unique object $f(x)$ for which $P(x,f(x))$ is true. Thus, for any $x\in X$ and $y\in Y$,
         \begin{equation*}
             y = f(x) \Longleftrightarrow P(x,y)\text{ is true}
@@ -516,12 +516,36 @@
             as desired.
         \end{proof}
     \end{lem}
+    \item \marginnote{7/24:}We now define several special types of functions.
+    \begin{dfn}[One-to-one functions]\label{dfn:injective}
+        A function $f$ is \textbf{one-to-one} if different elements map to different elements:
+        \begin{equation*}
+            x \neq x' \Longrightarrow f(x) \neq f(x')
+        \end{equation*}
+        Equivalently, a function is one-to-one if
+        \begin{equation*}
+            f(x) = f(x') \Longrightarrow x = x'
+        \end{equation*}
+    \end{dfn}
+    \item \emph{Also known as} \textbf{injective} (function).
+    \item Informally: Note that while the function $f:\Z\to\Z$ defined by $f(n):=n^2$ is not one-to-one, the function $g:\N\to\Z$ defined by $g(n):=n^2$ is one-to-one. Thus, being one-to-one can depend not just on the relation, but on the domain.
+    \item \textbf{Two-to-one} (function): A function $f:X\to Y$ such that one can find distinct $x$ and $x'$ in the domain 
+    $X$ such that $f(x)=f(x')$.
+    \begin{dfn}[Onto functions]\label{dfn:surjective}
+        A function $f$ is \textbf{onto} if $f(X)=Y$, i.e., every element in $Y$ comes from applying $f$ to some element in $X$:
+        \begin{center}
+            For every $y\in Y$, there exists $x\in X$ such that $f(x)=y$
+        \end{center}
+    \end{dfn}
+    \item \emph{Also known as} \textbf{surjective} (function).
+    \item Informally: Note that while the function $f:\Z\to\Z$ defined by $f(n):=n^2$ is not onto, if we define the set $A:=\{n^2:n\in\Z\}$, then the function $g:\Z\to A$ defined by $f(n)=n^2$ is onto. Thus, being onto can depend not just on the relation, but on the range.
+    \item Injectivity and surjectivity are rather dual to each other (see Exercises \ref{exr:3.3.2}, \ref{exr:3.3.4}, and \ref{exr:3.3.5}).
 \end{itemize}
 
 
 \subsection*{Exercises}
 \begin{enumerate}[ref={\thesection.\arabic*}]
-    \item \label{exr:3.3.1}Show that the definition of equality in Definition \ref{dfn:functionEquality} is reflexive, symmetric, and transitive\footnote{Note that since Definition \ref{dfn:functionEquality} should be an axiom (should axiomatize equality and all that that entails for functions), this part of the exercise is silly (see \cite{bib:TaoErrata}).}. Also verify the substitution property: if $f,\tilde{f}:X\to Y$ and $g,\tilde{g}:Y\to Z$ are functions such that $f=\tilde{f}$ and $g=\tilde{g}$, then $g\circ f=\tilde{g}\circ\tilde{f}$.
+    \item \label{exr:3.3.1}\marginnote{7/23:}Show that the definition of equality in Definition \ref{dfn:functionEquality} is reflexive, symmetric, and transitive\footnote{Note that since Definition \ref{dfn:functionEquality} should be an axiom (should axiomatize equality and all that that entails for functions), this part of the exercise is silly (see \cite{bib:TaoErrata}).}. Also verify the substitution property: if $f,\tilde{f}:X\to Y$ and $g,\tilde{g}:Y\to Z$ are functions such that $f=\tilde{f}$ and $g=\tilde{g}$, then $g\circ f=\tilde{g}\circ\tilde{f}$.
     \begin{proof}
         Let $f:X\to Y$ be a function. For any object $f(x)\in Y$, we have $f(x)=f(x)$ by the reflexive axiom of equality (see Section \ref{sss:A.7}). Thus, we have $f(x)=f(x)$ for all $f(x)\in Y$, i.e., for all $x\in X$. Therefore, by Definition \ref{dfn:functionEquality}, we have $f=f$.\par
         Let $f:X\to Y$, $g:X\to Y$ be functions, and let $f=g$. By Definition \ref{dfn:functionEquality}, $f(x)=g(x)$ for all $x\in X$. Since equal objects are of the same type (i.e., follow the reflexive axiom of equality), we have $g(x)=f(x)$ for all $x\in X$. Therefore, by Definition \ref{dfn:functionEquality}, we have $g=f$.\par
@@ -534,6 +558,24 @@
             &= (\tilde{g}\circ\tilde{f})(x)
         \end{align*}
         as desired.
+    \end{proof}
+    \item \label{exr:3.3.2}\marginnote{7/24:}Let $f:X\to Y$ and $g:Y\to Z$ be functions. Show that if $f$ and $g$ are both injective, then so is $g\circ f$; similarly, show that if $f$ and $g$ are both surjective, then so is $g\circ f$.
+    \begin{proof}
+        To prove that $g\circ f$ is injective given the injectivity of $f,g$, Definition \ref{dfn:injective} tells us that we have to verify that $x\neq x' \Longrightarrow (g\circ f)(x)\neq(g\circ f)(x')$ for any distinct elements $x,x'$ of $X$. By Definition \ref{dfn:injective}, we have that if $x$ and $x'$ are two distinct elements of $X$ (such that $x\neq x'$), then $f(x)\neq f(x')$. By Definition \ref{dfn:functions}, we know that $f(x)$ and $f(x')$ are both elements of $Y$. Thus, we have by Definition \ref{dfn:injective} that $g(f(x))\neq g(f(x'))$. Therefore, we have by Definition \ref{dfn:composition} that
+        \begin{equation*}
+            x\neq x' \Longrightarrow f(x)\neq f(x')
+            \Longrightarrow g(f(x))\neq g(f(x'))
+            \Longrightarrow (g\circ f)(x)\neq(g\circ f)(x')
+        \end{equation*}
+        as desired.\par
+        By Definition \ref{dfn:composition}, we have $g\circ f:X\to Z$. Thus, to prove that $g\circ f$ is surjective given the surjectivity of $f,g$, Definition \ref{dfn:surjective} tells us that we have to verify that for every $z\in Z$, there exists $x\in X$ such that $(g\circ f)(x)=z$. Let $z$ be any element of $Z$. Then by Definition \ref{dfn:surjective} and the surjectivity of $g$, we have $g(y)=z$ for some $y\in Y$. Similarly, we have $f(x)=y$ for that $y$ and for some $x\in X$. Substituting, we have $g(f(x))=z$ for some $x\in X$. Since $g(f(x))=(g\circ f)(x)$ by Definition \ref{dfn:composition}, we have that for any $z\in Z$, there exists $x\in X$ such that $(g\circ f)(x)=z$.
+    \end{proof}
+    \setcounter{enumi}{3}
+    \item \label{exr:3.3.4}In this section, we give some cancellation laws for composition. Let $f:X\to Y$, $\tilde{f}:X\to Y$, $g:Y\to Z$, and $\tilde{g}:Y\to Z$ be functions. Show that if $g\circ f=g\circ \tilde{f}$ and $g$ is injective, then $f=\tilde{f}$. Is the same statement true if $g$ is not injective? Show that if $g\circ f=\tilde{g}\circ f$ and $f$ is surjective, then $g=\tilde{g}$. Is the same statement true if $f$ is not surjective?
+    \begin{proof}
+        To prove that $f=\tilde{f}$, Definition \ref{dfn:functionEquality} tells us that it will suffice to show that $f(x)=\tilde{f}(x)$ for all $x\in X$. By Definition \ref{dfn:functionEquality}, $g\circ f=g\circ\tilde{f}$ implies $(g\circ f)(x)=(g\circ\tilde{f})(x)$ for all $x\in X$. Then by Definition \ref{dfn:composition}, $g(f(x))=g(\tilde{f}(x))$ for all $x\in X$. Now by Definition \ref{dfn:injective} and the fact that $g$ is injective, we know that $g(y)=g(y') \Longrightarrow y=y'$. Therefore, since $g(f(x))=g(\tilde{f}(x))$ for all $x\in X$, we have $f(x)=\tilde{f}(x)$ for all $x\in X$. Note that $f$ is not necessarily equal to $\tilde{f}$ if we drop the condition that $g$ is injective (if $g$ is not one-to-one, then we have $g(y)=g(y')$ for some elements $y$ and $y'$ of $Y$ such that $y\neq y'$. Thus, if $f(x)\neq\tilde{f}(x)$, we may still have $g(f(x))=g(\tilde{f}(x))$).\par
+        % To prove that $g=\tilde{g}$, we must verify (by Definition \ref{dfn:functionEquality}) that $g(y)=\tilde{g}(y)$ for all $y\in Y$. By Definition \ref{dfn:functionEquality}, $g\circ f=\tilde{g}\circ f$ implies $(g\circ f)(x)=(\tilde{g}\circ f)(x)$ for all $x\in X$. Then by Definition \ref{dfn:composition}, $g(f(x))=\tilde{g}(f(x))$ for all $x\in X$. Now by Definition \ref{dfn:surjective} and the fact that $f$ is surjective, we know that for every $y\in Y$, there exists some $x\in X$ such that $f(x)=y$. Thus, no element $y\in Y$ is not assigned to an $f(x)$. Therefore, we have $g(f(x))=\tilde{g}(f(x))$ for all $f(x)\in Y$, i.e., for all $y\in Y$.
+        Suppose for the sake of contradiction that $g\neq\tilde{g}$. Then by Definition \ref{dfn:functionEquality}, either $g$ and $\tilde{g}$ have a different domain or range, or $g(y)\neq\tilde{g}(y)$ for some $y\in Y$. Since $g$ and $\tilde{g}$ have the same domain and range, we must have $g(y)\neq\tilde{g}(y)$ for some $y\in Y$. Now since $f$ is surjective, by Definition \ref{dfn:surjective}, for every $y\in Y$, there is some $x\in X$ such that $y=f(x)$. Thus, $g(f(x))\neq\tilde{g}(f(x))$ for some $x\in X$. Consequently, by Definition \ref{dfn:composition}, $(g\circ f)(x)\neq(\tilde{g}\circ f)(x)$ for some $x\in X$. But this contradicts Definition \ref{dfn:functionEquality}, which, since $g\circ f=\tilde{g}\circ f$, implies that $(g\circ f)(x)=(\tilde{g}\circ f)(x)$ for all $x\in X$. Note that $g$ is not necessarily equal to $\tilde{g}$ if we drop the condition that $f$ is surjective (if $f$ is not surjective, then, as we've only proven the assertion for all $y=f(x)$, we could have some $y\in Y$ not associated with an $f(x)$ for which $g(y)\neq\tilde{g}(y)$).
     \end{proof}
 \end{enumerate}
 
