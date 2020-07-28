@@ -492,7 +492,10 @@
     \begin{itemize}
         \item For example, $x\mapsto x$ and $x\mapsto|x|$ are equal if defined only on the positive real axis, and are not equal if defined on $\R$.
     \end{itemize}
-    \item There exists the \textbf{empty function} $f:\emptyset\to X$. We need not specify what $f$ does to any input (since there are none), and Definition \ref{dfn:functionEquality} asserts that for each set $X$, there is only one function from $\emptyset$ to $X$.
+    \item \textbf{Empty function}: The function $f:\emptyset\to X$.
+    \begin{itemize}
+        \item We need not specify what $f$ does to any input (since there are none), and Definition \ref{dfn:functionEquality} asserts that for each set $X$, there is only one function from $\emptyset$ to $X$.
+    \end{itemize}
     \item A fundamental operation of functions is composition.
     \begin{dfn}[Composition]\label{dfn:composition}
         Let $f:X\to Y$ and $g:Y\to Z$ be two functions, such that the range of $f$ is the same set as the domain of $g$. We then define the \textbf{composition} $g\circ f:X\to Z$ of the two functions $g$ and $f$ to be the function defined explicitly by the formula
@@ -501,8 +504,7 @@
         \end{equation*}
     \end{dfn}
     \item It can be proven that composition obeys the axiom of substitution (see Exercise \ref{exr:3.3.1}).
-    \item Composition is not commutative.
-    \item However, it is associative.
+    \item Composition is not commutative, but it is associative.
     \begin{lem}[Composition is associative]
         Let $f:Z\to W$, $g:Y\to Z$, and $h:X\to Y$ be functions. Then $f\circ(g\circ h)=(f\circ g)\circ h$.
         \begin{proof}
@@ -516,7 +518,7 @@
             as desired.
         \end{proof}
     \end{lem}
-    \item \marginnote{7/24:}We now define several special types of functions.
+    \item \marginnote{7/24:}We now define several special types of functions, beginning with the following.
     \begin{dfn}[One-to-one functions]\label{dfn:injective}
         A function $f$ is \textbf{one-to-one} if different elements map to different elements:
         \begin{equation*}
@@ -531,6 +533,7 @@
     \item Informally: Note that while the function $f:\Z\to\Z$ defined by $f(n):=n^2$ is not one-to-one, the function $g:\N\to\Z$ defined by $g(n):=n^2$ is one-to-one. Thus, being one-to-one can depend not just on the relation, but on the domain.
     \item \textbf{Two-to-one} (function): A function $f:X\to Y$ such that one can find distinct $x$ and $x'$ in the domain 
     $X$ such that $f(x)=f(x')$.
+    \item Another special type is given by the following.
     \begin{dfn}[Onto functions]\label{dfn:surjective}
         A function $f$ is \textbf{onto} if $f(X)=Y$, i.e., every element in $Y$ comes from applying $f$ to some element in $X$:
         \begin{center}
@@ -540,6 +543,28 @@
     \item \emph{Also known as} \textbf{surjective} (function).
     \item Informally: Note that while the function $f:\Z\to\Z$ defined by $f(n):=n^2$ is not onto, if we define the set $A:=\{n^2:n\in\Z\}$, then the function $g:\Z\to A$ defined by $f(n)=n^2$ is onto. Thus, being onto can depend not just on the relation, but on the range.
     \item Injectivity and surjectivity are rather dual to each other (see Exercises \ref{exr:3.3.2}, \ref{exr:3.3.4}, and \ref{exr:3.3.5}).
+    \item \marginnote{7/28:}A third special type is given by the following.
+    \begin{dfn}[Bijective functions]\label{dfn:bijective}
+        A function $f:X\to Y$ is \textbf{bijective} if it is both one-to-one and onto:
+        \begin{center}
+            For every $y\in Y$, there is exactly one $x$ such that $f(x)=y$.
+        \end{center}
+    \end{dfn}
+    \pagebreak
+    \item \emph{Also known as} \textbf{invertible} (function), \textbf{perfect matching}, \textbf{one-to-one correspondence}\footnote{Not to be confused with the notion of a one-to-one function.}.
+    \begin{itemize}
+        \item Instead of being denoted $x\mapsto f(x)$, we sometimes use $x\leftrightarrow f(x)$.
+    \end{itemize}
+    \item Bijectivity of functions:
+    \begin{itemize}
+        \item $f:\{0,1,2\}\to\{3,4\}$ defined by $f(0):=3$, $f(1):=3$, and $f(2):=4$ is not bijective (fails injectivity).
+        \item $f:\{0,1\}\to\{2,3,4\}$ defined by $f(0):=2$ and $f(1):=3$ is not bijective (fails surjectivity).
+        \item $f:\{0,1,2\}\to\{3,4,5\}$ defined by $f(0):=3$, $f(1):=4$, and $f(2):=5$ is bijective.
+        \item $f:\N\to\N$ defined by $f(n):=n\pplus$ is not bijective (fails surjectivity).
+        \item $f:\N\to\N\setminus\{0\}$ defined by $f(n):=n\pplus$ is bijective.
+        \item Bijectivity depends on the domain and range, not just the relation.
+    \end{itemize}
+    \item \textbf{Inverse} (of a function $f:X\to Y$): The function $f^{-1}:Y\to X$ associated with the property $P(y,x)$ defined by $f(x)=y$, i.e., we let $f^{-1}(y)$ be the entity $x$ satisfying $f(x)=y$.
 \end{itemize}
 
 
@@ -570,13 +595,76 @@
         as desired.\par
         By Definition \ref{dfn:composition}, we have $g\circ f:X\to Z$. Thus, to prove that $g\circ f$ is surjective given the surjectivity of $f,g$, Definition \ref{dfn:surjective} tells us that we have to verify that for every $z\in Z$, there exists $x\in X$ such that $(g\circ f)(x)=z$. Let $z$ be any element of $Z$. Then by Definition \ref{dfn:surjective} and the surjectivity of $g$, we have $g(y)=z$ for some $y\in Y$. Similarly, we have $f(x)=y$ for that $y$ and for some $x\in X$. Substituting, we have $g(f(x))=z$ for some $x\in X$. Since $g(f(x))=(g\circ f)(x)$ by Definition \ref{dfn:composition}, we have that for any $z\in Z$, there exists $x\in X$ such that $(g\circ f)(x)=z$.
     \end{proof}
-    \setcounter{enumi}{3}
-    \item \label{exr:3.3.4}In this section, we give some cancellation laws for composition. Let $f:X\to Y$, $\tilde{f}:X\to Y$, $g:Y\to Z$, and $\tilde{g}:Y\to Z$ be functions. Show that if $g\circ f=g\circ \tilde{f}$ and $g$ is injective, then $f=\tilde{f}$. Is the same statement true if $g$ is not injective? Show that if $g\circ f=\tilde{g}\circ f$ and $f$ is surjective, then $g=\tilde{g}$. Is the same statement true if $f$ is not surjective?
+    \item \label{exr:3.3.3}\marginnote{7/28:}When is the empty function injective? Surjective? Bijective?
+    \begin{proof}
+        The empty function is always injective: The statement "all distinct inputs map to distinct outputs" is vacuously true, since there exist no distinct inputs, or any inputs to speak of. The empty function is surjective iff its range is the empty set: In this case, the statement "for every $y\in\emptyset$, there exists $x\in\emptyset$ such that $f(x)=y$" is similarly vacuously true. Since a function is bijective iff it is both injective and surjective, we must take both take a sort of union of the two constraints above: We can conclude that the empty function is bijective iff "always and its range is the empty set" is true, i.e., iff its range is the empty set.
+    \end{proof}
+    \item \label{exr:3.3.4}\marginnote{7/24:}In this section, we give some cancellation laws for composition. Let $f:X\to Y$, $\tilde{f}:X\to Y$, $g:Y\to Z$, and $\tilde{g}:Y\to Z$ be functions. Show that if $g\circ f=g\circ \tilde{f}$ and $g$ is injective, then $f=\tilde{f}$. Is the same statement true if $g$ is not injective? Show that if $g\circ f=\tilde{g}\circ f$ and $f$ is surjective, then $g=\tilde{g}$. Is the same statement true if $f$ is not surjective?
     \begin{proof}
         To prove that $f=\tilde{f}$, Definition \ref{dfn:functionEquality} tells us that it will suffice to show that $f(x)=\tilde{f}(x)$ for all $x\in X$. By Definition \ref{dfn:functionEquality}, $g\circ f=g\circ\tilde{f}$ implies $(g\circ f)(x)=(g\circ\tilde{f})(x)$ for all $x\in X$. Then by Definition \ref{dfn:composition}, $g(f(x))=g(\tilde{f}(x))$ for all $x\in X$. Now by Definition \ref{dfn:injective} and the fact that $g$ is injective, we know that $g(y)=g(y') \Longrightarrow y=y'$. Therefore, since $g(f(x))=g(\tilde{f}(x))$ for all $x\in X$, we have $f(x)=\tilde{f}(x)$ for all $x\in X$. Note that $f$ is not necessarily equal to $\tilde{f}$ if we drop the condition that $g$ is injective (if $g$ is not one-to-one, then we have $g(y)=g(y')$ for some elements $y$ and $y'$ of $Y$ such that $y\neq y'$. Thus, if $f(x)\neq\tilde{f}(x)$, we may still have $g(f(x))=g(\tilde{f}(x))$).\par
         % To prove that $g=\tilde{g}$, we must verify (by Definition \ref{dfn:functionEquality}) that $g(y)=\tilde{g}(y)$ for all $y\in Y$. By Definition \ref{dfn:functionEquality}, $g\circ f=\tilde{g}\circ f$ implies $(g\circ f)(x)=(\tilde{g}\circ f)(x)$ for all $x\in X$. Then by Definition \ref{dfn:composition}, $g(f(x))=\tilde{g}(f(x))$ for all $x\in X$. Now by Definition \ref{dfn:surjective} and the fact that $f$ is surjective, we know that for every $y\in Y$, there exists some $x\in X$ such that $f(x)=y$. Thus, no element $y\in Y$ is not assigned to an $f(x)$. Therefore, we have $g(f(x))=\tilde{g}(f(x))$ for all $f(x)\in Y$, i.e., for all $y\in Y$.
         Suppose for the sake of contradiction that $g\neq\tilde{g}$. Then by Definition \ref{dfn:functionEquality}, either $g$ and $\tilde{g}$ have a different domain or range, or $g(y)\neq\tilde{g}(y)$ for some $y\in Y$. Since $g$ and $\tilde{g}$ have the same domain and range, we must have $g(y)\neq\tilde{g}(y)$ for some $y\in Y$. Now since $f$ is surjective, by Definition \ref{dfn:surjective}, for every $y\in Y$, there is some $x\in X$ such that $y=f(x)$. Thus, $g(f(x))\neq\tilde{g}(f(x))$ for some $x\in X$. Consequently, by Definition \ref{dfn:composition}, $(g\circ f)(x)\neq(\tilde{g}\circ f)(x)$ for some $x\in X$. But this contradicts Definition \ref{dfn:functionEquality}, which, since $g\circ f=\tilde{g}\circ f$, implies that $(g\circ f)(x)=(\tilde{g}\circ f)(x)$ for all $x\in X$. Note that $g$ is not necessarily equal to $\tilde{g}$ if we drop the condition that $f$ is surjective (if $f$ is not surjective, then, as we've only proven the assertion for all $y=f(x)$, we could have some $y\in Y$ not associated with an $f(x)$ for which $g(y)\neq\tilde{g}(y)$).
     \end{proof}
+    \item \label{exr:3.3.5}\marginnote{7/28:}Let $f:X\to Y$ and $g:Y\to Z$ be functions. Show that if $g\circ f$ is injective, then $f$ must be injective. Is it true that $g$ must also be injective? Show that if $g\circ f$ is surjective, then $g$ must be surjective. Is it true that $f$ must also be surjective?
+    \begin{proof}
+        By Definition \ref{dfn:injective}, to prove that $f$ is injective, it will suffice to show that for all $x\neq x'$, $f(x)\neq f(x')$. Suppose for the sake of contradiction that for some $x\neq x'$, $f(x)=f(x')$. Then by Definition \ref{dfn:functions}, which guarantees that identical inputs map to a single output, we have $g(f(x))=g(f(x'))$. Thus, by Definition \ref{dfn:composition}, we have $(g\circ f)(x)=(g\circ f)(x')$. But by Definition \ref{dfn:injective}, this means that $g\circ f$ is not injective, a contradiction. Therefore, for all $x\neq x'$, $f(x)\neq f(x')$. Note that $g$ need not be injective to prove the above, as this condition was not needed for the above proof to be valid.\par
+        By Definition \ref{dfn:surjective}, to prove that $g$ is surjective, we must verify that for every $z\in Z$, there exists $y\in Y$ such that $g(y)=z$. Let $z$ be any element of $Z$. Since we know that $g\circ f$ is surjective, Definition \ref{dfn:surjective} tells us that there exists an element $x$ of $X$ such that $(g\circ f)(x)=z$. By Definition \ref{dfn:composition}, we have $g(f(x))=z$. Now by Definition \ref{dfn:functions}, we know that $f(x)=y$ for some element $y\in Y$. Thus, $g(y)=z$ for some $y\in Y$. Therefore, we have proven that for any (i.e., for every) element $z\in Z$, there exists $y\in Y$ such that $g(y)=z$. Note that $f$ need not be surjective to prove the above, as this condition was not needed for the above proof to be valid.
+    \end{proof}
+    \item \label{exr:3.3.6}Let $f:X\to Y$ be a bijective function, and let $f^{-1}:Y\to X$ be its inverse. Verify the cancellation laws $f^{-1}(f(x))=x$ for all $x\in X$ and $f(f^{-1}(y))=y$ for all $y\in Y$. Conclude that $f^{-1}$ is also invertible, and has $f$ as its inverse (thus $(f^{-1})^{-1}=f$).
+    \begin{proof}
+        % Let $x$ be any element of $X$. Then by Definition \ref{dfn:functions}, there exists exactly one $y$ such that $f(x)=y$. Considering this $y$, by Definition \ref{dfn:bijective}, there exists exactly one $x'$ such that $f(x')=y$. But since both $f(x)$ and $f(x')$ equal $y$, $f(x)=f(x')$. Thus, since $f^{-1}$ will map $y$ to the element $x'$ such that $f(x')=y$, we know that $f^{-1}$ maps $y$ to $x$, i.e., $f^{-1}(y)=f^{-1}(f(x))=x$.\par
+        Let $y$ be any element of $Y$. We know that $f^{-1}$ maps $y$ to the element $x\in X$ satisfying $f(x)=y$ (the uniqueness of $x$ being guaranteed by Definition \ref{dfn:bijective}). Thus, since $y=f(x)$, $f^{-1}$ maps $f(x)$ to $x$, i.e., $f^{-1}(f(x))=x$. A similar argument can treat the other cancellation law.\par
+        To prove that $f^{-1}$ is invertible, we must verify that for every $x\in X$, there is exactly one $y$ such that $f^{-1}(y)=x$. Since we know that for every $x\in X$, $f^{-1}(f(x))=x$, and $f(x)=y$ for some $y\in Y$ (Definition \ref{dfn:functions}), we know that for every $x\in X$, $f^{-1}(y)=x$ for some $y\in Y$. Now suppose for the sake of contradiction that there exist some $y\neq y'$ such that $f^{-1}(y)=x=f^{-1}(y')$. Then $f(x)=y$ and $f(x)=y'$, which contradicts Definition \ref{dfn:functions}. Therefore, for every $x\in X$, $f^{-1}(y)=x$ for some and for not more than one $y\in Y$, i.e., for exactly one $y\in Y$.\par
+        The inverse of $f^{-1}$ is, by definition, the function $(f^{-1})^{-1}:X\to Y$ associated with the property $P(x,y)$ defined by $f^{-1}(y)=x$. Clearly $(f^{-1})^{-1}$ has the same domain and range as $f$. All that's left is to show that $f(x)=(f^{-1})^{-1}(x)$. $f(x)$ is the element $y\in Y$ such that $f(x)=y$, and $(f^{-1})^{-1}(x)$ is the element $y\in Y$ such that $f^{-1}(y)=x$, i.e., $f(x)=y$. Since the functions are associated with the same property, they must be equal.
+    \end{proof}
+    \item \label{exr:3.3.7}Let $f:X\to Y$ and $g:Y\to Z$ be functions. Show that if $f$ and $g$ are bijective, then so is $g\circ f$, and we have $(g\circ f)^{-1}=f^{-1}\circ g^{-1}$.
+    \begin{proof}
+        By Definition \ref{dfn:bijective}, $f$ and $g$ are both both injective and surjective. Thus, by consecutive applications of Exercise \ref{exr:3.3.2}, $g\circ f$ is both injective and surjective. Thus, by Definition \ref{dfn:bijective} again, $g\circ f$ is bijective.\par
+        To prove that $(g\circ f)^{-1}=f^{-1}\circ g^{-1}$, Definition \ref{dfn:functionEquality} tells us that it will suffice to show that $(g\circ f)^{-1}$ and $f^{-1}\circ g^{-1}$ have the same domain and range, and $(g\circ f)^{-1}(z)=(f^{-1}\circ g^{-1})(z)$ for all $z\in Z$. Since $f:X\to Y$ and $g:Y\to Z$, by Definition \ref{dfn:composition}, we have $g\circ f:X\to Z$. Thus, the inverse $(g\circ f)^{-1}:Z\to X$. Similarly, since $g^{-1}:Z\to Y$ and $f^{-1}:Y\to X$, by Definition \ref{dfn:composition}, $f^{-1}\circ g^{-1}:Z\to X$. Thus, $(g\circ f)^{-1}$ and $f^{-1}\circ g^{-1}$ have the same domain and range. As to the other part of the question, let $(f^{-1}\circ g^{-1})(z)=x$. Then
+        \begin{align*}
+            (f^{-1}\circ g^{-1})(z)=x &\Longrightarrow f^{-1}(g^{-1}(z))=x \tag*{Definition \ref{dfn:composition}}\\
+            &\Longrightarrow g^{-1}(z)=f(x) \tag*{Definition of inverse}\\
+            &\Longrightarrow z=g(f(x)) \tag*{Definition of inverse}\\
+            &\Longrightarrow z=(g\circ f)(x) \tag*{Definition \ref{dfn:composition}}\\
+            &\Longrightarrow (g\circ f)^{-1}(z)=x \tag*{Definition of inverse}
+        \end{align*}
+        so by transitivity we have $(g\circ f)^{-1}(z)=(f^{-1}\circ g^{-1})(z)$, as desired.
+    \end{proof}
+    \item \label{exr:3.3.8}If $X$ is a subset of $Y$, let $\iota_{X\to Y}:X\to Y$ be the \textbf{inclusion map} (from $X$ to $Y$), defined by mapping $x\mapsto x$ for all $x\in X$, i.e., $\iota_{X\to Y}(x):=x$ for all $x\in X$. The map $\iota_{X\to X}$ is in particular called the \textbf{identity map} (on $X$).
+    \begin{enumerate}
+        \item Show that if $X\subseteq Y\subseteq Z$, then $\iota_{Y\to Z}\circ\iota_{X\to Y}=\iota_{X\to Z}$.
+        \begin{proof}
+            By Definition \ref{dfn:composition}, $\iota_{Y\to Z}\circ\iota_{X\to Y}:X\to Z$, so $\iota_{Y\to Z}\circ\iota_{X\to Y}$ and $\iota_{X\to Z}$ have the same domain and range. Now we must check that $\iota_{Y\to Z}\circ\iota_{X\to Y}$ and $\iota_{X\to Z}$ match the same inputs to the same outputs. Since $X\subseteq Y\subseteq Z$, $X\subseteq Z$ (Proposition \ref{prp:subsetTransitive}), so $\iota_{X\to Z}(x)=x$ for all $x\in X$. On the other hand, $X\subseteq Y$ guarantees that $\iota_{X\to Y}(x)=x$ for all $x\in X$ and $Y\subseteq Z$ guarantees that $\iota_{Y\to Z}(y)=y$ for all $y\in Y$. Since $x\in Y$ for all $x\in X$ (Definition \ref{dfn:subsets}),
+            \begin{align*}
+                \iota_{Y\to Z}\circ\iota_{X\to Y}(x) &= \iota_{Y\to Z}(\iota_{X\to Y}(x)) \tag*{Definition \ref{dfn:composition}}\\
+                &= \iota_{Y\to Z}(x)\\
+                &= x
+            \end{align*}
+            for all $x\in X$. Therefore, $\iota_{Y\to Z}\circ\iota_{X\to Y}=\iota_{X\to Z}$.
+        \end{proof}
+        \item Show that if $f:A\to B$ is any function, then $f=f\circ\iota_{A\to A}=\iota_{B\to B}\circ f$.
+        \begin{proof}
+            We first prove that $f=f\circ\iota_{A\to A}$, and next prove that $f=\iota_{B\to B}\circ f$. Transitivity will guarantee that $f=f\circ\iota_{A\to A}=\iota_{B\to B}\circ f$.\par
+            To prove that $f=f\circ\iota_{A\to A}$, Definition \ref{dfn:functionEquality} tells us that it will suffice to show that $f$ and $f\circ\iota_{A\to A}$ have the same domain and range, and that $f(a)=(f\circ\iota_{A\to A})(a)$ for all $a\in A$. By Definition \ref{dfn:composition}, $f\circ\iota_{A\to A}:A\to B$, so $f$ and $f\circ\iota_{A\to A}$ have the same domain and range. Now since $A\subseteq A$, $\iota_{A\to A}(a)=a$ for all $a\in A$. Thus, by Definition \ref{dfn:composition}, $(f\circ\iota_{A\to A})(a)=f(\iota_{A\to A}(a))=f(a)$.\par
+            To prove that $f=\iota_{B\to B}\circ f$, Definition \ref{dfn:functionEquality} tells us that it will suffice to show that $f$ and $\iota_{B\to B}\circ f$ have the same domain and range, and that $f(a)=(\iota_{B\to B}\circ f)(a)$ for all $a\in A$. By Definition \ref{dfn:composition}, $\iota_{B\to B}\circ f:A\to B$, so $f$ and $\iota_{B\to B}\circ f$ have the same domain and range. Now since $B\subseteq B$, $\iota_{B\to B}(b)=b$ for all $b\in B$. Since every $f(a)\in B$, by Definition \ref{dfn:composition}, $(\iota_{B\to B}\circ f)(a)=\iota_{B\to B}(f(a))=f(a)$.
+        \end{proof}
+        \item Show that if $f:A\to B$ is a bijective function, then $f\circ f^{-1}=\iota_{B\to B}$, and $f^{-1}\circ f=\iota_{A\to A}$.
+        \begin{proof}
+            By Exercise \ref{exr:3.3.6} (and Definition \ref{dfn:composition}), $(f\circ f^{-1})(b)=b$ for all $b\in B$. By definition, $\iota_{B\to B}(b)=b$ for all $b\in B$. Therefore, $f\circ f^{-1}=\iota_{B\to B}$. A similar argument holds in the other case.
+        \end{proof}
+        \item Show that if $X$ and $Y$ are disjoint sets, and $f:X\to Z$ and $g:Y\to Z$ are functions, then there is a unique function $h:X\cup Y\to Z$ such that $h\circ\iota_{X\to X\cup Y}=f$ and $h\circ\iota_{Y\to X\cup Y}=g$.
+        \begin{proof}
+            Let $h:X\cup Y\to Z$ be defined by the following (note that it is the fact that $X$ and $Y$ are disjoint that allows the following definition to make sense, i.e., not be contradictory for some inputs).
+            \begin{equation*}
+                h(a) :=
+                \begin{cases}
+                    f(a) & a\in X\\
+                    g(a) & a\in Y
+                \end{cases}
+            \end{equation*}
+            To prove that $h\circ\iota_{X\to X\cup Y}=f$, Definition \ref{dfn:functionEquality} tells us that it will suffice to show that $h\circ\iota_{X\to X\cup Y}$ and $f$ have the same domain and range, and that $(h\circ\iota_{X\to X\cup Y})(a)=f(a)$ for all $a\in X$. By Definition \ref{dfn:composition}, $h\circ\iota_{X\to X\cup Y}:X\to Z$, so $h\circ\iota_{X\to X\cup Y}$ and $f$ have the same domain and range. Now since $X\subseteq X\cup Y$ (Exercise \ref{exr:3.1.7}), $\iota_{X\to X\cup Y}(a)=a$ for all $a\in X$. Thus, by Definition \ref{dfn:composition}, for any $a\in X$, $(h\circ\iota_{X\to X\cup Y})(a)=h(\iota_{X\to X\cup Y}(a))=h(a)=f(a)$. A similar argument holds for the other case\footnote{How do I verify uniqueness, or do I not need to?}.
+        \end{proof}
+    \end{enumerate}
 \end{enumerate}
 
 
