@@ -669,5 +669,171 @@
 
 
 
+\section{Images and Inverse Images}
+\begin{itemize}
+    \item \marginnote{7/29:}We now discuss what happens when we apply a function to a set, as opposed to individual, non-set objects.
+    \begin{dfn}[Images of sets]\label{dfn:images}
+        If $f:X\to Y$ is a function from $X$ to $Y$, and $S$ is a set in $X$ (or a subset of $X$), we define $f(S)$ to be the set
+        \begin{equation*}
+            f(S) := \{f(x):x\in S\}
+        \end{equation*}
+        This set is a subset of $Y$, and is sometimes called the \textbf{image} (of $S$ under the map $f$). We sometimes call $f(S)$ the \textbf{forward image} (of $S$) to distinguish it from the concept of the \textbf{inverse image} $f^{-1}(S)$ (of $S$), which is defined below.\par
+        Note that, symbolically,
+        \begin{equation*}
+            x\in S \Longrightarrow f(x)\in f(S)
+        \end{equation*}
+        and
+        \begin{equation*}
+            y\in f(S) \Longleftrightarrow y=f(x)\text{ for some }x\in S
+        \end{equation*}
+    \end{dfn}
+    \item Note that $f(S)$ is well-defined, as Definition \ref{dfn:images} is based in Axiom \ref{axm:replacement}. Also note that Definition \ref{dfn:images} could be defined in terms of Axiom \ref{axm:specification}.
+    \item As alluded to above, we now define inverse images.
+    \begin{dfn}[Inverse images]\label{dfn:inverseImages}
+        If $U$ is a subset of $Y$, we define the set $f^{-1}(U)$ to be the set
+        \begin{equation*}
+            f^{-1}(U) := \{x\in X:f(x)\in U\}
+        \end{equation*}
+        In other words, $f^{-1}(U)$ consists of all the elements of $X$ which map into $U$:
+        \begin{equation*}
+            f(x)\in U \Longleftrightarrow x\in f^{-1}(U)
+        \end{equation*}
+        We call $f^{-1}(U)$ the \textbf{inverse image} (of $U$).
+    \end{dfn}
+    \item Note that if $f$ is bijective, then we have defined $f^{-1}$ in two different ways. However, the definitions are equivalent (see Exercise \ref{exr:3.4.1}).
+    \item Since we wish to treat functions as objects so that we can create sets of functions, we axiomatize this notion.
+    \begin{axm}[Power set axiom]\label{axm:powerSets}
+        Let $X$ and $Y$ be sets. Then there exists a set, denoted $Y^X$, which consists of all the functions from $X$ to $Y$, thus
+        \begin{equation*}
+            f\in Y^X \Longleftrightarrow f\text{ is a function with domain }X\text{ and range }Y
+        \end{equation*}
+    \end{axm}
+    \item \dq{Let $X=\{4,7\}$ and $Y=\{0,1\}$. Then the set $Y^X$ consists of four functions: the function that maps $4\mapsto 0$ and $7\mapsto 0$; the function that maps $4\mapsto 0$ and $7\mapsto 1$; the function that maps $4\mapsto 1$ and $7\mapsto 0$; and the function that maps $4\mapsto 1$ and $7\mapsto 1$}{58}
+    \item Note that we use the notation $Y^X$ because if $Y$ has $n$ elements and $X$ has $m$ elements, then $Y^X$ has $n^m$ elements (see Proposition \ref{prp:cardinalArithmetic}).
+    \item See Exercise \ref{exr:3.4.6} for a consequence of Axiom \ref{axm:powerSets}.
+    \item \textbf{Power set} (of $X$): The set $2^X=\{Y:Y\text{ is a subset of }X\}$.
+    \item Note that we use the notation $2^X$ because if $X$ has $m$ elements, then $2^X$ has $2^m$ elements (see Chapter \ref{chr:8}).
+    \item For the sake of completeness, we enhance Axiom \ref{axm:pairwiseUnion} with the following.
+    \begin{axm}[Union]\label{axm:union}
+        Let $A$ be a set, all of whose elements are themselves sets. Then there exists a set $\bigcup A$ whose elements are precisely those objects which are elements of the elements of $A$. Thus, for all objects $x$,
+        \begin{equation*}
+            x\in\bigcup A \Longleftrightarrow x\in S\text{ for some }S\in A
+        \end{equation*}
+    \end{axm}
+    \item Note that Axioms \ref{axm:union} and \ref{axm:singletonPair} imply Axiom \ref{axm:pairwiseUnion} (see Exercise \ref{exr:3.4.8}).
+    \item An important consequence of Axiom \ref{axm:union} is that \dq{if one has some set $I$, and for every element $\alpha\in I$ we have some set $A_\alpha$, then we can form the union set $\bigcup_{\alpha\in I}A_\alpha$ by defining
+    \begin{equation}\label{eqn:union}
+        \bigcup_{\alpha\in I}A_\alpha := \bigcup\{A_\alpha:\alpha\in I\}
+    \end{equation}
+    which is a set thanks to the axiom of replacement and the axiom of union}{59}
+    \item Note that for any object $y$,
+    \begin{equation}\label{eqn:unionElements}
+        y\in\bigcup_{\alpha\in I}A_\alpha \Longleftrightarrow y\in A_\alpha\text{ for some }\alpha\in I
+    \end{equation}
+    \item To explain the above, consider the following example.
+    \begin{itemize}
+        \item If $I=\{1,2,3\}$, $A_1:=\{2,3\}$, $A_2:=\{3,4\}$, and $A_3:=\{4,5\}$, then $\bigcup_{\alpha\in\{1,2,3\}}A_\alpha=\{2,3,4,5\}$.
+    \end{itemize}
+    \item There is some notation associated with this paradigm, defined as follows.
+    \item \textbf{Index set}: The set $I$.
+    \item \textbf{Labels}: The elements $\alpha$ of the index set $I$.
+    \item \textbf{Family of sets}: The group of sets $A_\alpha$ for all $\alpha\in I$.
+    \begin{itemize}
+        \item Note that the family of sets is \textbf{indexed} by the labels $\alpha\in I$.
+    \end{itemize}
+    \item Note that if $I$ were empty, then $\bigcup_{\alpha\in I}A_\alpha$ would also be empty.
+    \item \dq{Given any non-empty set $I$, and given an assignment of a set $A_\alpha$ to each $\alpha\in I$, we can define the intersection $\bigcap_{\alpha\in I}A_\alpha$ by first choosing some element $\beta$ of $I$ (which we can do since $I$ is nonempty), and setting
+    \begin{equation}\label{eqn:intersection}
+        \bigcap_{\alpha\in I}A_\alpha := \{x\in A_\beta:x\in A_\alpha\text{ for all }\alpha\in I\}
+    \end{equation}
+    which is a set by the axiom of specification}{60}
+    \item Note that for any object $y$,
+    \begin{equation}\label{eqn:intersectionElements}
+        y\in\bigcap_{\alpha\in I}A_\alpha \Longleftrightarrow y\in A_\alpha\text{ for all }\alpha\in I
+    \end{equation}
+    \item Note that this definition does not depend on the choice of $\beta$ (see Exercise \ref{exr:3.4.9}).
+    \item Note that Axioms 3.1-3.11 (excluding Axiom 3.8) are known as the \textbf{Zermelo-Fraenkel axioms of set theory}, after Ernest Zermello (1871-1953) and Abraham Fraenkel (1891-1965).
+    \begin{itemize}
+        \item Note that \dq{these axioms are formulated slightly differently in other texts, but all the formulations can be shown to be equivalent to each other}{60}
+        \item Also note that there is one additional axiom (the \textbf{axiom of choice} --- see Section \ref{sse:8.4}), giving rise to the \textbf{Zermelo-Fraenkel-Choice (ZFC) axioms of set theory}, but we do not need this axiom at this moment.
+    \end{itemize}
+\end{itemize}
+
+
+\subsection*{Exercises}
+\begin{enumerate}[ref={\thesection.\arabic*}]
+    \item \label{exr:3.4.1}Let $f:X\to Y$ be a bijective function, and let $f^{-1}:Y\to X$ be its inverse. Let $V$ be any subset of $Y$. Prove that the forward image of $V$ under $f^{-1}$ is the same set as the inverse image of $V$ under $f$; thus, the fact that both sets are denoted by $f^{-1}(V)$ will not lead to any inconsistency.
+    \begin{proof}
+        By Definition \ref{dfn:images}, the forward image of $V$ under $f^{-1}$ is the set $\{f^{-1}(x):x\in V\}$. By Definition \ref{dfn:inverseImages}, the inverse image of $V$ under $f$ is the set $\{x\in X:f(x)\in V\}$. Now to prove that these sets are equal, by Definition \ref{dfn:setEquality}, we must verify that every element $y$ of $\{f^{-1}(x):x\in V\}$ is an element of $\{x\in X:f(x)\in V\}$ and vice versa. Suppose first that $y$ is an arbitrary element of $\{f^{-1}(x):x\in V\}$. By Definition \ref{dfn:images}, this implies that $y=f^{-1}(x)$ for some $x\in V$. Thus, by the definition of the inverse (and the fact that $f$ is bijective), $f(y)=x$ for some $x\in V$, or, more simply, $f(y)\in V$. But by Definition \ref{dfn:inverseImages}, $f(y)\in V \Longrightarrow y\in\{x\in X:f(x)\in V\}$. Using the above implications in reverse will suffice to prove that $y\in\{x\in X:f(x)\in V\} \Longrightarrow y\in\{f^{-1}(x):x\in V\}$.
+    \end{proof}
+    \setcounter{enumi}{5}
+    \item \label{exr:3.4.6}Prove the following lemma. (Hint: start with the set $\{0,1\}^X$ and apply the replacement axiom, replacing each function $f$ with the object $f^{-1}(\{1\})$.) See also Exercise \ref{exr:3.5.11}.
+    \begin{lem}
+        Let $X$ be a set. Then the set
+        \begin{equation*}
+            \{Y:Y\text{ is a subset of }X\}
+        \end{equation*}
+        is a set.
+        \begin{proof}
+            We first define a set composed entirely of subsets of $X$. We then guarantee that this set includes all subsets of $X$.\par
+            Consider the set $\{0,1\}^X$. For any $f\in\{0,1\}^X$, since $\{1\}\subseteq\{0,1\}$ (i.e., is a subset of the range of $f$), Definition \ref{dfn:inverseImages} allows us to define the (unique) set $f^{-1}(\{1\})$. Now let $P(f,A)$ be the property $A=f^{-1}(\{1\})$. Then for every element $f\in\{0,1\}^X$, there is exactly, i.e., at most one $A$ for which $P(f,A)$ is true. Consequently, by Axiom \ref{axm:replacement}, there exists a set $\{A:P(f,A)\text{ is true for some }f\in\{0,1\}^X\}$, or, more briefly, $\{f^{-1}(\{1\}):f\in\{0,1\}^X\}$. Now by Definition \ref{dfn:inverseImages}, each $f^{-1}(\{1\})$ represents the corresponding set $\{x\in X:f(x)\in\{1\}\}$. This implies by Axiom \ref{axm:specification} that every $f^{-1}(\{1\})$ is a subset of $X$. Thus, $\{f^{-1}(\{1\}):f\in\{0,1\}^X\}$ is a set composed entirely of subsets of $X$.\par
+            At this point, all that's left is to guarantee that $\{f^{-1}(\{1\}):f\in\{0,1\}^X\}$ includes \emph{all} subsets of $X$, which may be done as follows. Let $Z$ be any subset of $X$. Then we may define the function $f:X\to\{0,1\}$ by the following.
+            \begin{equation*}
+                f(x) :=
+                \begin{cases}
+                    1 & x\in Z\\
+                    0 & x\notin Z
+                \end{cases}
+            \end{equation*}
+            By Axiom \ref{axm:powerSets}, $f\in\{0,1\}^X$. Thus, by the first part of this proof, we know that $f^{-1}(\{1\})$ exists and is defined to be equal to $\{x\in X:f(x)\in\{1\}\}$. But Axiom \ref{axm:singletonPair}, $f(x)\in\{1\}$ iff $f(x)=1$, and by the definition of $f$, $f(x)=1$ iff $x\in Z$. Thus, $f^{-1}(\{1\})=\{x\in X:x\in Z\}=Z$. Since $f^{-1}(\{1\})\in\{f^{-1}(\{1\}):f\in\{0,1\}^X\}$, we have $Z\in\{f^{-1}(\{1\}):f\in\{0,1\}^X\}$. Therefore, there exists a set that contains exactly the subsets of $X$, which we may denote by $\{Y:Y\text{ is a subset of }X\}$.
+            % Suppose for the sake of contradiction that $Z\subseteq X$ and $Z\notin\{f^{-1}(\{1\}):f\in\{0,1\}^X\}$.
+        \end{proof}
+    \end{lem}
+    \stepcounter{enumi}
+    \item \label{exr:3.4.8}Show that Axiom \ref{axm:pairwiseUnion} can be deduced from Axiom \ref{axm:setsAreObjects}, Axiom \ref{axm:singletonPair}, and Axiom \ref{axm:union}.
+    \begin{proof}
+        To demonstrate Axiom \ref{axm:pairwiseUnion}, we must show that for any two sets $A,B$, there exists a set $A\cup B$ satisfying $x\in A\cup B$ iff $x\in A$ or $x\in B$.\par
+        Let $A,B$ be sets. Then by Axiom \ref{axm:setsAreObjects}, $A$ and $B$ are objects. Thus, by Axiom \ref{axm:singletonPair}, we can create the pair set $\{A,B\}$. Since $\{A,B\}$ has only sets for elements, Axiom \ref{axm:union} applies, and implies the existence of $\bigcup\{A,B\}$, which we may denote by $A\cup B$. Axiom \ref{axm:union} also asserts that
+        \begin{equation*}
+            x\in A\cup B \Longleftrightarrow x\in S\text{ for some }S\in\{A,B\}
+        \end{equation*}
+        But by Axiom \ref{axm:singletonPair}, $S\in A\cup B$ iff $S=A$ or $S=B$. Therefore, we have
+        \begin{equation*}
+            x\in A\cup B \Longleftrightarrow x\in S\text{, }S\text{ being a set that satisfies }S=A\text{ or }S=B
+        \end{equation*}
+        or
+        \begin{equation*}
+            x\in A\cup B \Longleftrightarrow x\in A\text{ or }x\in B
+        \end{equation*}
+    \end{proof}
+    \item \label{exr:3.4.9}Show that if $\beta$ and $\beta'$ are two elements of a set $I$, and to each $\alpha\in I$ we assign a set $A_\alpha$, then
+    \begin{equation*}
+        \{x\in A_\beta:x\in A_\alpha\text{ for all }\alpha\in I\} = \{x\in A_{\beta'}:x\in A_\alpha\text{ for all }\alpha\in I\}
+    \end{equation*}
+    and so the definition of $\bigcap_{\alpha\in I}A_\alpha$ defined in Equation \ref{eqn:intersection} does not depend on $\beta$. Also explain why Equation \ref{eqn:intersectionElements} is true.
+    \begin{proof}
+        To prove $\{x\in A_\beta:x\in A_\alpha\text{ for all }\alpha\in I\}=\{x\in A_{\beta'}:x\in A_\alpha\text{ for all }\alpha\in I\}$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that
+        \begin{equation*}
+            y\in\{x\in A_\beta:x\in A_\alpha\text{ for all }\alpha\in I\} \Longleftrightarrow y\in\{x\in A_{\beta'}:x\in A_\alpha\text{ for all }\alpha\in I\}
+        \end{equation*}
+        By Equations \ref{eqn:intersection} and \ref{eqn:intersectionElements}, we have
+        \begin{equation*}
+            y\in\{x\in A_\beta:x\in A_\alpha\text{ for all }\alpha\in I\} \Longleftrightarrow y\in A_\alpha\text{ for all }\alpha\in I
+        \end{equation*}
+        Similarly, we have
+        \begin{equation*}
+            y\in\{x\in A_{\beta'}:x\in A_\alpha\text{ for all }\alpha\in I\} \Longleftrightarrow y\in A_\alpha\text{ for all }\alpha\in I
+        \end{equation*}
+        Therefore, by Exercise \ref{exr:A.1.5}, we have 
+        \begin{equation*}
+            y\in\{x\in A_\beta:x\in A_\alpha\text{ for all }\alpha\in I\} \Longleftrightarrow y\in\{x\in A_{\beta'}:x\in A_\alpha\text{ for all }\alpha\in I\}
+        \end{equation*}
+        as desired.\par
+        As to the other question, by Definition \ref{dfn:setEquality}, $y\in\bigcap_{\alpha\in I}A_\alpha \Longrightarrow y\in\{x\in A_\beta:x\in A_\alpha\text{ for all }\alpha\in I\}$. Thus, by Axiom \ref{axm:specification}, $y\in A_\beta$ and $y\in A_\alpha$ for all $\alpha\in I$. But $A_\beta=A_\alpha$ for some $\alpha\in I$, so the condition that $y\in A_\beta$ is a tautology. Thus, $y\in A_\alpha$ for all $\alpha\in I$. A similar argument works in the other direction.
+    \end{proof}
+\end{enumerate}
+
+
+
 
 \end{document}
