@@ -766,8 +766,84 @@
     \begin{proof}
         By Definition \ref{dfn:images}, the forward image of $V$ under $f^{-1}$ is the set $\{f^{-1}(x):x\in V\}$. By Definition \ref{dfn:inverseImages}, the inverse image of $V$ under $f$ is the set $\{x\in X:f(x)\in V\}$. Now to prove that these sets are equal, by Definition \ref{dfn:setEquality}, we must verify that every element $y$ of $\{f^{-1}(x):x\in V\}$ is an element of $\{x\in X:f(x)\in V\}$ and vice versa. Suppose first that $y$ is an arbitrary element of $\{f^{-1}(x):x\in V\}$. By Definition \ref{dfn:images}, this implies that $y=f^{-1}(x)$ for some $x\in V$. Thus, by the definition of the inverse (and the fact that $f$ is bijective), $f(y)=x$ for some $x\in V$, or, more simply, $f(y)\in V$. But by Definition \ref{dfn:inverseImages}, $f(y)\in V \Longrightarrow y\in\{x\in X:f(x)\in V\}$. Using the above implications in reverse will suffice to prove that $y\in\{x\in X:f(x)\in V\} \Longrightarrow y\in\{f^{-1}(x):x\in V\}$.
     \end{proof}
-    \setcounter{enumi}{5}
-    \item \label{exr:3.4.6}Prove the following lemma. (Hint: start with the set $\{0,1\}^X$ and apply the replacement axiom, replacing each function $f$ with the object $f^{-1}(\{1\})$.) See also Exercise \ref{exr:3.5.11}.
+    \item \label{exr:3.4.2}\marginnote{7/30:}Let $f:X\to Y$ be a function from one set $X$ to another set $Y$, let $S$ be a subset of $X$, and let $U$ be a subset of $Y$. What, in general, can one say about $f^{-1}(f(S))$ and $S$? What about $f(f^{-1}(U))$ and $U$?
+    \begin{proof}
+        It is hard to generalize much from the rigid definitions, but we will give those and then prove one property. So first off,
+        \begin{align*}
+            f^{-1}(f(S)) &= \{x\in X:f(x)\in\{f(x'):x'\in S\}\}\\
+            f(f^{-1}(U)) &= \{f(x):x\in\{x'\in X:f(x')\in U\}\}
+        \end{align*}
+        Now, we can actually prove that $S\subseteq f^{-1}(f(S))$ and $f(f^{-1}(U))\subseteq U$, which we will do as follows.\par
+        By Definition \ref{dfn:subsets}, to prove that $S\subseteq f^{-1}(f(S))$, we must verify that every element $x\in S$ is an element of $f^{-1}(f(S))$. Suppose $x$ is any element of $S$. To prove that $x\in\{x'\in X:f(x')\in\{f(x''):x''\in S\}\}$, Axiom \ref{axm:specification} tells us that it will suffice to show that $x\in X$ and "$f(x)\in\{f(x'):x'\in S\}$" is a true statement. Since $S\subseteq X$ and $x\in S$, we have by Definition \ref{dfn:subsets} that $x\in X$. On the other hand, let $y=f(x)$. Then since $x\in S$, by Axiom \ref{axm:replacement}, $y\in\{y':y'=f(x')\text{ for some }x'\in S\} \Longrightarrow f(x)\in\{f(x'):x'\in S\}$.\par
+        By Definition \ref{dfn:subsets}, to prove that $f(f^{-1}(U))\subseteq U$, we must verify that every element $y\in f(f^{-1}(U))$ is an element of $U$. Suppose $y$ is any element of $f(f^{-1}(U))$. Then by the rigid definition of $f(f^{-1}(U))$, above, and Definition \ref{dfn:setEquality}, we have $y\in\{f(x):x\in\{x'\in X:f(x')\in U\}\}$. By Axiom \ref{axm:replacement}, this means that $y=f(x)$ for some $x\in\{x'\in X:f(x')\in U\}$. But by Axiom \ref{axm:specification}, $x\in\{x'\in X:f(x')\in U\} \Longrightarrow (x\in X\text{ and }f(x)\in U)$. Thus, we know that $y=f(x)$ for some $f(x)\in U$, so we have $y\in U$.
+    \end{proof}
+    \item \label{exr:3.4.3}Let $A,B$ be two subsets of a set $X$, and let $f:X\to Y$ be a function. Show that $f(A\cap B)\subseteq f(A)\cap f(B)$, that $f(A)\setminus f(B)\subseteq f(A\setminus B)$, and that $f(A\cup B)=f(A)\cup f(B)$. For the first two statements, is it true that the $\subseteq$ relation can be improved to $=$?
+    \begin{proof}
+        Because of the number of statements to prove and the logical simplicity of the implications involved, we will shorthand these proofs.\par
+        We begin by proving that $f(A\cap B)\subseteq f(A)\cap f(B)$, for which it will suffice (Definition \ref{dfn:subsets}) to show that every element $y$ of $f(A\cap B)$ is an element of $f(A)\cap f(B)$. To this end, let $y$ be any element of $f(A\cap B)$. Since $A\cap B\subseteq A$ (Exercise \ref{exr:3.1.7}) and $A\subseteq X$, $A\cap B\subseteq X$ (Proposition \ref{prp:subsetTransitive}). Thus,
+        \begin{align*}
+            y\in f(A\cap B) &\Longrightarrow y=f(x)\text{ for some }x\in A\cap B \tag*{Definition \ref{dfn:images}}\\
+            &\Longrightarrow (y=f(x)\text{ for some }x\in A\text{ and }y=f(x)\text{ for some }x\in B) \tag*{Definition \ref{dfn:intersection}}\\
+            &\Longrightarrow (y\in f(A)\text{ and }y\in f(B)) \tag*{Definition \ref{dfn:images}}\\
+            &\Longrightarrow y\in f(A)\cap f(B) \tag*{Definition \ref{dfn:intersection}}
+        \end{align*}
+        To prove that $f(A)\setminus f(B)\subseteq f(A\setminus B)$, we must verify (Definition \ref{dfn:subsets}) that every element $y$ of $f(A)\setminus f(B)$ is an element of $f(A\setminus B)$, which can be done as follows. Note that $A\setminus B\subseteq X$ since $A\setminus B\subseteq A$ (Definition \ref{dfn:differenceSets} and Axiom \ref{axm:specification}) and $A\subseteq X$ (Proposition \ref{prp:subsetTransitive}).
+        \begin{align*}
+            y\in f(A)\setminus f(B) &\Longrightarrow y\in\{z\in f(A):z\notin f(B)\} \tag*{Definition \ref{dfn:differenceSets}}\\
+            &\Longrightarrow (y\in f(A)\text{ and }y\notin f(B)) \tag*{Axiom \ref{axm:specification}}\\
+            &\Longrightarrow (y=f(x)\text{ for some }x\in A\text{ and }y=f(x)\text{ for no }x\in B) \tag*{Definition \ref{dfn:images}}\\
+            &\Longrightarrow y=f(x)\text{ for some }x\in A\setminus B \tag*{Definition \ref{dfn:differenceSets}}\\
+            &\Longrightarrow y\in f(A\setminus B) \tag*{Definition \ref{dfn:images}}
+        \end{align*}
+        To prove that $f(A\cup B)=f(A)\cup f(B)$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that $y\in f(A\cup B) \Longleftrightarrow y\in f(A)\cup f(B)$, which can be done as follows.
+        \begin{align*}
+            y\in f(A\cup B) &\Longleftrightarrow y=f(x)\text{ for some }x\in A\cup B \tag*{Definition \ref{dfn:images}}\\
+            &\Longleftrightarrow (y=f(x)\text{ for some }x\in A\text{ or }y=f(x)\text{ for some }x\in B) \tag*{Axiom \ref{axm:pairwiseUnion}}\\
+            &\Longleftrightarrow (y\in f(A)\text{ or }y\in f(B)) \tag*{Definition \ref{dfn:images}}\\
+            &\Longleftrightarrow y\in f(A)\cup f(B) \tag*{Axiom \ref{axm:pairwiseUnion}}
+        \end{align*}
+        Because of the transitivity of logically equivalent statements (we may induct the result of Exercise \ref{exr:A.1.5}), we have shown what was desired.\par
+        As to the other part of the question, it is \emph{not} true that the $\subseteq$ relation can be improved to $=$ for the first or the second statement, which we may verify thorugh two counterexamples, as follows. For the first statement, let $X=\{1,2\}$, $Y=\{3,4\}$, $A=\{1\}$, $B=\{2\}$, and $f:\{1,2\}\to\{3,4\}$ be defined by $f(x):=3$. Then we have $f(A)\cap f(B)=\{3\}$, but $f(A\cap B)=\{\}$. Thus, $3\in f(A)\cap f(B)$, but $3\notin f(A\cap B)$. Note that the break down in the would-be reverse proof of $f(A\cap B)\subseteq f(A)\cap f(B)$ comes from the fact that although $y\in f(A)\cap f(B) \Longrightarrow y=f(x)$ for some $x\in A$ and $y=f(x')$ for some $x'\in B$, we cannot guarantee that $x=x'$, i.e., that $x\in A\cap B$. As to the second statement, we consider the same function, except that we let $A=\{1,2\}$. Thus, we have $f(A\setminus B)=\{3\}$, but $f(A)\setminus f(B)=\{\}$, implying that $3\in f(A\setminus B)$ but $3\notin f(A)\setminus f(B)$. Note that the breakdown in the would-be reverse proof of $f(A)\setminus f(B)\subseteq f(A\setminus B)$ comes from the fact that although $y\in f(A\setminus B) \Longrightarrow y=f(x)$ for some $x\in A$, we cannot guarantee that there exists no $x'\in B$ such that $y=f(x')$.
+    \end{proof}
+    \item \label{exr:3.4.4}Let $f:X\to Y$ be a function from one set $X$ to another set $Y$, and let $U,V$ be subsets of $Y$. Show that $f^{-1}(U\cup V)=f^{-1}(U)\cup f^{-1}(V)$, that $f^{-1}(U\cap V)=f^{-1}(U)\cap f^{-1}(V)$, and that $f^{-1}(U\setminus V)=f^{-1}(U)\setminus f^{-1}(V)$.
+    \begin{proof}
+        For the same reasons as in Exercise \ref{exr:3.4.3}, we shorthand these proofs.\par
+        To prove that $f^{-1}(U\cup V)=f^{-1}(U)\cup f^{-1}(V)$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that $x\in f^{-1}(U\cup V) \Longleftrightarrow x\in f^{-1}(U)\cup f^{-1}(V)$, which can be done as follows.
+        \begin{align*}
+            x\in f^{-1}(U\cup V) &\Longleftrightarrow f(x)\in U\cup V \tag*{Definition \ref{dfn:inverseImages}}\\
+            &\Longleftrightarrow (f(x)\in U\text{ or }f(x)\in V) \tag*{Axiom \ref{axm:pairwiseUnion}}\\
+            &\Longleftrightarrow (x\in f^{-1}(U)\text{ or }x\in f^{-1}(V)) \tag*{Definition \ref{dfn:inverseImages}}\\
+            &\Longleftrightarrow x\in f^{-1}(U)\cup f^{-1}(V) \tag*{Axiom \ref{axm:pairwiseUnion}}
+        \end{align*}
+        To prove that $f^{-1}(U\cap V)=f^{-1}(U)\cap f^{-1}(V)$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that $x\in f^{-1}(U\cap V) \Longleftrightarrow x\in f^{-1}(U)\cap f^{-1}(V)$, which can be done as follows.
+        \begin{align*}
+            x\in f^{-1}(U\cap V) &\Longleftrightarrow f(x)\in U\cap V \tag*{Definition \ref{dfn:inverseImages}}\\
+            &\Longleftrightarrow (f(x)\in U\text{ and }f(x)\in V) \tag*{Definition \ref{dfn:intersection}}\\
+            &\Longleftrightarrow (x\in f^{-1}(U)\text{ and }x\in f^{-1}(V)) \tag*{Definition \ref{dfn:inverseImages}}\\
+            &\Longleftrightarrow x\in f^{-1}(U)\cap f^{-1}(V) \tag*{Definition \ref{dfn:intersection}}
+        \end{align*}
+        To prove that $f^{-1}(U\setminus V)=f^{-1}(U)\setminus f^{-1}(V)$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that $x\in f^{-1}(U\setminus V) \Longleftrightarrow x\in f^{-1}(U)\setminus f^{-1}(V)$, which can be done as follows.
+        \begin{align*}
+            x\in f^{-1}(U\setminus V) &\Longleftrightarrow f(x)\in U\setminus V \tag*{Definition \ref{dfn:inverseImages}}\\
+            &\Longleftrightarrow f(x)\in\{y\in U:y\notin V\} \tag*{Definition \ref{dfn:differenceSets}}\\
+            &\Longleftrightarrow (f(x)\in U\text{ and }f(x)\notin V) \tag*{Axiom \ref{axm:specification}}\\
+            &\Longleftrightarrow (x\in f^{-1}(U)\text{ and }x\notin f^{-1}(V)) \tag*{Definition \ref{dfn:inverseImages}}\\
+            &\Longleftrightarrow x\in\{f^{-1}(U):x\notin f^{-1}(V)\} \tag*{Axiom \ref{axm:specification}}\\
+            &\Longleftrightarrow x\in f^{-1}(U)\setminus f^{-1}(V) \tag*{Definition \ref{dfn:inverseImages}}
+        \end{align*}
+    \end{proof}
+    \item \label{exr:3.4.5}Let $f:X\to Y$ be a function from one set $X$ to another set $Y$. Show that $f(f^{-1}(S))=S$ for every $S\subseteq Y$ if and only if $f$ is surjective. Show that $f^{-1}(f(S))=S$ for every $S\subseteq X$ if and only if $f$ is injective.
+    \begin{proof}
+        To show that $f(f^{-1}(S))=S$ for every $S\subseteq Y$ if and only if $f$ is surjective, we must verify that the implication "if $f(f^{-1}(S))=S$ for every $S\subseteq Y$, then $f$ is surjective" and its converse are both true.\par
+        Suppose first that $f(f^{-1}(S))=S$ for every $S\subseteq Y$. To show that $f$ is surjective, Definition \ref{dfn:surjective} tells us that it will suffice to show that for every $y\in Y$, there exists $x\in X$ such that $f(x)=y$. Let $y$ be any element of $Y$. Then by Axiom \ref{axm:singletonPair}, there exists a set $\{y\}$. Since $y\in Y$ and $y$ is the only element of $\{y\}$, by Definition \ref{dfn:subsets}, $\{y\}\subseteq Y$. Thus, $f(f^{-1}(\{y\}))=\{y\}$. Since $\{y\}$ is a nonempty set, we know that $f^{-1}(\{y\})$ is a nonempty set (if $f^{-1}(\{y\})$ were empty, then $f(f^{-1}(\{y\}))=\{y\}$ would be empty, a contradiction). Thus, there exists some $x\in f^{-1}(\{y\})$. Since Definition \ref{dfn:inverseImages} implies that $x\in\{x'\in X:f(x')\in\{y\}\}$, meaning by Axiom \ref{axm:specification} that $x\in X$ and $f(x)\in\{y\}$, and, thus, by Axiom \ref{axm:singletonPair} that $f(x)=y$, we have that there exists $x\in X$ such that $f(x)=y$, as desired.\par
+        % Let $S$ be an arbitrary subset of $Y$, and suppose that $y$ is an arbitrary element of $f(f^{-1}(S))$. Then by Definition \ref{dfn:images}, $y=f(x)$ for some $x\in f^{-1}(S)$. Now consider this $x$: by Definition \ref{dfn:inverseImages}, $x\in f^{-1}(S) \Longrightarrow f(x)\in S$. But $y=f(x)$, so $y$ must be an element of $S$.
+        Now suppose that $f$ is surjective. To show that $f(f^{-1}(S))=S$ for every $S\subseteq Y$, we must verify that for any subset $S$ of $Y$, every element $y$ of $f(f^{-1}(S))$ is an element of $S$ and vice versa (Definition \ref{dfn:setEquality}). Let $S$ be an arbitrary subset of $Y$. By Exercise \ref{exr:3.4.2}, $f(f^{-1}(S))\subseteq S$. On the other hand, suppose that $y$ is an arbitrary element of $S$. Since $f$ is surjective, we have by Definition \ref{dfn:surjective} that $f(x)=y$ for some $x\in X$. Now consider this $x$: since $y\in S$, we know that $f(x)\in S$. Thus, by Definition \ref{dfn:inverseImages}, $x\in f^{-1}(S)$. Therefore, we have $y=f(x)$ for some $x\in f^{-1}(S)$, which by Definition \ref{dfn:images} and the fact that $f^{-1}(S)\subseteq X$ (as implied by Definition \ref{dfn:inverseImages} and Axiom \ref{axm:specification}) implies that $y\in f(f^{-1}(S))$.\par\medskip
+        To show that $f^{-1}(f(S))=S$ for every $S\subseteq X$ if and only if $f$ is injective, we must verify that the implication "if $f^{-1}(f(S))=S$ for every $S\subseteq X$, then $f$ is injective" and its converse are both true.\par
+        Suppose first that $f^{-1}(f(S))=S$ for every $S\subseteq X$. To show that $f$ is injective, Definition \ref{dfn:injective} tells us that it will suffice to show that if $x\neq x'$ for two elements $x,x'$ of $X$, then $f(x)\neq f(x')$. Let $x,x'$ be any two elements of $X$ such that $x\neq x'$. By Axiom \ref{axm:singletonPair}, the sets $\{x\}$ and $\{x'\}$ exist. Note that since $x\in X$ and $x$ is the only element of $\{x\}$, by Definition \ref{dfn:subsets}, $\{x\}\subseteq X$, and, similarly, $\{x'\}\subseteq X$. Since there exists an element of $\{x\}$ (namely $x$) that is not an element of $\{x'\}$, by Definition \ref{dfn:setEquality}, $\{x\}\neq\{x'\}$. Thus, since $f^{-1}(f(\{x\}))=\{x\}$ and $f^{-1}(f(\{x'\}))=\{x'\}$, we have $f^{-1}(f(\{x\}))\neq f^{-1}(f(\{x'\}))$. This implies that $f(\{x\})\neq f(\{x'\})$ (if $f(\{x\})$ were equal to $f(\{x'\})$, then $f^{-1}(f(\{x\}))$ would be equal to $f^{-1}(f(\{x'\}))$, a contradiction). Since $f(\{x\})=\{f(x''):x''\in\{x\}\}=\{f(x)\}$, and, similarly, $f(\{x'\})=\{f(x')\}$, we have $\{f(x)\}\neq\{f(x')\}$. Therefore, $f(x)\neq f(x')$ (if $f(x)=f(x')$, then, as singleton sets (Axiom \ref{axm:singletonPair}), every element of $\{f(x)\}$ would be an element of $\{f(x')\}$, and vice versa, proving their equality by Definition \ref{dfn:setEquality}, a contradiction).\par
+        Now suppose that $f$ is injective. To show that $f^{-1}(f(S))=S$ for every $S\subseteq X$, we must verify that for any subset $S$ of $X$, every element $x$ of $f^{-1}(f(S))$ is an element of $S$ and vice versa (Definition \ref{dfn:setEquality}). Let $S$ be an arbitrary subset of $X$, and suppose that $x$ is an arbitrary element of $f^{-1}(f(S))$. First off, $f(S)\subseteq Y$. (We must show that every $y\in f(S)$ is an element of $Y$ (Definition \ref{dfn:subsets}). If $y\in f(S)$, then we know that $y=f(x)$ for some $x\in S$ by Definition \ref{dfn:images}. Since $S\subseteq X$, we have that $y=f(x)$ for some $x\in X$, which, since $f(x)\in Y$, implies that $y\in Y$). Thus, by Definition \ref{dfn:inverseImages}, $f(x)\in f(S)$. By Definition \ref{dfn:images} and the fact that $f$ is injective, this implies that $x\in S$ (if $f$ were not injective, then it would be possible that $x\notin S$ but $f(x)\in f(S)$, since there could exist some $x'\in S$ such that $f(x')=f(x)$). On the other hand, by Exercise \ref{exr:3.4.2}, $S\subseteq f^{-1}(f(S))$.
+        % Now suppose that $x$ is an arbitrary element of $S$. Since $S\subseteq X$, $f(x)$ exists and is an element of $f(S)$. Thus, since $f(S)\subseteq Y$ (as outlined above), by Definition \ref{dfn:inverseImages}, $x\in f^{-1}(f(S))$.
+    \end{proof}
+    \item \label{exr:3.4.6}\marginnote{7/29:}Prove the following lemma. (Hint: start with the set $\{0,1\}^X$ and apply the replacement axiom, replacing each function $f$ with the object $f^{-1}(\{1\})$.) See also Exercise \ref{exr:3.5.11}.
     \begin{lem}
         Let $X$ be a set. Then the set
         \begin{equation*}
