@@ -289,7 +289,7 @@
             \item \label{exr:3.1.6f}(Distributivity) We have $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$ and $A\cup(B\cap C)=(A\cup B)\cap(A\cup C)$.
             \begin{proof}
                 To prove $A\cap(B\cup C)=(A\cap B)\cup(A\cap C)$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $A\cap(B\cup C)$ is an element of $(A\cap B)\cup(A\cap C)$ and vice versa. By Definition \ref{dfn:intersection}, $x\in A\cap(B\cup C) \Longrightarrow (x\in A\text{ and }x\in B\cup C)$. By Axiom \ref{axm:pairwiseUnion}, $x\in B\cup C \Longrightarrow x\in B\text{ or }x\in C$. Thus, we know that $x\in A$, and we know that $x\in B$ or $x\in C$ (or both). We divide into two cases. Suppose first that $x\in B$. Since $x\in A$ as well, $x\in A\cap B$ (Definition \ref{dfn:intersection}). This implies by Axiom \ref{axm:pairwiseUnion} that $x\in(A\cap B)\cup(A\cap C)$. Now suppose that $x\in C$. Since $x\in A$ as well, $x\in A\cap C$ (Definition \ref{dfn:intersection}). This implies by Axiom \ref{axm:pairwiseUnion} that $x\in(A\cap B)\cup(A\cap C)$. A similar argument shows that every element of $(A\cap B)\cup(A\cap C)$ lies in $A\cap(B\cup C)$.\par
-                The second proof is similar to the first (and similar to all the rest of the proofs written for this exercise thus far). Thus, for the sake of variety, we will do this one entirely symbolically, using the laws of propositional logic from Section \ref{sss:A.4}.
+                The second proof is similar to the first (and similar to all the rest of the proofs written for this exercise thus far). Thus, for the sake of variety, we will do this one entirely symbolically, using the laws of propositional logic from Section \ref{sse:A.4}.
                 \begin{align*}
                     x\in A\cup(B\cap C) &\Longrightarrow (x\in A) \vee (x\in B\cap C)\tag*{Axiom \ref{axm:pairwiseUnion}}\\
                     &\Longrightarrow (x\in A) \vee ((x\in B) \wedge (x\in C))\tag*{Definition \ref{dfn:intersection}}\\
@@ -572,7 +572,7 @@
 \begin{enumerate}[ref={\thesection.\arabic*}]
     \item \label{exr:3.3.1}\marginnote{7/23:}Show that the definition of equality in Definition \ref{dfn:functionEquality} is reflexive, symmetric, and transitive\footnote{Note that since Definition \ref{dfn:functionEquality} should be an axiom (should axiomatize equality and all that that entails for functions), this part of the exercise is silly (see \cite{bib:TaoErrata}).}. Also verify the substitution property: if $f,\tilde{f}:X\to Y$ and $g,\tilde{g}:Y\to Z$ are functions such that $f=\tilde{f}$ and $g=\tilde{g}$, then $g\circ f=\tilde{g}\circ\tilde{f}$.
     \begin{proof}
-        Let $f:X\to Y$ be a function. For any object $f(x)\in Y$, we have $f(x)=f(x)$ by the reflexive axiom of equality (see Section \ref{sss:A.7}). Thus, we have $f(x)=f(x)$ for all $f(x)\in Y$, i.e., for all $x\in X$. Therefore, by Definition \ref{dfn:functionEquality}, we have $f=f$.\par
+        Let $f:X\to Y$ be a function. For any object $f(x)\in Y$, we have $f(x)=f(x)$ by the reflexive axiom of equality (see Section \ref{sse:A.7}). Thus, we have $f(x)=f(x)$ for all $f(x)\in Y$, i.e., for all $x\in X$. Therefore, by Definition \ref{dfn:functionEquality}, we have $f=f$.\par
         Let $f:X\to Y$, $g:X\to Y$ be functions, and let $f=g$. By Definition \ref{dfn:functionEquality}, $f(x)=g(x)$ for all $x\in X$. Since equal objects are of the same type (i.e., follow the reflexive axiom of equality), we have $g(x)=f(x)$ for all $x\in X$. Therefore, by Definition \ref{dfn:functionEquality}, we have $g=f$.\par
         Let $f:X\to Y$, $g:X\to Y$, $h:X\to Y$ be functions, $f=g$, and $g=h$. By Definition \ref{dfn:functionEquality}, $f(x)=g(x)$ for all $x\in X$ and $g(x)=h(x)$ for all $x\in X$. Since equal objects are of the same type (i.e., follow the transitive axiom of equality), we have $f(x)=h(x)$ for all $x\in X$. Therefore, by Definition \ref{dfn:functionEquality}, we have $f=h$.\par
         First, we see that both $g\circ f$ and $\tilde{g}\circ\tilde{f}$ are functions from $X$ to $Z$, i.e., have the same domain and range. To show that $g\circ f=\tilde{g}\circ\tilde{f}$, Definition \ref{dfn:functionEquality} tells us that it will suffice to verify that $(g\circ f)(x)=(\tilde{g}\circ\tilde{f})(x)$ for all $x\in X$. To begin, we see from Definition \ref{dfn:functionEquality} that $f(x)=\tilde{f}(x)$ for all $x\in X$, and that $g(y)=\tilde{g}(y)$ for all $y\in Y$. Since $f(x)\in Y$ for all $f(x)$, we have by Definition \ref{dfn:composition} that
@@ -721,7 +721,7 @@
         \end{equation*}
     \end{axm}
     \item Note that Axioms \ref{axm:union} and \ref{axm:singletonPair} imply Axiom \ref{axm:pairwiseUnion} (see Exercise \ref{exr:3.4.8}).
-    \item An important consequence of Axiom \ref{axm:union} is that \dq{if one has some set $I$, and for every element $\alpha\in I$ we have some set $A_\alpha$, then we can form the union set $\bigcup_{\alpha\in I}A_\alpha$ by defining
+    \item An important consequence of Axiom \ref{axm:union} is that \dq{if one has some set $I$, and for every element $\alpha\in I$ we have some set $A_\alpha$, then we can form the union set $\bigcup_{\alpha\in I}A_\alpha$\footnote{"the union of the family of sets ae sub alpha indexed by the labels alpha in the set ie"} by defining
     \begin{equation}\label{eqn:union}
         \bigcup_{\alpha\in I}A_\alpha := \bigcup\{A_\alpha:\alpha\in I\}
     \end{equation}
@@ -865,8 +865,42 @@
             % Suppose for the sake of contradiction that $Z\subseteq X$ and $Z\notin\{f^{-1}(\{1\}):f\in\{0,1\}^X\}$.
         \end{proof}
     \end{lem}
-    \stepcounter{enumi}
-    \item \label{exr:3.4.8}Show that Axiom \ref{axm:pairwiseUnion} can be deduced from Axiom \ref{axm:setsAreObjects}, Axiom \ref{axm:singletonPair}, and Axiom \ref{axm:union}.
+    \item \label{exr:3.4.7}\marginnote{7/31:}Let $X,Y$ be sets. Define a \textbf{partial function} from $X$ to $Y$ to be any function $f:X'\to Y'$ whose domain $X'$ is a subset of $X$, and whose range $Y'$ is a subset of $Y$. Show that the collection of all partial functions from $X$ to $Y$ is itself a set. (Hint: use Exercise \ref{exr:3.4.6}, the power set axiom, the replacement axiom, and the union axiom.)
+    % \begin{enumerate}
+    %     \item Use Exercise \ref{exr:3.4.6} to define the sets $2^X$ and $2^Y$.
+    %     \item Define the set $A_{X'}$ corresponding to the element $X'\in 2^X$ as follows. Consider the set $2^Y$. Let $P(Y',Z)$ be the statement $Z=Y'^{X'}$. By Axiom \ref{axm:powerSets}, for every $Y'\in 2^Y$, there is exactly one $Z$ for which $P(Y',Z)$ is true. Thus, by Axiom \ref{axm:replacement}, the set $\{Z:Z=Y'^{X'}\text{ for some }Y'\in 2^Y\}$, which we denote by $A_{X'}$, exists.
+    %     \begin{enumerate}
+    %         \item $A_{X'}$ is the set of all sets of partial functions from $X$ to $Y$ with domain $X'$ and a certain range.
+    %     \end{enumerate}
+    %     \item Letting $2^X$ be an index set, use Axiom \ref{axm:union} to create the set $\bigcup_{\alpha\in 2^X}A_\alpha$.
+    %     \begin{enumerate}
+    %         \item $\bigcup_{\alpha\in 2^X}A_\alpha$ is the set of all sets of partial functions from $X$ to $Y$ with a certain domain and range.
+    %     \end{enumerate}
+    %     \item Use Axiom \ref{axm:union} to create the set $\bigcup \left( \bigcup_{\alpha\in 2^X}A_\alpha \right)$.
+    %     \begin{enumerate}
+    %         \item This will be the set of all partial functions from $X$ to $Y$, which is what's desired.
+    %     \end{enumerate}
+    % \end{enumerate}
+    \begin{proof}
+        To create the set of all partial functions from $X$ to $Y$, we follow a four step plan. First, we define the set $2^X$ of all subsets of $X$, and the set $2^Y$ of all subsets of $Y$. Second, we define the set $A_{X'}$ of all sets of all partial functions from $X$ to $Y$ with domain $X'$ and a certain range (namely, a range that is any particular element of $2^Y$). Third, we create the set $\bigcup_{X'\in 2^X}A_{X'}$ of all sets of all partial functions from $X$ to $Y$ with a certain domain (namely, any particular element of $2^X$) and a certain range (namely, any particular element of $2^Y$). Fourth, we create the set $\bigcup \left( \bigcup_{X'\in 2^X}A_{X'} \right)$, which is the set of all partial functions from $X$ to $Y$, as desired\footnote{Do I need to verify that every element of this set is a partial function from $X$ to $Y$ and that every partial function from $X$ to $Y$ is an element of this set?}. Let's begin.
+        \begin{enumerate}[label={(\arabic*)}]
+            \item By Exercise \ref{exr:3.4.6}, there exists a set $\{X':X'\text{ is a subset of }X\}$ (which we may denote by $2^X$) and a set $\{Y':Y'\text{ is a subset of }Y\}$ (which we may denote by $2^Y$). In sum, we have defined the sets
+            \begin{align*}
+                2^X &:= \{X':X'\text{ is a subset of }X\}&
+                2^Y &:= \{Y':Y'\text{ is a subset of }Y\}
+            \end{align*}
+            \item Let $X'$ be an element of $2^X$, let $Y'$ be any element of $2^Y$, and let $P(Y',Z)$ be the statement $Z=Y'^{X'}$. (Note that $Y'^{X'}$ is the set of all functions with domain $X'$ and range $Y'$, i.e., the set of all partial functions from $X$ to $Y$ with domain $X'$ and range $Y'$, as defined in Axiom \ref{axm:powerSets}.) Since Axiom \ref{axm:powerSets} guarantees the uniqueness of $B^A$ for any sets $A,B$, for every $Y'\in 2^Y$, there is exactly one $Z$ for which $P(Y',Z)$ is true. Thus, by Axiom \ref{axm:replacement}, there exists a set $\{Z:P(Y',Z)\text{ is true for some }Y'\in 2^Y\}$ (which we may denote by $A_{X'}$). In sum, we have defined for every $X'\in 2^X$ the set
+            \begin{equation*}
+                A_{X'} := \{Y'^{X'}:Y'\in 2^Y\}
+            \end{equation*}
+            \item Let $2^X$ be an index set. Then by (2), for every $X'\in 2^X$, we have some set $A_{X'}$. Thus, by Equation \ref{eqn:union}, we can form the union set $\bigcup_{X'\in 2^X}A_{X'}$ by defining $\bigcup_{X'\in 2^X}A_{X'}:=\bigcup\{A_{X'}:X'\in 2^X\}$. If we inspect this definition, we see that this set is the set of all elements in every possible $A_{X'}$ (i.e., every $A_{X'}$ such that $X'\in 2^X$). Since every element of any $A_{X'}$ is a set of the type $Y'^{X'}$, the above union is really just the set of all $Y'^{X'}$ for any $X'\in 2^X$ and any $Y'\in 2^Y$. In sum, we have defined the set
+            \begin{equation*}
+                \bigcup_{X'\in 2^X}A_{X'} := \{Y'^{X'}:X'\in 2^X;Y'\in 2^Y\}
+            \end{equation*}
+            \item By Axiom \ref{axm:powerSets}, every $Y'^{X'}$ is a set. Thus, the set defined in (3) is a set whose elements are all themselves sets. Therefore, Axiom \ref{axm:union} applies, and we can create the set $\bigcup \left( \bigcup_{X'\in 2^X}A_{X'} \right)$, whose elements are precisely those objects which are elements of the elements of $\bigcup_{X'\in 2^X}A_{X'}$; in other words, whose elements are every partial function in every $Y'^{X'}$, i.e., all partial functions from $X$ to $Y$.
+        \end{enumerate}
+    \end{proof}
+    \item \label{exr:3.4.8}\marginnote{7/29:}Show that Axiom \ref{axm:pairwiseUnion} can be deduced from Axiom \ref{axm:setsAreObjects}, Axiom \ref{axm:singletonPair}, and Axiom \ref{axm:union}.
     \begin{proof}
         To demonstrate Axiom \ref{axm:pairwiseUnion}, we must show that for any two sets $A,B$, there exists a set $A\cup B$ satisfying $x\in A\cup B$ iff $x\in A$ or $x\in B$.\par
         Let $A,B$ be sets. Then by Axiom \ref{axm:setsAreObjects}, $A$ and $B$ are objects. Thus, by Axiom \ref{axm:singletonPair}, we can create the pair set $\{A,B\}$. Since $\{A,B\}$ has only sets for elements, Axiom \ref{axm:union} applies, and implies the existence of $\bigcup\{A,B\}$, which we may denote by $A\cup B$. Axiom \ref{axm:union} also asserts that
@@ -906,6 +940,40 @@
         \end{equation*}
         as desired.\par
         As to the other question, by Definition \ref{dfn:setEquality}, $y\in\bigcap_{\alpha\in I}A_\alpha \Longrightarrow y\in\{x\in A_\beta:x\in A_\alpha\text{ for all }\alpha\in I\}$. Thus, by Axiom \ref{axm:specification}, $y\in A_\beta$ and $y\in A_\alpha$ for all $\alpha\in I$. But $A_\beta=A_\alpha$ for some $\alpha\in I$, so the condition that $y\in A_\beta$ is a tautology. Thus, $y\in A_\alpha$ for all $\alpha\in I$. A similar argument works in the other direction.
+    \end{proof}
+    \item \label{exr:3.4.10}\marginnote{7/31:}Suppose that $I$ and $J$ are two sets, and for all $\alpha\in I\cup J$ let $A_\alpha$ be a set. Show that $(\bigcup_{\alpha\in I}A_\alpha)\cup(\bigcup_{\alpha\in J}A_\alpha)=\bigcup_{\alpha\in I\cup J}A_\alpha$. If $I$ and $J$ are non-empty, show that $(\bigcap_{\alpha\in I}A_\alpha)\cap(\bigcap_{\alpha\in J}A_\alpha)=\bigcap_{\alpha\in I\cup J}A_\alpha$.
+    \begin{proof}
+        To prove that $(\bigcup_{\alpha\in I}A_\alpha)\cup(\bigcup_{\alpha\in J}A_\alpha)=\bigcup_{\alpha\in I\cup J}A_\alpha$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $(\bigcup_{\alpha\in I}A_\alpha)\cup(\bigcup_{\alpha\in J}A_\alpha)$ is an element of $\bigcup_{\alpha\in I\cup J}A_\alpha$ and vice versa. Suppose first that $x\in(\bigcup_{\alpha\in I}A_\alpha)\cup(\bigcup_{\alpha\in J}A_\alpha)$. Then by Axiom \ref{axm:pairwiseUnion}, $x\in\bigcup_{\alpha\in I}A_\alpha$ or $x\in\bigcup_{\alpha\in J}A_\alpha$. We now divide into two cases. If $x\in\bigcup_{\alpha\in I}A_\alpha$, then by Equation \ref{eqn:unionElements}, $x\in A_\alpha$ for some $\alpha\in I$. By Axiom \ref{axm:pairwiseUnion}, this implies that $x\in A_\alpha$ for some $\alpha\in I\cup J$. Therefore, by Equation \ref{eqn:unionElements}, $x\in\bigcup_{\alpha\in I\cup J}A_\alpha$. On the other hand, if $x\in\bigcup_{\alpha\in J}A_\alpha$, then by an analogous argument to the other case, we have $x\in\bigcup_{\alpha\in I\cup J}A_\alpha$. Now suppose that $x\in\bigcup_{\alpha\in I\cup J}A_\alpha$. Then by Equation \ref{eqn:unionElements}, $x\in A_\alpha$ for some $\alpha\in I\cup J$. Thus, by Axiom \ref{axm:pairwiseUnion}, $x\in A_\alpha$ for some $\alpha\in I$, or $x\in A_\alpha$ for some $\alpha\in J$. We now divide into two cases. If $x\in A_\alpha$ for some $\alpha\in I$, then by Equation \ref{eqn:unionElements}, we have $x\in\bigcup_{\alpha\in I}A_\alpha$. Therefore, by Axiom \ref{axm:pairwiseUnion}, we have $x\in(\bigcup_{\alpha\in I}A_\alpha)\cup(\bigcup_{\alpha\in J}A_\alpha)$. On the other hand, if $x\in A_\alpha$ for some $\alpha\in J$, then by an analogous argument to the other case, we have $x\in(\bigcup_{\alpha\in I}A_\alpha)\cup(\bigcup_{\alpha\in J}A_\alpha)$.\par
+        To prove that $(\bigcap_{\alpha\in I}A_\alpha)\cap(\bigcap_{\alpha\in J}A_\alpha)=\bigcap_{\alpha\in I\cup J}A_\alpha$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $(\bigcap_{\alpha\in I}A_\alpha)\cap(\bigcap_{\alpha\in J}A_\alpha)$ is an element of $\bigcap_{\alpha\in I\cup J}A_\alpha$ and vice versa. Suppose first that $x\in(\bigcap_{\alpha\in I}A_\alpha)\cap(\bigcap_{\alpha\in J}A_\alpha)$. Then by Definition \ref{dfn:intersection}, $x\in\bigcap_{\alpha\in I}A_\alpha$ and $x\in\bigcap_{\alpha\in J}A_\alpha$. By Equation \ref{eqn:intersectionElements}, this implies that $x\in A_\alpha$ for all $\alpha\in I$ and $x\in A_\alpha$ for all $\alpha\in J$. Thus, by Axiom \ref{axm:pairwiseUnion}, $x\in A_\alpha$ for all $\alpha\in I\cup J$. Therefore, by Equation \ref{eqn:intersectionElements}, $x\in\bigcap_{\alpha\in I\cup J}A_\alpha$. Now suppose that $x\in\bigcap_{\alpha\in I\cup J}A_\alpha$. Then by Equation \ref{eqn:intersectionElements}, $x\in A_\alpha$ for all $\alpha\in I\cup J$. By Axiom \ref{axm:pairwiseUnion}, this implies that $x\in A_\alpha$ for all $\alpha\in I$ and $x\in A_\alpha$ for all $\alpha\in J$. Thus, by Equation \ref{eqn:intersectionElements}, we have $x\in\bigcap_{\alpha\in I}A_\alpha$ and $x\in\bigcap_{\alpha\in J}A_\alpha$. Therefore, by Definition \ref{dfn:intersection}, $x\in(\bigcap_{\alpha\in I}A_\alpha)\cap(\bigcap_{\alpha\in J}A_\alpha)$.
+    \end{proof}
+    \item \label{exr:3.4.11}Let $X$ be a set, let $I$ be a non-empty set, and for all $\alpha\in I$ let $A_\alpha$ be a subset of $X$. Show that $X\setminus\bigcup_{\alpha\in I}A_\alpha=\bigcap_{\alpha\in I}(X\setminus A_\alpha)$ and $X\setminus\bigcap_{\alpha\in I}A_\alpha=\bigcup_{\alpha\in I}(X\setminus A_\alpha)$. This should be compared with de Morgan's laws in Proposition \ref{prp:booleanAlgebra} (although one cannot derive the above identities directly from de Morgan's laws, as $I$ could be infinite).
+    \begin{proof}
+        To prove that $X\setminus\bigcup_{\alpha\in I}A_\alpha=\bigcap_{\alpha\in I}(X\setminus A_\alpha)$, Definition \ref{dfn:setEquality} tells us that it will suffice to show that every element $x$ of $X\setminus\bigcup_{\alpha\in I}A_\alpha$ is an element of $\bigcap_{\alpha\in I}(X\setminus A_\alpha)$ and vice versa. Suppose first that $x\in X\setminus\bigcup_{\alpha\in I}A_\alpha$. Then by Definition \ref{dfn:differenceSets} and Axiom \ref{axm:specification}, $x\in X$ and $x\notin\bigcup_{\alpha\in I}A_\alpha$. By Equation \ref{eqn:unionElements}, this implies that $x\notin A_\alpha$ for any $\alpha\in I$. Thus, by Axiom \ref{axm:specification} and Definition \ref{dfn:differenceSets}, $x\in X\setminus A_\alpha$ for all $\alpha\in I$. Therefore, by Equation \ref{eqn:intersectionElements}, $x\in\bigcap_{\alpha\in I}(X\setminus A_\alpha)$. Now suppose that $x\in\bigcap_{\alpha\in I}(X\setminus A_\alpha)$. Then by Equation \ref{eqn:intersectionElements}, $x\in X\setminus A_\alpha$ for all $\alpha\in I$. By Definition \ref{dfn:differenceSets} and Axiom \ref{axm:specification}, this implies that $x\in X$ and $x\notin A_\alpha$ for any $\alpha\in I$. Thus, by Equation \ref{eqn:unionElements}, $x\notin\bigcup_{\alpha\in I}A_\alpha$. Therefore, by Axiom \ref{axm:specification} and Definition \ref{dfn:differenceSets}, $x\in X\setminus\bigcup_{\alpha\in I}A_\alpha$.\par
+        A similar argument can treat the other case.
+    \end{proof}
+\end{enumerate}
+
+
+
+\section{Cartesian Products}\label{sse:3.5}
+\begin{itemize}
+    \item We begin by defining the ordered pair.
+    \begin{dfn}[Ordered pair]\label{dfn:orderedPair}
+        If $x$ and $y$ are any objects (possibly equal), we define the \textbf{ordered pair} $(x,y)$ to be a new object, consisting of $x$ as its first component and $y$ as its second component. Two ordered pairs $(x,y)$ and $(x',y')$ are considered equal if and only if both their components match, i.e.,
+        \begin{equation*}
+            (x,y)=(x',y') \Longleftrightarrow (x=x'\text{ and }y=y')
+        \end{equation*}
+    \end{dfn}
+    \item It can be proven that this notion of equality obeys the usual axioms of equality (see Exercise \ref{exr:3.5.3}).
+\end{itemize}
+
+
+\subsection*{Exercises}
+\begin{enumerate}[ref={\thesection.\arabic*}]
+    \setcounter{enumi}{2}
+    \item \label{exr:3.5.3}Show that the definitions of equality for ordered pair and ordered $n$-tuple obey the reflexivity, symmetry, and transitivity axioms.
+    \begin{proof}
+        We first treat ordered pairs. To prove that ordered pairs obey the reflexivity axiom, we must show that for any ordered pair $(x,y)$, we have $(x,y)=(x,y)$. By Definition \ref{dfn:orderedPair}, to prove that $(x,y)=(x,y)$, we must verify that $x=x$ and $y=y$. But since $x$ and $y$ are clearly objects of the same type(s) as themselves, respectively, the reflexive axiom of equality (see Section \ref{sse:A.7}) implies that $x=x$ and $y=y$. To prove that ordered pairs obey the symmetry axiom, we must show that for any two ordered pairs $(x,y),(x',y')$, if $(x,y)=(x',y')$, then $(x',y')=(x,y)$. Since $(x,y)$ and $(x',y')$ are both objects of the same type (i.e., both ordered pairs), we know by the symmetry axiom of equality that if $(x,y)=(x',y')$, then $(x',y')=(x,y)$. To prove that ordered pairs obey the transitivity axiom, we must show that for any three ordered pairs $(x,y),(x',y'),(x'',y'')$, if $(x,y)=(x',y')$ and $(x',y')=(x'',y'')$, then $(x,y)=(x'',y'')$. By Definition \ref{dfn:orderedPair}, $(x,y)=(x',y') \Longrightarrow (x=x'\text{ and }y=y')$ and $(x',y')=(x'',y'') \Longrightarrow (x'=x''\text{ and }y'=y'')$. Since $x=x'$ and $x'=x''$, we have by the transitive axiom of equality that $x=x''$. Similarly, we have $y=y''$. Thus, by Definition \ref{dfn:orderedPair}, we have $(x,y)=(x'',y'')$.
     \end{proof}
 \end{enumerate}
 
