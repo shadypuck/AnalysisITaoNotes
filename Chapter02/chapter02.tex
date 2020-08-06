@@ -97,10 +97,10 @@
         \item \dq{The great discovery of the late nineteenth century was that numbers can be understood abstractly via axioms, without necessarily needing a concrete model; of course a mathematician can use any of these models [e.g., counting beads] when it is convenient, to aid his or her intuition and understanding, but they can also be just as easily discarded when they begin to get in the way [of understanding $-3$, $1/3$, $\sqrt{2}$, $3+4i$, \dots]}{23}
     \end{itemize}
     \item With the axioms (and the concept of a function, which does not rely on said axioms), we can introduce recursive definitions, which will be useful in defining addition and multiplication.
-    \begin{prp}[Recursive definitions]
+    \begin{prp}[Recursive definitions]\label{prp:recursiveDefinitions}
         Suppose for each natural number $n$, we have some function $f_n:\N\to\N$ from the natural numbers to the natural numbers. Let $c$ be a natural number. Then we can assign a unique natural number $a_n$ to each natural number $n$, such that $a_0=c$ and $a_{n\pplus}=f_n(a_n)$ for each natural number $n$.
         \begin{proof}
-            (Informal) We use induction. First, a single value $c$ is given to $a_0$ (no other value $a_{n\pplus}:=f_n(a_n)$ will be assigned to 0 by Axiom \ref{axm:0NotSuccessor}). Given that $a_n$ has a unique value, $a_{n\pplus}$ will have a unique value $f_n(a_n)$, distinct from any other $a_{m\pplus}$ by Axiom \ref{axm:successorDistinctness}.
+            (Informal\footnote{\dq{Strictly speaking, this proposition requires one to define the notion of a \textbf{function}, which we shall do in the next chapter. However, this will not be circular, as the concept of a function does not require the Peano axioms. Proposition [\ref{prp:recursiveDefinitions}] can be formalized more rigorously in the language of set theory; see Exercise \ref{exr:3.5.12}}{23}}) We use induction. First, a single value $c$ is given to $a_0$ (no other value $a_{n\pplus}:=f_n(a_n)$ will be assigned to 0 by Axiom \ref{axm:0NotSuccessor}). Given that $a_n$ has a unique value, $a_{n\pplus}$ will have a unique value $f_n(a_n)$, distinct from any other $a_{m\pplus}$ by Axiom \ref{axm:successorDistinctness}.
         \end{proof}
     \end{prp}
 \end{itemize}
