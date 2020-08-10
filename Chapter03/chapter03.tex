@@ -1278,7 +1278,55 @@
         \item There is a subtle difference between the two (especially in the infinite case), but this is beyond the scope of \cite{bib:AnalysisI}.
     \end{itemize}
     \item This section is concerned with using the natural numbers to count sets.
+    \item \marginnote{8/9:}We first define a rigorous basis for two sets having the same number of elements. \cite{bib:AnalysisI} intutively rationalizes Cantor's one-to-one matching principle by saying \dq{Indeed, this is how we first learn to count a set: we correspond the set we are trying to count with another set, such as a set of fingers on your hand}{68}
+    \begin{dfn}[Equal cardinality]\label{dfn:cardinalityEqual}
+        We say that two sets $X$ and $Y$ have \textbf{equal cardinality} iff there exists a bijection $f:X\to Y$ from $X$ to $Y$.
+    \end{dfn}
+    \item Definition \ref{dfn:cardinalityEqual} allows us to easily prove that sets have equal cardinality, but does not make it immediately easy to prove that sets have unequal cardinality.
+    \begin{itemize}
+        \item For example, an obvious bijection exists between $\{0,1,2\}$ and $\{3,4,5\}$, but to prove that $\{0,1,2\}$ and $\{3,4\}$ have unequal cardinality, we would have to verify that all functions $f:\{0,1,2\}\to\{3,4\}$ are not bijective, or make use of Proposition \ref{prp:cardinalityUniqueness}.
+    \end{itemize}
+    \item Note that Definition \ref{dfn:cardinalityEqual} treats both the finite and infinite case (though remember that we have not yet rigorously defined this distinction).
+    \item Note that \dq{the fact that two sets have equal cardinality does not preclude one of the sets from containing the other}{69}
+    \begin{itemize}
+        \item For example, \dq{if $X$ is the set of natural numbers and $Y$ is the set of even natural numbers, then the map $f:X\to Y$ defined by $f(n):=2n$ is a bijection from $X$ to $Y$\dots and so $X$ and $Y$ have equal cardinality, despite $Y$ being a subset of $X$ and seeming intuitively as if it should only have `half' of the elements of $X$}{69}
+    \end{itemize}
+    \item The notion of having equal cardinality is an equivalence relation (see Exercise \ref{exr:3.6.1}).
+    \item We now define precisely what it means for a set to have $n$ elements.
+    \begin{dfn}\label{dfn:cardinalityN}
+        Let $n$ be a natural number. A set $X$ is said to have \textbf{cardinality $\bm{n}$} iff it has equal cardinality with $\{i\in\N:1\leq i\leq n\}$. We also say that \textbf{$\bm{X}$ has $\bm{n}$ elements} iff it has cardinality $n$.
+    \end{dfn}
+    \item Note that we could compare cardinality with the set $\{i\in\N:i<n\}$ as opposed to the set $\{i\in\N:1\leq i\leq n\}$.
+    \item It would make sense that each set should have exactly one cardinality (i.e., not multiple). Let's make sure that Definition \ref{dfn:cardinalityN} implies this.
+    \begin{prp}[Uniqueness of cardinality]\label{prp:cardinalityUniqueness}
+        Let $X$ be a set with some cardinality $n$. Then $X$ cannot have any other cardinality, i.e., $X$ cannot have cardinality $m$ for any $m\neq n$.
+    \end{prp}
+    We first need a lemma.
+    \begin{lem}\label{lem:cardinalitySetminus}
+        Suppose that $n\geq 1$, and $X$ has cardinality $n$. Then $X$ is non-empty, and if $x$ is any element of $X$, then the set $X-\{x\}$ (i.e., $X$ with the element $x$ removed) has cardinality $n-1$\footnote{\dq{Strictly speaking, $n-1$ has not yet been defined in this text. For the purposes of this lemma, we define $n-1$ to be the unique natural number $m$ such that $m\pplus=n$; this $m$ is given by [Exercise \ref{exr:2.2.2}]}{70}}.
+        \begin{proof}
+            If $X$ is empty, then it clearly cannot have the same cardinality as the nonempty set $\{i\in\N:1\leq i\leq n\}$, as there is no bijection from the empty set to a non-empty set\footnote{Any potential bijection would be the empty function $f:\emptyset\to\{i\in\N:1\leq i\leq n\}$. To be bijective, we would have to have exactly one $x\in\emptyset$ such that $f(x)=i$ for all $i\in\{i\in\N:1\leq i\leq n\}$. But even if there were only one $i$ in $\{i\in\N:1\leq i\leq n\}$, there would be no $x\in\emptyset$ (because there are no $x\in\emptyset$) such that $f(x)=i$.}. Now let $x$ be an element of $X$. Since $X$ has the same cardinality as $\{i\in\N:1\leq i\leq n\}$, we thus have a bijection $f$ from $X$ to $\{i\in\N:1\leq i\leq n\}$. In particular, $f(x)$ is a natural number between 1 and $n$. Now define the function $g:X-\{x\}\to\{i\in\N:1\leq i\leq n-1\}$ by the following rule: for any $y\in X-\{x\}$, we define $g(y):=f(y)$ if $f(y)<f(x)$, and define $g(y):=f(y)-1$ if $f(y)>f(x)$. (Note that $f(y)$ cannot equal $f(x)$ since $y\neq x$ and $f$ is a bijection.) It is easy to check that this map is also a bijection\footnote{We know that for every $i\in\{i\in\N:1\leq i\leq n\}$, there is exactly one $y\in X$ such that $f(y)=i$. We want to show that for every $i\in\{i\in\N:1\leq i\leq n-1\}$, there is exactly one $y\in X-\{x\}$ such that $g(y)=i$. Consider any $i\in\{i\in\N:1\leq i\leq n\}$. If $i<f(x)$, choose the unique element $y\in X-\{x\}$ such that $f(y)=i$. By definition, $g(y)=f(y)=i$, and $g(y')\neq g(y)$ unless $y'=y$. If $i\geq f(x)$, choose the unique element $y\in X-\{x\}$ such that $f(y)=i+1$. By definition, $g(y)=f(y)-1=i$, and $g(y')\neq g(y)$ unless $y'=y$.}, and so $X-\{x\}$ has equal cardinality with $\{i\in\N:1\leq i\leq n\}$. In particular, $X-\{x\}$ has cardinality $n-1$, as desired.
+        \end{proof}
+    \end{lem}
+    Now we prove the proposition.
+    \begin{proof}[Proof of Proposition \ref{prp:cardinalityUniqueness}]
+        We induct on $n$. First suppose that $n=0$. Then $X$ must be empty, and so $X$ cannot have any non-zero cardinality. Now suppose that the proposition is already proven for some $n$; we now prove it for $n\pplus$. Let $X$ have cardinality $n\pplus$, and suppose that $X$ also has some other cardinality $m\neq n\pplus$. By Lemma \ref{lem:cardinalitySetminus}, $X$ is non-empty, and if $x$ is any element of $X$, then $X-\{x\}$ has cardinality $n$ and also has cardinality $m-1$. By induction hypothesis, this means that $n=m-1$, which implies that $m=n\pplus$, a contradiction. This closes the induction.
+    \end{proof}
 \end{itemize}
+
+
+\subsection*{Exercises}
+\begin{enumerate}[ref={\thesection.\arabic*}]
+    \item \label{exr:3.6.1}Prove the following proposition.
+    \begin{prp}
+        Let $X,Y,Z$ be sets. Then $X$ has equal cardinality with $X$. If $X$ has equal cardinality with $Y$, then $Y$ has equal cardinality with $X$. If $X$ has equal cardinality with $Y$ and $Y$ has equal cardinality with $Z$, then $X$ has equal cardinality with $Z$.
+        \begin{proof}
+            To prove that $X$ has equal cardinality with $X$, Definition \ref{dfn:cardinalityEqual} tells us that it will suffice to show that there exists a bijection $f:X\to X$ from $X$ to $X$. Let $f$ be the identity map on $X$, i.e., $f(x):=x$ for all $x\in X$. To show that $f$ is bijective, we must verify that the statement "for every $x\in X$, there is exactly one $x$ such that $f(x)=x$" is true (Definition \ref{dfn:bijective}). But since $f$ is a function defined as above, Definition \ref{dfn:functions} implies that this statement is true.\par
+            To prove that $Y$ has equal cardinality with $X$, Definition \ref{dfn:cardinalityEqual} tells us that it will suffice to show that there exists a bijection $f:Y\to X$ from $Y$ to $X$. To begin, since $X$ has equal cardinality with $Y$, there exists a bijection $f^{-1}:X\to Y$ from $X$ to $Y$ (Definition \ref{dfn:cardinalityEqual}). Let $f=(f^{-1})^{-1}$. Thus, $f$ maps $Y$ to $X$ by definition, and $f$ is bijective by Exercise \ref{exr:3.3.6}.\par
+            To prove that $X$ has equal cardinality with $Z$, Definition \ref{dfn:cardinalityEqual} tells us that it will suffice to show that there exists a bijection $f:X\to Z$ from $X$ to $Z$. To begin, since $X$ has equal cardinality with $Y$ and $Y$ has equal cardinality with $Z$, there exists a bijection $g:X\to Y$ from $X$ to $Y$ and there exists a bijection $h:Y\to Z$ from $Y$ to $Z$, respectively (Definition \ref{dfn:cardinalityEqual}). Let $f=h\circ g$. Thus, $f$ maps $X$ to $Z$ by Definition \ref{dfn:composition}, and $f$ is bijective by Exercise \ref{exr:3.3.7}.
+        \end{proof}
+    \end{prp}
+\end{enumerate}
 
 
 
