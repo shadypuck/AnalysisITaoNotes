@@ -709,7 +709,7 @@
         \end{equation*}
     \end{axm}
     \item \dq{Let $X=\{4,7\}$ and $Y=\{0,1\}$. Then the set $Y^X$ consists of four functions: the function that maps $4\mapsto 0$ and $7\mapsto 0$; the function that maps $4\mapsto 0$ and $7\mapsto 1$; the function that maps $4\mapsto 1$ and $7\mapsto 0$; and the function that maps $4\mapsto 1$ and $7\mapsto 1$}{58}
-    \item Note that we use the notation $Y^X$ because if $Y$ has $n$ elements and $X$ has $m$ elements, then $Y^X$ has $n^m$ elements (see Proposition \ref{prp:cardinalArithmetic}).
+    \item Note that we use the notation $Y^X$ because if $Y$ has $n$ elements and $X$ has $m$ elements, then $Y^X$ has $n^m$ elements (see Exercise \ref{exr:3.6.4f}).
     \item See Exercise \ref{exr:3.4.6} for a consequence of Axiom \ref{axm:powerSets}.
     \item \textbf{Power set} (of $X$): The set $2^X=\{Y:Y\text{ is a subset of }X\}$.
     \item Note that we use the notation $2^X$ because if $X$ has $m$ elements, then $2^X$ has $2^m$ elements (see Chapter \ref{chr:8}).
@@ -1312,12 +1312,27 @@
     \begin{proof}[Proof of Proposition \ref{prp:cardinalityUniqueness}]
         We induct on $n$. First suppose that $n=0$. Then $X$ must be empty, and so $X$ cannot have any non-zero cardinality. Now suppose that the proposition is already proven for some $n$; we now prove it for $n\pplus$. Let $X$ have cardinality $n\pplus$, and suppose that $X$ also has some other cardinality $m\neq n\pplus$. By Lemma \ref{lem:cardinalitySetminus}, $X$ is non-empty, and if $x$ is any element of $X$, then $X-\{x\}$ has cardinality $n$ and also has cardinality $m-1$. By induction hypothesis, this means that $n=m-1$, which implies that $m=n\pplus$, a contradiction. This closes the induction.
     \end{proof}
+    \item \marginnote{8/10:}As previously alluded to, we can now show that $\{0,1,2\}$ and $\{3,4\}$ do not have equal cardinality since $\{0,1,2\}$ has cardinality 3 and $\{3,4\}$ has cardinality 2.
+    \item We now rigorously define the distinction between finite and infinite sets.
+    \begin{dfn}[Finite sets]\label{dfn:finiteInfinte}
+        A set is \textbf{finite} iff it has cardinality $n$ for some natural number $n$; otherwise, the set is called \textbf{infinite}. If $X$ is a finite set, we use $\#(X)$ to denote the cardinality of $X$.
+    \end{dfn}
+    \item Here's an example of an infinite set.
+    \begin{trm}
+        The set of natural number $\N$ is infinite.
+        \begin{proof}
+            Suppose for the sake of contradiction that the set of natural numbers $\N$ was finite, so it has some cardinality $\#(\N)=n$. Then there is a bijection $f$ from $\{i\in\N:1\leq i\leq n\}$ to $\N$. One can show that the sequence $f(1),f(2),\dots,f(n)$ is bounded, or more precisely that there exists a natural number $M$ such that $f(i)\leq M$ for all $1\leq i\leq n$ (see Exercise \ref{exr:3.6.3}). But then the natural number $M+1$ is not equal to any of the $f(i)$, contradicting the hypothesis that $f$ is a bijection.
+        \end{proof}
+    \end{trm}
+    \item Note that a similar argument can show that other unbounded sets are infinite.
+    \item While the naturals and the even naturals are of equal size, note that it is possible for some sets to be "more" infinite than others (see Section \ref{sse:8.3}).
+    \item See Exercise \ref{exr:3.6.4} for some relations between cardinality and the arithmetic of natural numbers.
 \end{itemize}
 
 
 \subsection*{Exercises}
 \begin{enumerate}[ref={\thesection.\arabic*}]
-    \item \label{exr:3.6.1}Prove the following proposition.
+    \item \label{exr:3.6.1}\marginnote{8/9:}Prove the following proposition.
     \begin{prp}
         Let $X,Y,Z$ be sets. Then $X$ has equal cardinality with $X$. If $X$ has equal cardinality with $Y$, then $Y$ has equal cardinality with $X$. If $X$ has equal cardinality with $Y$ and $Y$ has equal cardinality with $Z$, then $X$ has equal cardinality with $Z$.
         \begin{proof}
@@ -1325,6 +1340,21 @@
             To prove that $Y$ has equal cardinality with $X$, Definition \ref{dfn:cardinalityEqual} tells us that it will suffice to show that there exists a bijection $f:Y\to X$ from $Y$ to $X$. To begin, since $X$ has equal cardinality with $Y$, there exists a bijection $f^{-1}:X\to Y$ from $X$ to $Y$ (Definition \ref{dfn:cardinalityEqual}). Let $f=(f^{-1})^{-1}$. Thus, $f$ maps $Y$ to $X$ by definition, and $f$ is bijective by Exercise \ref{exr:3.3.6}.\par
             To prove that $X$ has equal cardinality with $Z$, Definition \ref{dfn:cardinalityEqual} tells us that it will suffice to show that there exists a bijection $f:X\to Z$ from $X$ to $Z$. To begin, since $X$ has equal cardinality with $Y$ and $Y$ has equal cardinality with $Z$, there exists a bijection $g:X\to Y$ from $X$ to $Y$ and there exists a bijection $h:Y\to Z$ from $Y$ to $Z$, respectively (Definition \ref{dfn:cardinalityEqual}). Let $f=h\circ g$. Thus, $f$ maps $X$ to $Z$ by Definition \ref{dfn:composition}, and $f$ is bijective by Exercise \ref{exr:3.3.7}.
         \end{proof}
+    \end{prp}
+    \stepcounter{enumi}
+    \item \label{exr:3.6.3}\marginnote{8/10:}Let $n$ be a natural number, and let $f:\{i\in\N:1\leq i\leq n\}\to\N$ be a function. Show that there exists a natural number $M$ such that $f(i)\leq M$ for all $1\leq i\leq n$. (Hint: induct on $n$. You may also want to peek at Lemma \ref{lem:boundedFiniteSequences}.) Thus, finite subsets of the natural numbers are bounded.
+    \begin{proof}
+        We induct on $n$ (starting with the case where $n=1$; the claim is also vacuously true when $n=0$, but is not particularly interesting in that case). When $n=1$, there is only one object (namely, the natural number 1) in the domain of $f$. Thus, there is only one $f(i)$ (namely, $f(1)$). Therefore, if we choose $M:=f(1)$, then it is true that $f(i)\leq M$ for all $1\leq i\leq n$. Now suppose inductively that we have proven the claim for some $n$; we wish to prove it for $n\pplus$. By induction hypothesis, $f(i)\leq M$ for all $1\leq i\leq n$. Since $M\leq M+f(n\pplus)$ and $f(n\pplus)\leq M+f(n\pplus)$, we have $f(i)\leq M+f(n\pplus)$ for all $1\leq i\leq n$ and $f(n\pplus)\leq M+f(n\pplus)$. Thus, if we choose $M':=M+f(n\pplus)$, then $f(i)\leq M'$ for all $1\leq i\leq n\pplus$, thus closing the induction.
+    \end{proof}
+    \item \label{exr:3.6.4}Prove the following proposition.
+    \begin{prp}[Cardinal arithmetic]
+        \leavevmode
+        \begin{enumerate}[label={\textup{(}\alph*\textup{)}},ref={\theenumi\alph*}]
+            \item \label{exr:3.6.4a}Let $X$ be a finite set, and let $x$ be an object which is not an element of $X$. Then $X\cup\{x\}$ is finite and $\#(X\cup\{x\})=\#(X)+1$.
+            \begin{proof}
+                Consider the set $X$. Since $X$ is finite, Definition \ref{dfn:finiteInfinte} implies that $\#(X)=n$ for some natural number $n$. Thus, by Definition \ref{dfn:cardinalityN}, $X$ has equal cardinality with $\{i\in\N:1\leq i\leq n\}$; it follows by Definition \ref{dfn:cardinalityEqual} that there exists a bijection $f:X\to\{i\in\N:1\leq i\leq n\}$. Now consider the set $\{x\}$. Let $g:\{x\}\to\{n+1\}$ be the function defined by $g(x):=n+1$. Then because the single element $n+1$ of $\{n+1\}$ comes from exactly one element of $\{x\}$, $g$ is bijective. At this point, define the function $h:X\cup\{x\}\to\{i\in\N:1\leq i\leq n+1\}$ by the following rule: for any $y\in X$, we define $h(y):=f(y)$, and define $h(x):=g(x)$. (Note that $f(y)$ cannot equal $g(x)$ since $g(x)$ is not in the range of $f$, i.e., $n+1\notin\{i\in\N:1\leq i\leq n\}$.) As defined, $h$ is bijective (let $i$ be an arbitrary element of $\{i\in\N:1\leq i\leq n+1\}$. If $1\leq i\leq n$, then the bijectivity of $f$ (and the previously established fact that $f(y)\neq g(x)$ for any $y\in X$) implies that there is exactly one element $z$ of $X\cup\{x\}$ such that $h(z)=i$. If it is not true that $1\leq i\leq n$, then $i=n+1$; thus, the bijectivity of $g$ (and the previously established fact that $f(y)\neq g(x)$ for any $y\in X$) implies that there is exactly one element $z$ of $X\cup\{x\}$ such that $h(z)=i$). Therefore, $X\cup\{x\}$ has equal cardinality with $\{i\in\N:1\leq i\leq n+1\}$ (Definition \ref{dfn:cardinalityEqual}), implying by Definition \ref{dfn:cardinalityN} that $\#(X\cup\{x\})=n+1=\#(X)+1$. Also, since $n+1$ is a natural number, Definition \ref{dfn:finiteInfinte} implies that $X\cup\{x\}$ is finite.
+            \end{proof}
+        \end{enumerate}
     \end{prp}
 \end{enumerate}
 
