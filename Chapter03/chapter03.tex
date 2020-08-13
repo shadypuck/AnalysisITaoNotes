@@ -1341,7 +1341,17 @@
             To prove that $X$ has equal cardinality with $Z$, Definition \ref{dfn:cardinalityEqual} tells us that it will suffice to show that there exists a bijection $f:X\to Z$ from $X$ to $Z$. To begin, since $X$ has equal cardinality with $Y$ and $Y$ has equal cardinality with $Z$, there exists a bijection $g:X\to Y$ from $X$ to $Y$ and there exists a bijection $h:Y\to Z$ from $Y$ to $Z$, respectively (Definition \ref{dfn:cardinalityEqual}). Let $f=h\circ g$. Thus, $f$ maps $X$ to $Z$ by Definition \ref{dfn:composition}, and $f$ is bijective by Exercise \ref{exr:3.3.7}.
         \end{proof}
     \end{prp}
-    \stepcounter{enumi}
+    \item \label{exr:3.6.2}\marginnote{8/12:}Show that a set $X$ has cardinality 0 if and only if $X$ is the empty set.
+    \begin{proof}
+        We first need a lemma.
+        \begin{lem}\label{lem:naturalsEmptyset}
+            There exists no natural number $i$ satisfying $1\leq i\leq 0$.
+            \begin{proof}
+                Suppose for the sake of contradiction that there exists some natural number $i$ satisfying $1\leq i\leq 0$. Since $i\leq 0$ by hypothesis but $i\geq 0$ by Exercise \ref{exr:2.2.4a}, Exercise \ref{exr:2.2.3c} implies that $i=0$. However, we also have $i\geq 1$, which implies that $i>0$ by Exercise \ref{exr:2.2.3e}, and that $i\neq 0$ by Definition \ref{dfn:ordering}, a contradiction. Therefore, no natural number $i$ satisfies $1\leq i\leq 0$.
+            \end{proof}
+        \end{lem}
+        Now for the primary proof. Suppose first that $X$ has cardinality 0. Then by Definition \ref{dfn:cardinalityN}, there exists a bijection $f:\{i\in\N:1\leq i\leq 0\}\to X$. Since there is no natural number $i$ (i.e., no element of $\N$) satisfying $1\leq i\leq 0$ (Lemma \ref{lem:naturalsEmptyset}), $\{i\in\N:1\leq i\leq 0\}=\emptyset$. Thus, the bijection $f$ maps $\emptyset$ to $X$. But since $f$ is an empty function and a bijection, Exercise \ref{exr:3.3.3} asserts that the range of $f$ is the empty set, i.e., $X=\emptyset$. Now suppose that $X$ is the empty set. Then for $f:X\to\{i\in\N:1\leq i\leq n\}$ to be a bijection, we must have $\{i\in\N:1\leq i\leq n\}=\emptyset$ (Exercise \ref{exr:3.3.3} again). As previously established, this happens when $n=0$ (note that we need not rule out this happening for all other $n$ since we have Proposition \ref{prp:cardinalityUniqueness}). Thus, by Definition \ref{dfn:cardinalityN}, $\#(X)=0$.
+    \end{proof}
     \item \label{exr:3.6.3}\marginnote{8/10:}Let $n$ be a natural number, and let $f:\{i\in\N:1\leq i\leq n\}\to\N$ be a function. Show that there exists a natural number $M$ such that $f(i)\leq M$ for all $1\leq i\leq n$. (Hint: induct on $n$. You may also want to peek at Lemma \ref{lem:boundedFiniteSequences}.) Thus, finite subsets of the natural numbers are bounded.
     \begin{proof}
         We induct on $n$ (starting with the case where $n=1$; the claim is also vacuously true when $n=0$, but is not particularly interesting in that case). When $n=1$, there is only one object (namely, the natural number 1) in the domain of $f$. Thus, there is only one $f(i)$ (namely, $f(1)$). Therefore, if we choose $M:=f(1)$, then it is true that $f(i)\leq M$ for all $1\leq i\leq n$. Now suppose inductively that we have proven the claim for some $n$; we wish to prove it for $n\pplus$. By induction hypothesis, $f(i)\leq M$ for all $1\leq i\leq n$. Since $M\leq M+f(n\pplus)$ and $f(n\pplus)\leq M+f(n\pplus)$, we have $f(i)\leq M+f(n\pplus)$ for all $1\leq i\leq n$ and $f(n\pplus)\leq M+f(n\pplus)$. Thus, if we choose $M':=M+f(n\pplus)$, then $f(i)\leq M'$ for all $1\leq i\leq n\pplus$, thus closing the induction.
@@ -1353,6 +1363,76 @@
             \item \label{exr:3.6.4a}Let $X$ be a finite set, and let $x$ be an object which is not an element of $X$. Then $X\cup\{x\}$ is finite and $\#(X\cup\{x\})=\#(X)+1$.
             \begin{proof}
                 Consider the set $X$. Since $X$ is finite, Definition \ref{dfn:finiteInfinte} implies that $\#(X)=n$ for some natural number $n$. Thus, by Definition \ref{dfn:cardinalityN}, $X$ has equal cardinality with $\{i\in\N:1\leq i\leq n\}$; it follows by Definition \ref{dfn:cardinalityEqual} that there exists a bijection $f:X\to\{i\in\N:1\leq i\leq n\}$. Now consider the set $\{x\}$. Let $g:\{x\}\to\{n+1\}$ be the function defined by $g(x):=n+1$. Then because the single element $n+1$ of $\{n+1\}$ comes from exactly one element of $\{x\}$, $g$ is bijective. At this point, define the function $h:X\cup\{x\}\to\{i\in\N:1\leq i\leq n+1\}$ by the following rule: for any $y\in X$, we define $h(y):=f(y)$, and define $h(x):=g(x)$. (Note that $f(y)$ cannot equal $g(x)$ since $g(x)$ is not in the range of $f$, i.e., $n+1\notin\{i\in\N:1\leq i\leq n\}$.) As defined, $h$ is bijective (let $i$ be an arbitrary element of $\{i\in\N:1\leq i\leq n+1\}$. If $1\leq i\leq n$, then the bijectivity of $f$ (and the previously established fact that $f(y)\neq g(x)$ for any $y\in X$) implies that there is exactly one element $z$ of $X\cup\{x\}$ such that $h(z)=i$. If it is not true that $1\leq i\leq n$, then $i=n+1$; thus, the bijectivity of $g$ (and the previously established fact that $f(y)\neq g(x)$ for any $y\in X$) implies that there is exactly one element $z$ of $X\cup\{x\}$ such that $h(z)=i$). Therefore, $X\cup\{x\}$ has equal cardinality with $\{i\in\N:1\leq i\leq n+1\}$ (Definition \ref{dfn:cardinalityEqual}), implying by Definition \ref{dfn:cardinalityN} that $\#(X\cup\{x\})=n+1=\#(X)+1$. Also, since $n+1$ is a natural number, Definition \ref{dfn:finiteInfinte} implies that $X\cup\{x\}$ is finite.
+            \end{proof}
+            \item \label{exr:3.6.4b}\marginnote{\textup{8/12:}}Let $X$ and $Y$ be finite sets. Then $X\cup Y$ is finite and $\#(X\cup Y)\leq\#(X)+\#(Y)$. If in addition $X$ and $Y$ are disjoint (i.e., $X\cap Y=\emptyset$), then $\#(X\cup Y)=\#(X)+\#(Y)$.
+            \begin{proof}
+                We first treat the case where $X$ and $Y$ are not necessarily disjoint. To begin, we need several lemmas.
+                \begin{lem}\label{lem:positiveNaturalsGeq1}
+                    Let $n,m$ be a natural numbers such that $n=m\pplus$. Then $n\geq 1$.
+                    \begin{proof}
+                        By Axiom \ref{axm:0NotSuccessor}, the fact that $n$ is the successor of some natural number proves that $n\neq 0$. Additionally, by Exercise \ref{exr:2.2.4}, we have $n\geq 0$. But since $n\neq 0$, Definition \ref{dfn:ordering} implies that $n>0$. Consequently, by Exercise \ref{exr:2.2.3e}, $n\geq 0\pplus$, i.e., $n\geq 1$.
+                    \end{proof}
+                \end{lem}
+                \begin{lem}\label{lem:3.6.4a-mod}
+                    Let $X$ be a finite set, and let $x$ be an object which \emph{is} an element of $X$. Then $X\cup\{x\}$ is finite and $\#(X\cup\{x\})=\#(X)$.
+                    \begin{proof}
+                        By Axiom \ref{axm:singletonPair}, $x$ is the only element of $\{x\}$. Thus, by Definition \ref{dfn:subsets}, to show that $\{x\}\subseteq X$, it will suffice to show that $x\in X$. But $x$ is an element of $X$ by hypothesis. It follows by Exercise \ref{exr:3.1.5} that $X\cup\{x\}=X$. Since $X\cup\{x\}$ is equal to a finite set, $X\cup\{x\}$ is finite, itself. Consequently, Definition \ref{dfn:finiteInfinte} implies that $\#(X\cup\{x\})$ exists, and, substituting, $\#(X\cup\{x\})=\#(X)$.
+                    \end{proof}
+                \end{lem}
+                \begin{lem}\label{lem:yPartitioningXcupY}
+                    Let $X,Y$ be sets. If $y$ is any element of $Y$, then $X\cup Y=(X\cup(Y\setminus\{y\}))\cup\{y\}$.
+                    \begin{proof}
+                        If $y\in Y$, then for the same reasons outlined in the proof of Lemma \ref{lem:3.6.4a-mod}, $\{y\}\subseteq Y$. By Exercise \ref{exr:3.1.6g}, this implies that $(Y\setminus\{y\})\cup\{y\}=Y$. Thus, Lemma \ref{lem:associativitySetUnion} and the fact that the $\cup$ operation obeys the axiom of substitution show that $X\cup Y=(X\cup(Y\setminus\{y\}))\cup\{y\}$, as desired.
+                    \end{proof}
+                \end{lem}
+                \begin{lem}\label{lem:n-1+1}
+                    Let $n$ be a natural number, and let $n-1$ be defined as in Lemma \ref{lem:cardinalitySetminus}. Then $n-1+1=n$.
+                    \begin{proof}
+                        By Lemma \ref{lem:cardinalitySetminus}, $n-1$ equals the unique element $m$ satisfying $m\pplus=n$. Substituting, Lemma \ref{lem:nplusmpplus} and Definition \ref{dfn:addition} give us $n-1+1=m+1=(m+0)\pplus=m\pplus=n$.
+                    \end{proof}
+                \end{lem}
+                \begin{lem}\label{lem:disjointSetminus}
+                    Let $X,Y$ be disjoint sets (i.e., we have $X\cap Y=\emptyset$), and let $y$ be any element of $Y$. Then we have $y\notin X\cup(Y\setminus\{y\})$.
+                    \begin{proof}
+                        Suppose for the sake of contradiction that $y\in X\cup(Y\setminus\{y\})$. Then by Axiom \ref{axm:pairwiseUnion}, $y\in X$ or $y\in Y\setminus\{y\}$. If $y\in Y\setminus\{y\}$, then by Definition \ref{dfn:differenceSets} and subsequently Axiom \ref{axm:specification}, $y\notin\{y\}$ (and $y\in Y$, but we already know this). However, $y\notin\{y\}$ contradicts Axiom \ref{axm:singletonPair}, so $y\notin Y\setminus\{y\}$. Thus, we must have $y\in X$. But then since $y\in X$ and $y\in Y$, Definition \ref{dfn:intersection} implies that $y\in X\cap Y$. Consequently, Definition \ref{dfn:setEquality} implies that $y\in\emptyset$, contradicting Axiom \ref{axm:emptyset}. Therefore, $y\notin X\cup(Y\setminus\{y\})$.
+                    \end{proof}
+                \end{lem}
+                \begin{lem}\label{lem:intersectionSetminus}
+                    Let $A,X,Y$ be sets, and let $X\cap Y=\emptyset$. Then $X\cap(Y\setminus A)=\emptyset$.
+                    \begin{proof}
+                        Suppose for the sake of contradiction that for some object $x$, $x\in X\cap(Y\setminus A)$. By Definition \ref{dfn:intersection}, this implies that $x\in X$ and $x\in Y\setminus A$. By Definition \ref{dfn:differenceSets} followed by Axiom \ref{axm:specification}, $x\in X$ and $x\in Y$ (and $x\notin A$, but this is not relevant to our present discussion). Since $x\in X$ and $x\in Y$, Definition \ref{dfn:intersection} implies that $x\in X\cap Y$. But by Defintion \ref{dfn:setEquality}, this implies that $x\in\emptyset$, which contradicts Axiom \ref{axm:emptyset}. Therefore, $x\notin X\cap(Y\setminus A)$ for all objects $x$, which, by the uniqueness of the empty set, proves that $X\cap(Y\setminus A)=\emptyset$.
+                    \end{proof}
+                \end{lem}
+                Now for the primary proof (of the first part of the question). Since $X$ and $Y$ are finite, Definition \ref{dfn:finiteInfinte} implies that $\#(X)=n$ and $\#(Y)=m$ for some natural numbers $n,m$. We induct on $m$ (holding $n$ constant).\par
+                For the base case $m=0$, we have by Exercise \ref{exr:3.6.2} that $Y=\emptyset$. Thus, by Exercise \ref{exr:3.1.3}, $X\cup Y=X\cup\emptyset=X$. Since $X\cup Y$ is equal to a finite set, $X\cup Y$ is finite. It follows that $\#(X\cup Y)=\#(X)\leq\#(X)+\#(Y)$ (note that we could use $=$ instead of $\leq$ here, but we use $\leq$ because of the nature of the claim). This completes the proof of the base case.\par
+                Now suppose inductively that we have proven the claim for some natural number $m$; we now seek to prove it for $m\pplus$. Let $X$ and $Y$ be finite sets with $\#(Y)=m\pplus$. As we are taking an induction approach, we want to reduce the case of $\#(Y)=m\pplus$ to a case of $\#(Y')=m$, where $Y'$ is some set. We do this by partitioning $Y$ and then analyzing the partition with previously derived statements. However, any proof relating cardinalities will require the established finitude of a couple of sets, so we begin there.\par
+                As mentioned above, we begin by demonstrating that $X\cup Y$ is finite. Since $\#(Y)=m\pplus$ where $m$ is a natural number, we know that $\#(Y)\geq 1$ (Lemma \ref{lem:positiveNaturalsGeq1}). Thus, Lemma \ref{lem:cardinalitySetminus} applies, and asserts that $\#(Y\setminus\{y\})=(m\pplus)-1=m$ (note that $(m\pplus)-1=m$ since $m$ is clearly the unique element such that $m\pplus=m\pplus$; refer to the definition of $n-1$ for natural numbers $n$ in Lemma \ref{lem:cardinalitySetminus}). Thus, by induction hypothesis, $X\cup(Y\setminus\{y\})$ is finite (note that the finitude of this set, itself, will be important later). It follows by either Exercise \ref{exr:3.6.4a} or Lemma \ref{lem:3.6.4a-mod} (depending on whether or not $y$ is an element of $X\cup(Y\setminus\{y\})$ --- remember, while we know that $y\notin Y\setminus\{y\}$ because of Definition \ref{dfn:differenceSets}, Axiom \ref{axm:specification}, and Axiom \ref{axm:singletonPair}, it is still possible that $y\in X$) that $(X\cup(Y\setminus\{y\}))\cup\{y\}$ is finite. But by Lemma \ref{lem:yPartitioningXcupY}, this implies that $X\cup Y$ is finite.\par
+                The remainder of the first part of the proof will be an inequality with comments interjected in between steps. By the above, we have that $\#(X\cup Y)$ exists, and by Lemma \ref{lem:yPartitioningXcupY}, we have that
+                \begin{align*}
+                    \#(X\cup Y) &= \#((X\cup(Y\setminus\{y\}))\cup\{y\})
+                    \intertext{If we treat $X\cup(Y\setminus\{y\})$ as a single finite set (which we are allowed to because of the above), then either Exercise \ref{exr:3.6.4a} or Lemma \ref{lem:3.6.4a-mod} applies, once again depending on whether or not $y$ is an element of $X\cup(Y\setminus\{y\})$. If $y\notin X\cup(Y\setminus\{y\})$, then Exercise \ref{exr:3.6.4a} tells us that $\#((X\cup(Y\setminus\{y\}))\cup\{y\})=\#(X\cup(Y\setminus\{y\}))+1$. On the other hand, if $y\in X\cup(Y\setminus\{y\})$, then Lemma \ref{lem:3.6.4a-mod}, then $\#((X\cup(Y\setminus\{y\}))\cup\{y\})=\#(X\cup(Y\setminus\{y\}))$. Either way, we can conclude that $\#((X\cup(Y\setminus\{y\}))\cup\{y\})\leq\#(X\cup(Y\setminus\{y\}))+1$. Continuing from the equation above, we can write}
+                    &\leq \#(X\cup(Y\setminus\{y\}))+1
+                    \intertext{Since $X$ and $Y\setminus\{y\}$ are finite and $\#(Y\setminus\{y\})=m$, as established above, the induction hypothesis applies and asserts that $\#(X\cup(Y\setminus\{y\}))\leq\#(X)+\#(Y\setminus\{y\})$. Continuing from the above inequality, this allows us to write}
+                    &\leq \#(X)+\#(Y\setminus\{y\})+1
+                    \intertext{By Lemma \ref{lem:cardinalitySetminus}, $\#(Y\setminus\{y\})=\#(Y)-1$. Substituting, we may write}
+                    &= \#(X)+\#(Y)-1+1
+                    \intertext{Since $X$ and $Y$ are finite, $\#(X)$ and $\#(Y)$ are natural numbers. Thus, by Definition \ref{dfn:addition}, $\#(X)+\#(Y)$ is a natural number. Consequently, Lemma \ref{lem:n-1+1} applies, and we can at last conclude the following.}
+                    &= \#(X)+\#(Y)
+                \end{align*}\par
+                \medskip
+                We now address the second part of the question, which we may do in a very similar manner to the first part. Let's begin.\par
+                Since $X$ and $Y$ are finite, Definition \ref{dfn:finiteInfinte} implies that $\#(X)=n$ and $\#(Y)=m$ for some natural numbers $n,m$. We induct on $m$ (holding $n$ constant). For the base case $m=0$, we have by Exercise \ref{exr:3.6.2} that $Y=\emptyset$. Thus, by Exercise \ref{exr:3.1.3}, $\#(X\cup Y)=\#(X)=\#(X)+0=\#(X)+\#(Y)$. Now suppose inductively that we have proven the claim for some natural number $m$; we now seek to prove it for $m\pplus$. Let $X$ and $Y$ be finite sets with $\#(Y)=m\pplus$ and $X\cap Y=\emptyset$. The remainder of the proof will be equations with comments interjected between steps. By the proof of the first part, we have that $\#(X\cup Y)$ exists, and by Lemma \ref{lem:yPartitioningXcupY}, we have that
+                \begin{align*}
+                    \#(X\cup Y) &= \#((X\cup (Y\setminus\{y\}))\cup\{y\})
+                    \intertext{Since $X\cup(Y\setminus\{y\})$ is a finite set and $y$ is not an element of it (Lemma \ref{lem:disjointSetminus}), Exercise \ref{exr:3.6.4a} applies. As such, we have that $\#((X\cup (Y\setminus\{y\}))\cup\{y\})=\#(X\cup(Y\setminus\{y\}))+1$. Thus, continuing from the above equation, we can write}
+                    &= \#(X\cup(Y\setminus\{y\}))+1
+                    \intertext{Since $X$ and $Y\setminus\{y\}$ are finite by hypothesis, $X\cap(Y\setminus\{y\})=\emptyset$ by Lemma \ref{lem:intersectionSetminus}, and $\#(Y\setminus\{y\})=m$ as established above, the induction hypothesis applies and asserts that $\#(X\cup(Y\setminus\{y\}))=\#(X)+\#(Y\setminus\{y\})$. Thus, we can write}
+                    &= \#(X)+\#(Y\setminus\{y\})+1
+                    \intertext{By Lemma \ref{lem:cardinalitySetminus}, $\#(Y\setminus\{y\})=\#(Y)-1$. Substituting, we may write}
+                    &= \#(X)+\#(Y)-1+1
+                    \intertext{Since $X$ and $Y$ are finite, $\#(X)$ and $\#(Y)$ are natural numbers. Thus, by Definition \ref{dfn:addition}, $\#(X)+\#(Y)$ is a natural number. Consequently, Lemma \ref{lem:n-1+1} applies, and we can at last conclude the following.}
+                    &= \#(X)+\#(Y)
+                \end{align*}
             \end{proof}
         \end{enumerate}
     \end{prp}

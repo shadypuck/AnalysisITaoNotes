@@ -187,7 +187,7 @@
         \begin{proof}
             See Exercise \ref{exr:2.2.4} to fill in the gaps.\par
             First, show that no two (or three) of the statements can hold simultaneously. If $a<b$ or $a>b$, then $a\neq b$ by definition. Also, if $a>b$ and $a<b$, then $a=b$, a contradiction.\par
-            Second, show that at least one of the statements is always true. We induct on $a$ (keeping $b$ fixed). When $a=0$, we have $0\leq b$ for all $b$ (see Exercise \ref{exr:2.2.4a}), so we either have $0=b$ or $0<b$, which proves the base case. Now suppose inductively that we have proven the proposition for $a$. From the trichotomy of $a$, there are three cases: $a<b$, $a=b$, and $a>b$. If $a>b$, then $a\pplus>b$ (see Exercise \ref{exr:2.2.4b}). If $a=b$, then $a\pplus>b$ (see Exercise \ref{exr:2.2.4c}). If $a<b$, then $a\pplus\leq b$ by Proposition \ref{prp:ordering}. Thus, either $a\pplus=b$ or $a\pplus<b$. This closes the induction.
+            Second, show that at least one of the statements is always true. We induct on $a$ (keeping $b$ fixed). When $a=0$, we have $0\leq b$ for all $b$ (see Exercise \ref{exr:2.2.4a}), so we either have $0=b$ or $0<b$, which proves the base case. Now suppose inductively that we have proven the proposition for $a$. From the trichotomy of $a$, there are three cases: $a<b$, $a=b$, and $a>b$. If $a>b$, then $a\pplus>b$ (see Exercise \ref{exr:2.2.4b}). If $a=b$, then $a\pplus>b$ (see Exercise \ref{exr:2.2.4c}). If $a<b$, then $a\pplus\leq b$ by Exercise \ref{exr:2.2.3e}. Thus, either $a\pplus=b$ or $a\pplus<b$. This closes the induction.
         \end{proof}
     \end{prp}
     \item \marginnote{6/17:}With order, we can obtain a stronger version of induction (see Exercise \ref{exr:2.2.5}).
@@ -228,22 +228,22 @@
         \end{proof}
     \end{lem}
     \item \label{exr:2.2.3}Prove the following proposition. Hint: you will need many of the preceding propositions, corollaries, and lemmas.
-    \begin{prp}[Basic properties of order for natural numbers]\label{prp:ordering}
+    \begin{prp}[Basic properties of order for natural numbers]
         Let $a,b,c$ be natural numbers. Then
-        \begin{enumerate}[label={\textup{(}\alph*\textup{)}}]
-            \item \textup{(}Order is reflexive\textup{)} $a\geq a$.
+        \begin{enumerate}[label={\textup{(}\alph*\textup{)}},ref={\theenumi\alph*}]
+            \item \label{exr:2.2.3a}\textup{(}Order is reflexive\textup{)} $a\geq a$.
             \begin{proof}
                 By Lemma \ref{lem:nplus0}, $a=a+0$. The previous expression is in the form $n=m+a$; thus, by Definition \ref{dfn:ordering}, $a\geq a$.
             \end{proof}
-            \item \textup{(}Order is transitive\textup{)} If $a\geq b$ and $b\geq c$, then $a\geq c$.
+            \item \label{exr:2.2.3b}\textup{(}Order is transitive\textup{)} If $a\geq b$ and $b\geq c$, then $a\geq c$.
             \begin{proof}
                 If $a\geq b$ and $b\geq c$, then $a=b+n$ and $b=c+m$, respectively, for some $n,m\in\N$. Substituting, $a=(c+m)+n$. By Proposition \ref{prp:associativity}, $a=c+(m+n)$. By Lemma \ref{lem:sumNaturalsIsNatural}, $m+n$ is a natural number. The previous expression is in the form $n=m+a$; thus, by Definition \ref{dfn:ordering}, $a\geq c$.
             \end{proof}
-            \item \textup{(}Order is anti-symmetric\textup{)} If $a\geq b$ and $b\geq a$, then $a=b$.
+            \item \label{exr:2.2.3c}\textup{(}Order is anti-symmetric\textup{)} If $a\geq b$ and $b\geq a$, then $a=b$.
             \begin{proof}
                 If $a\geq b$ and $b\geq a$, then $a=b+n$ and $b=a+m$, respectively, for some $n,m\in\N$. Substituting, $a=(a+m)+n$. By Proposition \ref{prp:associativity}, $a=a+(m+n)$. By Lemma \ref{lem:nplus0}, $a+0=a+(m+n)$. By Proposition \ref{prp:cancellation}, $0=m+n$. By Corollary \ref{cly:AplusBequals0}, $m$ and $n$ both equal 0. Thus, $a=b+0=b$ (or $b=a+0=a$) by Lemma \ref{lem:nplus0}.
             \end{proof}
-            \item \textup{(}Addition preserves order\textup{)} $a\geq b$ iff $a+c\geq b+c$.
+            \item \label{exr:2.2.3d}\textup{(}Addition preserves order\textup{)} $a\geq b$ iff $a+c\geq b+c$.
             \begin{proof}
                 If $a+c\geq b+c$, then $a+c=(b+c)+n$ for some $n\in\N$. Then
                 \begin{align*}
@@ -255,7 +255,7 @@
                 \end{align*}
                 Thus, $a\geq b$.
             \end{proof}
-            \item $a<b$ iff $a\pplus\leq b$.
+            \item \label{exr:2.2.3e}$a<b$ iff $a\pplus\leq b$.
             \begin{proof}
                 If $a\pplus\leq b$, then $b=(a\pplus)+n$ for some $n\in\N$. Then
                 \begin{align*}
@@ -264,17 +264,17 @@
                 \end{align*}
                 Since $n\pplus$ is a natural number (Axiom \ref{axm:npplus}), the above proves that $a\leq b$. By Axiom \ref{axm:0NotSuccessor}, $n\pplus\neq 0$. Thus, $b\neq a$ (suppose for the sake of contradiction that $b=a$. Then $b=b+0=a+(n\pplus)$ implies by Proposition \ref{prp:cancellation} that $0=n\pplus$, a contradiction). By definition, since $a\leq b$ and $b\neq a$, $a<b$.
             \end{proof}
-            \item $a<b$ iff $b=a+d$ for some positive number $d$.
+            \item \label{exr:2.2.3f}$a<b$ iff $b=a+d$ for some positive number $d$.
             \begin{proof}
                 As a positive number, $d$ is a natural number by definition. Thus, $b=a+d$ implies $a\leq b$. Since $d$ is a positive number, $d\neq 0$. For the reasons outlined in the previous proof, this implies that $b\neq a$. Thus, $a<b$.
             \end{proof}
         \end{enumerate}
     \end{prp}
     \item \label{exr:2.2.4}Justify the three statements marked (why?) in the proof of Proposition \ref{prp:trichotomy}.
-    \begin{enumerate}[label={(\alph*)},ref={2.2.4\alph*}]
+    \begin{enumerate}[label={(\alph*)},ref={\theenumi\alph*}]
         \item \label{exr:2.2.4a}\emph{If $n$ is a natural number, then $0\leq n$.}
         \begin{proof}
-            We induct on $n$. By Proposition \ref{prp:ordering}, $0\geq 0$, proving the base case. Suppose inductively that $n\geq 0$. We know that $n\pplus\geq n$ (since $n\pplus=(n+0)\pplus=n+0\pplus$), so by Proposition \ref{prp:ordering}, $n\pplus\geq n$ and $n\geq 0$ transitively imply $n\pplus\geq 0$.
+            We induct on $n$. By Exercise \ref{exr:2.2.3a}, $0\geq 0$, proving the base case. Suppose inductively that $n\geq 0$. We know that $n\pplus\geq n$ (since $n\pplus=(n+0)\pplus=n+0\pplus$), so by Exercise \ref{exr:2.2.3b}, $n\pplus\geq n$ and $n\geq 0$ transitively imply $n\pplus\geq 0$.
         \end{proof}
         \item \label{exr:2.2.4b}\emph{Let $a,b$ be natural numbers. Then if $a>b$, $a\pplus>b$.}
         \begin{proof}
@@ -282,7 +282,7 @@
             \begin{lem}
                 If $a>b$ and $b>c$, then $a>c$.
                 \begin{proof}
-                    If $a>b$ and $b>c$, then $a=b+n$ and $b=c+m$, respectively, for some positive numbers $n,m$. Substituting, $a=(c+m)+n$. By Proposition \ref{prp:associativity}, $a=c+(m+n)$. By Proposition \ref{prp:AplusBpositive}, $m+n$ is a positive number. Thus, by Proposition \ref{prp:ordering}, $a>c$.
+                    If $a>b$ and $b>c$, then $a=b+n$ and $b=c+m$, respectively, for some positive numbers $n,m$. Substituting, $a=(c+m)+n$. By Proposition \ref{prp:associativity}, $a=c+(m+n)$. By Proposition \ref{prp:AplusBpositive}, $m+n$ is a positive number. Thus, by Exercise \ref{exr:2.2.3f}, $a>c$.
                 \end{proof}
             \end{lem}
             $a\pplus>a$. By the lemma, $a\pplus>a$ and $a>b$ imply that $a\pplus>b$.
@@ -452,7 +452,7 @@
     \begin{prp}[Euclidean algorithm]
         Let $n$ be a natural number, and let $q$ be a positive number. Then there exist natural numbers $m,r$ such that $0\leq r<q$ and $n=mq+r$.
         \begin{proof}
-            We induct on $n$ (keeping $q$ fixed). For the base case $n=0$, choose $m=0$ and $r=0$. In both cases, 0 is a natural number, and in the latter case, 0 satisfies $0\leq 0<q$ since $0\leq 0$ by Proposition \ref{prp:ordering} and $0<q$ for all positive $q$. Since $m,r$ meet all necessary conditions, $0q+0=0$ by Definition \ref{dfn:multiplication} and \ref{dfn:addition}, and $n=0$ by hypothesis, the base case holds.\par
+            We induct on $n$ (keeping $q$ fixed). For the base case $n=0$, choose $m=0$ and $r=0$. In both cases, 0 is a natural number, and in the latter case, 0 satisfies $0\leq 0<q$ since $0\leq 0$ by Exercise \ref{exr:2.2.3a} and $0<q$ for all positive $q$. Since $m,r$ meet all necessary conditions, $0q+0=0$ by Definition \ref{dfn:multiplication} and \ref{dfn:addition}, and $n=0$ by hypothesis, the base case holds.\par
             Suppose inductively that $n=mq+r$. We want to show that $n\pplus=m'q+r'$ for some $m',r'$ satisfying the conditions that $m$ and $r$ must satisfy, respectively. To begin, we can show an equality between $m,r$ and $m',r'$ as follows.
             \begin{align*}
                 m'q+r' &= n\pplus\\
